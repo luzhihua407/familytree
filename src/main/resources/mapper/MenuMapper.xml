@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.starfire.familytree.security.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.starfire.familytree.security.entity.Menu">
+        <result column="id" property="id" />
+        <result column="create_time" property="createTime"/>
+        <result column="creator" property="creator"/>
+        <result column="edit_time" property="editTime"/>
+        <result column="editor" property="editor"/>
+        <result column="valid" property="valid"  />
+        <result column="code" property="code" />
+        <result column="icon" property="icon" />
+        <result column="id_path" property="idPath" />
+        <result column="name" property="name" />
+        <result column="remark" property="remark" />
+        <result column="type" property="type" />
+        <result column="url" property="url" />
+        <result column="parent" property="parent" />
+        <result column="parentMenuName" property="parentMenuName" />
+    </resultMap>
+    <select id="getChildMenu" resultMap="BaseResultMap" parameterType="Long">
+	   select * from security_menu where valid=1 and parent=#{parentMenuId}
+	</select>
+    <select id="getParentMenu" resultMap="BaseResultMap" parameterType="Long">
+	   select * from security_menu where type=0 and valid=1 and id=#{menuId}
+	</select>
+    <select id="getParentMenus" resultMap="BaseResultMap">
+	   select * from security_menu where  valid=1 and type in(0,1)
+	</select>
+    <select id="getRootMenuTree" resultMap="BaseResultMap">
+	   select * from security_menu where  valid=1 and type =0
+	</select>
+    <select id="queryPage" resultMap="BaseResultMap">
+        select b.name as parentMenuName,a.* from security_menu a LEFT JOIN security_menu b ON a.parent=b.id WHERE 1=1
+        <if test="queryCon!=null and queryCon.code != null">
+            and a.code like CONCAT(#{queryCon.code},'%')
+        </if>
+        <if test="queryCon!=null and queryCon.name != null">
+            and a.name like CONCAT(#{queryCon.name},'%')
+        </if>
+        <if test="queryCon!=null and queryCon.type != null">
+            and a.type=#{queryCon.type}
+        </if>
+    </select>
+    <select id="getByIds" resultMap="BaseResultMap" parameterType="List">
+        select * from security_menu where valid=1
+        and id in
+        <foreach collection="menuIds" item="item" open="(" separator="," close=")" index="idx">
+            #{item}
+        </foreach>
+        order by id,parent asc
+    </select>
+
+    <select id="getMenusByRoleId" resultMap="BaseResultMap" parameterType="Long">
+		select b.* from security_role_menu a left join security_menu b on a.menu_id=b.id  where role_id=#{roleId} and a.valid=1
+	</select>
+    <select id="getParentMenusByRoleId" resultMap="BaseResultMap" parameterType="Long">
+		select DISTINCT c.* from security_role_menu a left join security_menu b on a.menu_id=b.id left join security_menu c on b.parent=c.id where role_id=#{roleId} and a.valid=1
+	</select>
+
+    <select id="getParentMenusByAdmin" resultMap="BaseResultMap" parameterType="Long">
+		select b.* from security_menu b where b.valid=1 and b.type=0
+	</select>
+    <select id="getParentMenuIds" resultType="Long" parameterType="List">
+        select distinct parent from security_menu where valid=1
+        and id in
+        <foreach collection="childMenuIds" item="item" open="(" separator="," close=")" index="idx">
+            #{item}
+        </foreach>
+    </select>
+    <select id="getMenuByCode" resultMap="BaseResultMap">
+        select * from  security_menu where code =#{code}
+    </select>
+    <select id="getInvisibleMenus" resultMap="BaseResultMap">
+        select * from  security_menu where type=2
+    </select>
+    <select id="getParentMenusByUserId" resultMap="BaseResultMap" parameterType="Long">
+        	select DISTINCT c.* from security_user_menu a
+        	left join security_menu b on a.menu_id=b.id
+        	left join security_menu c on b.parent=c.id
+        	where user_id=#{userId} and a.valid=1
+    </select>
+    <select id="getMenusByUserId" resultMap="BaseResultMap" parameterType="Long">
+        	select b.* from security_user_menu a
+        	left join security_menu b on a.menu_id=b.id
+        	where user_id=#{userId} and a.valid=1
+    </select>
+</mapper>
