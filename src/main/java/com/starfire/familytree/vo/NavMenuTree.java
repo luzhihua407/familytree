@@ -12,8 +12,8 @@ import java.util.List;
 public class NavMenuTree {
 
 	private String name;
-	private Long parentId;
-	private Long id;
+	private String parentId;
+	private String id;
 	private NavMeta meta=new NavMeta();
 	private String redirect;
 	private String component;

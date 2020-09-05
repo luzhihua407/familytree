@@ -3,10 +3,10 @@ package com.starfire.familytree.usercenter.service.impl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.starfire.familytree.enums.ValidEnum;
-import com.starfire.familytree.security.entity.Role;
-import com.starfire.familytree.security.entity.UserRole;
-import com.starfire.familytree.security.service.IRoleService;
-import com.starfire.familytree.security.service.IUserRoleService;
+import com.starfire.familytree.sys.entity.Role;
+import com.starfire.familytree.sys.entity.UserRole;
+import com.starfire.familytree.sys.service.IRoleService;
+import com.starfire.familytree.sys.service.IUserRoleService;
 import com.starfire.familytree.usercenter.entity.User;
 import com.starfire.familytree.usercenter.mapper.UserMapper;
 import com.starfire.familytree.usercenter.service.IUserService;
@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -90,6 +91,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             Role role = roleService.getById(roleId);
             GrantedAuthority ga = new SimpleGrantedAuthority("ROLE_"+role.getCode());
             user.getAuthorities().add(ga);
+            user.getRoles().add(roleId+"");
         }
         return user;
     }
@@ -122,10 +124,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Transactional
     public User saveOrUpdateUser(User user) {
         saveOrUpdate(user);
-        String[] roles = user.getRoles();
+        List<String> roles = user.getRoles();
         userRoleService.deleteRoleByUserId(user.getId());
-        for (int i = 0; i < roles.length; i++) {
-            String roleId = roles[i];
+        for (int i = 0; i < roles.size(); i++) {
+            String roleId = roles.get(i);
             UserRole userRole=new UserRole();
             userRole.setRoleId(Long.valueOf(roleId));
             userRole.setUserId(user.getId());

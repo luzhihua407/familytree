@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.starfire.familytree.security.mapper.RoleMapper">
+<mapper namespace="com.starfire.familytree.sys.mapper.RoleMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.starfire.familytree.security.entity.Role">
+    <resultMap id="BaseResultMap" type="com.starfire.familytree.sys.entity.Role">
         <result column="id" property="id"/>
         <result column="create_time" property="createTime"/>
         <result column="creator" property="creator"/>
@@ -17,14 +17,14 @@
     </resultMap>
 
     <select id="getRoleByCode" resultMap="BaseResultMap">
-		select * from security_role where code=#{code} and valid=1
+		select * from sys_role where code=#{code} and valid=1
 	</select>
     <select id="getRoles" resultMap="BaseResultMap">
-		select * from security_role
+		select * from sys_role
 		where valid=1
 	</select>
     <select id="queryPage" resultMap="BaseResultMap">
-        select a.* from security_role a WHERE 1=1
+        select a.* from sys_role a WHERE 1=1
         <if test="queryCon!=null and queryCon.code != null">
             and a.code like CONCAT(#{queryCon.code},'%')
         </if>

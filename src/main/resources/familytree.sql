@@ -330,10 +330,10 @@ CREATE TABLE `oauth_refresh_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for security_menu
+-- Table structure for sys_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `security_menu`;
-CREATE TABLE `security_menu` (
+DROP TABLE IF EXISTS `sys_menu`;
+CREATE TABLE `sys_menu` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -353,10 +353,10 @@ CREATE TABLE `security_menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for security_menu_right
+-- Table structure for sys_menu_right
 -- ----------------------------
-DROP TABLE IF EXISTS `security_menu_right`;
-CREATE TABLE `security_menu_right` (
+DROP TABLE IF EXISTS `sys_menu_right`;
+CREATE TABLE `sys_menu_right` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -370,10 +370,10 @@ CREATE TABLE `security_menu_right` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for security_role
+-- Table structure for sys_role
 -- ----------------------------
-DROP TABLE IF EXISTS `security_role`;
-CREATE TABLE `security_role` (
+DROP TABLE IF EXISTS `sys_role`;
+CREATE TABLE `sys_role` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -388,10 +388,10 @@ CREATE TABLE `security_role` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for security_role_menu
+-- Table structure for sys_role_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `security_role_menu`;
-CREATE TABLE `security_role_menu` (
+DROP TABLE IF EXISTS `sys_role_menu`;
+CREATE TABLE `sys_role_menu` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -405,10 +405,10 @@ CREATE TABLE `security_role_menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for security_role_menu_right
+-- Table structure for sys_role_menu_right
 -- ----------------------------
-DROP TABLE IF EXISTS `security_role_menu_right`;
-CREATE TABLE `security_role_menu_right` (
+DROP TABLE IF EXISTS `sys_role_menu_right`;
+CREATE TABLE `sys_role_menu_right` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -422,10 +422,10 @@ CREATE TABLE `security_role_menu_right` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for security_user_menu
+-- Table structure for sys_user_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `security_user_menu`;
-CREATE TABLE `security_user_menu` (
+DROP TABLE IF EXISTS `sys_user_menu`;
+CREATE TABLE `sys_user_menu` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -439,10 +439,10 @@ CREATE TABLE `security_user_menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for security_user_menu_right
+-- Table structure for sys_user_menu_right
 -- ----------------------------
-DROP TABLE IF EXISTS `security_user_menu_right`;
-CREATE TABLE `security_user_menu_right` (
+DROP TABLE IF EXISTS `sys_user_menu_right`;
+CREATE TABLE `sys_user_menu_right` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -456,10 +456,10 @@ CREATE TABLE `security_user_menu_right` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for security_user_role
+-- Table structure for sys_user_role
 -- ----------------------------
-DROP TABLE IF EXISTS `security_user_role`;
-CREATE TABLE `security_user_role` (
+DROP TABLE IF EXISTS `sys_user_role`;
+CREATE TABLE `sys_user_role` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,

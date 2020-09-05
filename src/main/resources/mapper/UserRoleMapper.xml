@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.starfire.familytree.security.mapper.UserRoleMapper">
+<mapper namespace="com.starfire.familytree.sys.mapper.UserRoleMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.starfire.familytree.security.entity.UserRole">
+    <resultMap id="BaseResultMap" type="com.starfire.familytree.sys.entity.UserRole">
         <result column="user_id" property="userId"/>
         <result column="role_id" property="roleId"/>
     </resultMap>
 
     <delete id="deleteRoleByUserId">
-        delete from security_user_role where user_id=#{userId}
+        delete from sys_user_role where user_id=#{userId}
     </delete>
 
     <select id="getRoleIdByUserId" resultMap="BaseResultMap" parameterType="Long">
-		select role_id from security_user_role where user_id=#{userId}
+		select role_id from sys_user_role where user_id=#{userId}
 	</select>
 
     <select id="getRoleIdsByUserId" resultType="Long" parameterType="Long">
-		select role_id from security_user_role where user_id=#{userId}
+		select role_id from sys_user_role where user_id=#{userId}
 	</select>
+    <select id="getUserIdsByRoleId" resultType="Long" parameterType="Long">
+        select user_id from sys_user_role where role_id=#{roleId}
+    </select>
 </mapper>

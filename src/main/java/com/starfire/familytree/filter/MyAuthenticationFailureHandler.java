@@ -27,7 +27,7 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
         response.setSuccess(false);
         response.setCode(401);
         httpServletResponse.setContentType("text/json;charset=utf-8");
-        response.setMsg(message);
+        response.setMsg(message==null?"":message);
         String json = JacksonUtils.toString(response);
         httpServletResponse.getWriter().print(json);
     }

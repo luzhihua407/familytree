@@ -3936,10 +3936,10 @@ CREATE TABLE `oauth_refresh_token` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for security_menu
+-- Table structure for sys_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `security_menu`;
-CREATE TABLE `security_menu` (
+DROP TABLE IF EXISTS `sys_menu`;
+CREATE TABLE `sys_menu` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -3959,34 +3959,34 @@ CREATE TABLE `security_menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of security_menu
+-- Records of sys_menu
 -- ----------------------------
-INSERT INTO `security_menu` VALUES ('1165444029081468929', '2019-09-28 16:42:00', 'system', null, null, '1', 'systemMgr', null, null, '系统管理', null, null, '0', '/');
-INSERT INTO `security_menu` VALUES ('1165444176662249473', '2019-11-10 22:53:42', 'system', null, null, '1', 'menu', null, null, '菜单管理', '1165444029081468929', null, '1', '/security/menu');
-INSERT INTO `security_menu` VALUES ('1165444269649969154', '2019-10-20 10:46:40', 'system', null, null, '1', 'role', null, null, '角色管理', '1165444029081468929', null, '1', '/security/role');
-INSERT INTO `security_menu` VALUES ('1165444378815119361', '2019-10-20 11:09:10', 'system', null, null, '1', 'user', null, null, '用户管理', '1165444029081468929', null, '1', '/user');
-INSERT INTO `security_menu` VALUES ('1165444551914045441', '2019-10-09 21:28:26', 'system', null, null, '1', 'category', null, null, '类别管理', '1165444830919147522', null, '1', '/folk/category');
-INSERT INTO `security_menu` VALUES ('1165444695204052994', '2020-06-25 09:26:17', 'system', null, null, '1', 'category_content', null, null, '类别内容管理', '1165444830919147522', null, '1', '/folk/categorycontent');
-INSERT INTO `security_menu` VALUES ('1165444830919147522', '2019-08-25 10:45:40', 'system', null, null, '1', 'folk', null, null, '族谱管理', null, null, '0', '/');
-INSERT INTO `security_menu` VALUES ('1165996609763397633', '2019-10-09 21:30:12', 'system', null, null, '1', 'people', null, null, '族谱录入', '1165444830919147522', null, '1', '/folk/people');
-INSERT INTO `security_menu` VALUES ('1167082544697479169', '2019-08-29 22:32:24', 'system', null, null, '1', 'tree', null, null, '族谱查看', '1165444830919147522', null, '1', '/folk/tree');
-INSERT INTO `security_menu` VALUES ('1167573544163450881', '2019-10-09 21:28:52', 'system', null, null, '1', 'dict', null, null, '数据字典', '1165444029081468929', null, '1', '/dict');
-INSERT INTO `security_menu` VALUES ('1167725076565549057', '2019-10-09 21:29:02', 'system', null, null, '1', 'region', null, null, '省市区管理', '1165444029081468929', null, '1', '/region');
-INSERT INTO `security_menu` VALUES ('1175388039874781185', '2019-10-09 21:29:18', 'system', null, null, '0', '水电费', null, null, '水电费', null, null, '1', '啊');
-INSERT INTO `security_menu` VALUES ('1193146315227971586', '2020-06-25 09:25:01', 'system', null, null, '1', 'categorycontent_view', null, null, '类别内容查看', '1165444695204052994', null, '2', '/folk/categorycontent/:id');
-INSERT INTO `security_menu` VALUES ('1181184931879624705', '2019-11-10 21:41:53', 'system', null, null, '1', 'cemetery', null, null, '公墓', '1165444830919147522', null, '1', '/folk/cemetery');
-INSERT INTO `security_menu` VALUES ('1182660358611595265', '2019-10-13 07:36:24', 'system', null, null, '1', 'cemetery_detail', null, null, '公墓详情', '1181184931879624705', null, '2', '/folk/cemetery/:id');
-INSERT INTO `security_menu` VALUES ('1194187158843494401', '2019-11-12 17:57:27', 'system', null, null, '1', 'village', null, null, '乡村管理', '1165444029081468929', null, '1', '/village');
-INSERT INTO `security_menu` VALUES ('1194425780905594882', '2019-12-21 11:38:05', 'system', null, null, '1', 'dashboard', null, null, '村统计数据', '1194426369139953666', null, '1', '/dashboard');
-INSERT INTO `security_menu` VALUES ('1194426369139953666', '2019-12-21 11:36:48', 'system', null, null, '1', 'interview', null, null, '长岐塘概况', null, null, '0', '/');
-INSERT INTO `security_menu` VALUES ('1194814587119247361', '2019-11-14 11:09:30', 'system', null, null, '1', 'signup', null, null, '账号注册', '1194426369139953666', null, '2', '/signup');
-INSERT INTO `security_menu` VALUES ('1207584588418977793', '2019-12-21 11:34:29', 'system', null, null, '1', 'images', null, null, '长岐塘风貌', '1194426369139953666', null, '1', '/village/images');
+INSERT INTO `sys_menu` VALUES ('1165444029081468929', '2019-09-28 16:42:00', 'system', null, null, '1', 'systemMgr', null, null, '系统管理', null, null, '0', '/');
+INSERT INTO `sys_menu` VALUES ('1165444176662249473', '2019-11-10 22:53:42', 'system', null, null, '1', 'menu', null, null, '菜单管理', '1165444029081468929', null, '1', '/security/menu');
+INSERT INTO `sys_menu` VALUES ('1165444269649969154', '2019-10-20 10:46:40', 'system', null, null, '1', 'role', null, null, '角色管理', '1165444029081468929', null, '1', '/security/role');
+INSERT INTO `sys_menu` VALUES ('1165444378815119361', '2019-10-20 11:09:10', 'system', null, null, '1', 'user', null, null, '用户管理', '1165444029081468929', null, '1', '/user');
+INSERT INTO `sys_menu` VALUES ('1165444551914045441', '2019-10-09 21:28:26', 'system', null, null, '1', 'category', null, null, '类别管理', '1165444830919147522', null, '1', '/folk/category');
+INSERT INTO `sys_menu` VALUES ('1165444695204052994', '2020-06-25 09:26:17', 'system', null, null, '1', 'category_content', null, null, '类别内容管理', '1165444830919147522', null, '1', '/folk/categorycontent');
+INSERT INTO `sys_menu` VALUES ('1165444830919147522', '2019-08-25 10:45:40', 'system', null, null, '1', 'folk', null, null, '族谱管理', null, null, '0', '/');
+INSERT INTO `sys_menu` VALUES ('1165996609763397633', '2019-10-09 21:30:12', 'system', null, null, '1', 'people', null, null, '族谱录入', '1165444830919147522', null, '1', '/folk/people');
+INSERT INTO `sys_menu` VALUES ('1167082544697479169', '2019-08-29 22:32:24', 'system', null, null, '1', 'tree', null, null, '族谱查看', '1165444830919147522', null, '1', '/folk/tree');
+INSERT INTO `sys_menu` VALUES ('1167573544163450881', '2019-10-09 21:28:52', 'system', null, null, '1', 'dict', null, null, '数据字典', '1165444029081468929', null, '1', '/dict');
+INSERT INTO `sys_menu` VALUES ('1167725076565549057', '2019-10-09 21:29:02', 'system', null, null, '1', 'region', null, null, '省市区管理', '1165444029081468929', null, '1', '/region');
+INSERT INTO `sys_menu` VALUES ('1175388039874781185', '2019-10-09 21:29:18', 'system', null, null, '0', '水电费', null, null, '水电费', null, null, '1', '啊');
+INSERT INTO `sys_menu` VALUES ('1193146315227971586', '2020-06-25 09:25:01', 'system', null, null, '1', 'categorycontent_view', null, null, '类别内容查看', '1165444695204052994', null, '2', '/folk/categorycontent/:id');
+INSERT INTO `sys_menu` VALUES ('1181184931879624705', '2019-11-10 21:41:53', 'system', null, null, '1', 'cemetery', null, null, '公墓', '1165444830919147522', null, '1', '/folk/cemetery');
+INSERT INTO `sys_menu` VALUES ('1182660358611595265', '2019-10-13 07:36:24', 'system', null, null, '1', 'cemetery_detail', null, null, '公墓详情', '1181184931879624705', null, '2', '/folk/cemetery/:id');
+INSERT INTO `sys_menu` VALUES ('1194187158843494401', '2019-11-12 17:57:27', 'system', null, null, '1', 'village', null, null, '乡村管理', '1165444029081468929', null, '1', '/village');
+INSERT INTO `sys_menu` VALUES ('1194425780905594882', '2019-12-21 11:38:05', 'system', null, null, '1', 'dashboard', null, null, '村统计数据', '1194426369139953666', null, '1', '/dashboard');
+INSERT INTO `sys_menu` VALUES ('1194426369139953666', '2019-12-21 11:36:48', 'system', null, null, '1', 'interview', null, null, '长岐塘概况', null, null, '0', '/');
+INSERT INTO `sys_menu` VALUES ('1194814587119247361', '2019-11-14 11:09:30', 'system', null, null, '1', 'signup', null, null, '账号注册', '1194426369139953666', null, '2', '/signup');
+INSERT INTO `sys_menu` VALUES ('1207584588418977793', '2019-12-21 11:34:29', 'system', null, null, '1', 'images', null, null, '长岐塘风貌', '1194426369139953666', null, '1', '/village/images');
 
 -- ----------------------------
--- Table structure for security_menu_right
+-- Table structure for sys_menu_right
 -- ----------------------------
-DROP TABLE IF EXISTS `security_menu_right`;
-CREATE TABLE `security_menu_right` (
+DROP TABLE IF EXISTS `sys_menu_right`;
+CREATE TABLE `sys_menu_right` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -4000,23 +4000,23 @@ CREATE TABLE `security_menu_right` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of security_menu_right
+-- Records of sys_menu_right
 -- ----------------------------
-INSERT INTO `security_menu_right` VALUES ('1193542251968069634', '2019-11-10 22:53:42', 'system', null, null, '1', 'add', '1165444176662249473', '新建');
-INSERT INTO `security_menu_right` VALUES ('1193542251980652546', '2019-11-10 22:53:42', 'system', null, null, '1', 'update', '1165444176662249473', '更新');
-INSERT INTO `security_menu_right` VALUES ('1193542251980652547', '2019-11-10 22:53:42', 'system', null, null, '1', 'delete', '1165444176662249473', '删除');
-INSERT INTO `security_menu_right` VALUES ('1193542251980652548', '2019-11-10 22:53:42', 'system', null, null, '1', 'view', '1165444176662249473', '查看');
-INSERT INTO `security_menu_right` VALUES ('1275963171428511745', '2020-06-25 09:25:01', 'system', null, null, '1', 'view', '1193146315227971586', '查看');
-INSERT INTO `security_menu_right` VALUES ('1275963490329833473', '2020-06-25 09:26:17', 'system', null, null, '1', 'view', '1165444695204052994', '查看');
-INSERT INTO `security_menu_right` VALUES ('1275963490329833474', '2020-06-25 09:26:17', 'system', null, null, '1', 'search', '1165444695204052994', '查询');
-INSERT INTO `security_menu_right` VALUES ('1275963490329833475', '2020-06-25 09:26:17', 'system', null, null, '1', 'update', '1165444695204052994', '更新');
-INSERT INTO `security_menu_right` VALUES ('1275963490329833476', '2020-06-25 09:26:17', 'system', null, null, '1', 'delete', '1165444695204052994', '删除');
+INSERT INTO `sys_menu_right` VALUES ('1193542251968069634', '2019-11-10 22:53:42', 'system', null, null, '1', 'add', '1165444176662249473', '新建');
+INSERT INTO `sys_menu_right` VALUES ('1193542251980652546', '2019-11-10 22:53:42', 'system', null, null, '1', 'update', '1165444176662249473', '更新');
+INSERT INTO `sys_menu_right` VALUES ('1193542251980652547', '2019-11-10 22:53:42', 'system', null, null, '1', 'delete', '1165444176662249473', '删除');
+INSERT INTO `sys_menu_right` VALUES ('1193542251980652548', '2019-11-10 22:53:42', 'system', null, null, '1', 'view', '1165444176662249473', '查看');
+INSERT INTO `sys_menu_right` VALUES ('1275963171428511745', '2020-06-25 09:25:01', 'system', null, null, '1', 'view', '1193146315227971586', '查看');
+INSERT INTO `sys_menu_right` VALUES ('1275963490329833473', '2020-06-25 09:26:17', 'system', null, null, '1', 'view', '1165444695204052994', '查看');
+INSERT INTO `sys_menu_right` VALUES ('1275963490329833474', '2020-06-25 09:26:17', 'system', null, null, '1', 'search', '1165444695204052994', '查询');
+INSERT INTO `sys_menu_right` VALUES ('1275963490329833475', '2020-06-25 09:26:17', 'system', null, null, '1', 'update', '1165444695204052994', '更新');
+INSERT INTO `sys_menu_right` VALUES ('1275963490329833476', '2020-06-25 09:26:17', 'system', null, null, '1', 'delete', '1165444695204052994', '删除');
 
 -- ----------------------------
--- Table structure for security_role
+-- Table structure for sys_role
 -- ----------------------------
-DROP TABLE IF EXISTS `security_role`;
-CREATE TABLE `security_role` (
+DROP TABLE IF EXISTS `sys_role`;
+CREATE TABLE `sys_role` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -4031,16 +4031,16 @@ CREATE TABLE `security_role` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of security_role
+-- Records of sys_role
 -- ----------------------------
-INSERT INTO `security_role` VALUES ('1167208436950208513', '2019-08-30 06:52:32', 'system', null, null, '1', '0', '客户', '客户', null);
-INSERT INTO `security_role` VALUES ('1165459649994960898', '2019-08-25 11:07:33', 'system', null, null, '1', '1', 'admin', '超级管理员', null);
+INSERT INTO `sys_role` VALUES ('1167208436950208513', '2019-08-30 06:52:32', 'system', null, null, '1', '0', '客户', '客户', null);
+INSERT INTO `sys_role` VALUES ('1165459649994960898', '2019-08-25 11:07:33', 'system', null, null, '1', '1', 'admin', '超级管理员', null);
 
 -- ----------------------------
--- Table structure for security_role_menu
+-- Table structure for sys_role_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `security_role_menu`;
-CREATE TABLE `security_role_menu` (
+DROP TABLE IF EXISTS `sys_role_menu`;
+CREATE TABLE `sys_role_menu` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -4054,17 +4054,17 @@ CREATE TABLE `security_role_menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of security_role_menu
+-- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `security_role_menu` VALUES ('1275963607489327106', '2020-06-25 09:26:45', 'system', null, null, '1', '1165444695204052994', '0', '1167208436950208513');
-INSERT INTO `security_role_menu` VALUES ('1275963607480938498', '2020-06-25 09:26:45', 'system', null, null, '1', '1167082544697479169', '0', '1167208436950208513');
-INSERT INTO `security_role_menu` VALUES ('1186655455988563970', '2019-10-22 22:47:55', 'system', null, null, '1', '1167082544697479169', '0', '1165459649994960898');
+INSERT INTO `sys_role_menu` VALUES ('1275963607489327106', '2020-06-25 09:26:45', 'system', null, null, '1', '1165444695204052994', '0', '1167208436950208513');
+INSERT INTO `sys_role_menu` VALUES ('1275963607480938498', '2020-06-25 09:26:45', 'system', null, null, '1', '1167082544697479169', '0', '1167208436950208513');
+INSERT INTO `sys_role_menu` VALUES ('1186655455988563970', '2019-10-22 22:47:55', 'system', null, null, '1', '1167082544697479169', '0', '1165459649994960898');
 
 -- ----------------------------
--- Table structure for security_role_menu_right
+-- Table structure for sys_role_menu_right
 -- ----------------------------
-DROP TABLE IF EXISTS `security_role_menu_right`;
-CREATE TABLE `security_role_menu_right` (
+DROP TABLE IF EXISTS `sys_role_menu_right`;
+CREATE TABLE `sys_role_menu_right` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -4078,16 +4078,16 @@ CREATE TABLE `security_role_menu_right` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of security_role_menu_right
+-- Records of sys_role_menu_right
 -- ----------------------------
-INSERT INTO `security_role_menu_right` VALUES ('1275963607497715713', '2020-06-25 09:26:45', 'system', null, null, '1', '1165444695204052994', '1275963490329833475', '1275963607489327106');
-INSERT INTO `security_role_menu_right` VALUES ('1275963607497715714', '2020-06-25 09:26:45', 'system', null, null, '1', '1165444695204052994', '1275963490329833473', '1275963607489327106');
+INSERT INTO `sys_role_menu_right` VALUES ('1275963607497715713', '2020-06-25 09:26:45', 'system', null, null, '1', '1165444695204052994', '1275963490329833475', '1275963607489327106');
+INSERT INTO `sys_role_menu_right` VALUES ('1275963607497715714', '2020-06-25 09:26:45', 'system', null, null, '1', '1165444695204052994', '1275963490329833473', '1275963607489327106');
 
 -- ----------------------------
--- Table structure for security_user_menu
+-- Table structure for sys_user_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `security_user_menu`;
-CREATE TABLE `security_user_menu` (
+DROP TABLE IF EXISTS `sys_user_menu`;
+CREATE TABLE `sys_user_menu` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -4101,21 +4101,21 @@ CREATE TABLE `security_user_menu` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of security_user_menu
+-- Records of sys_user_menu
 -- ----------------------------
-INSERT INTO `security_user_menu` VALUES ('1175199015281270785', '2019-09-21 08:04:14', 'system', null, null, '1', '1165444029081468929', null, '1165458963903295490');
-INSERT INTO `security_user_menu` VALUES ('1175199015356768257', '2019-09-21 08:04:14', 'system', null, null, '1', '1165444176662249473', null, '1165458963903295490');
-INSERT INTO `security_user_menu` VALUES ('1175199015365156865', '2019-09-21 08:04:14', 'system', null, null, '1', '1165444269649969154', null, '1165458963903295490');
-INSERT INTO `security_user_menu` VALUES ('1175199015411294209', '2019-09-21 08:04:14', 'system', null, null, '1', '1165444378815119361', null, '1165458963903295490');
-INSERT INTO `security_user_menu` VALUES ('1175199015428071426', '2019-09-21 08:04:14', 'system', null, null, '1', '1167573544163450881', null, '1165458963903295490');
-INSERT INTO `security_user_menu` VALUES ('1175199015436460034', '2019-09-21 08:04:14', 'system', null, null, '1', '1167725076565549057', null, '1165458963903295490');
-INSERT INTO `security_user_menu` VALUES ('1192436191786115074', '2019-11-07 21:38:37', 'system', null, null, '1', '1181924278950064131', null, '1185514721474437122');
+INSERT INTO `sys_user_menu` VALUES ('1175199015281270785', '2019-09-21 08:04:14', 'system', null, null, '1', '1165444029081468929', null, '1165458963903295490');
+INSERT INTO `sys_user_menu` VALUES ('1175199015356768257', '2019-09-21 08:04:14', 'system', null, null, '1', '1165444176662249473', null, '1165458963903295490');
+INSERT INTO `sys_user_menu` VALUES ('1175199015365156865', '2019-09-21 08:04:14', 'system', null, null, '1', '1165444269649969154', null, '1165458963903295490');
+INSERT INTO `sys_user_menu` VALUES ('1175199015411294209', '2019-09-21 08:04:14', 'system', null, null, '1', '1165444378815119361', null, '1165458963903295490');
+INSERT INTO `sys_user_menu` VALUES ('1175199015428071426', '2019-09-21 08:04:14', 'system', null, null, '1', '1167573544163450881', null, '1165458963903295490');
+INSERT INTO `sys_user_menu` VALUES ('1175199015436460034', '2019-09-21 08:04:14', 'system', null, null, '1', '1167725076565549057', null, '1165458963903295490');
+INSERT INTO `sys_user_menu` VALUES ('1192436191786115074', '2019-11-07 21:38:37', 'system', null, null, '1', '1181924278950064131', null, '1185514721474437122');
 
 -- ----------------------------
--- Table structure for security_user_menu_right
+-- Table structure for sys_user_menu_right
 -- ----------------------------
-DROP TABLE IF EXISTS `security_user_menu_right`;
-CREATE TABLE `security_user_menu_right` (
+DROP TABLE IF EXISTS `sys_user_menu_right`;
+CREATE TABLE `sys_user_menu_right` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -4129,14 +4129,14 @@ CREATE TABLE `security_user_menu_right` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of security_user_menu_right
+-- Records of sys_user_menu_right
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for security_user_role
+-- Table structure for sys_user_role
 -- ----------------------------
-DROP TABLE IF EXISTS `security_user_role`;
-CREATE TABLE `security_user_role` (
+DROP TABLE IF EXISTS `sys_user_role`;
+CREATE TABLE `sys_user_role` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
@@ -4149,11 +4149,11 @@ CREATE TABLE `security_user_role` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of security_user_role
+-- Records of sys_user_role
 -- ----------------------------
-INSERT INTO `security_user_role` VALUES ('1275947197824380930', '2020-06-25 08:21:33', 'system', null, null, '1', '1165459649994960898', '1165458963903295490');
-INSERT INTO `security_user_role` VALUES ('1167208566482898945', '2019-08-30 06:53:03', 'system', null, null, '1', '1167208436950208513', '1167208265520615425');
-INSERT INTO `security_user_role` VALUES ('1275945455485333506', '2020-06-25 08:14:37', 'system', null, null, '1', '1167208436950208513', '1185514721474437122');
+INSERT INTO `sys_user_role` VALUES ('1275947197824380930', '2020-06-25 08:21:33', 'system', null, null, '1', '1165459649994960898', '1165458963903295490');
+INSERT INTO `sys_user_role` VALUES ('1167208566482898945', '2019-08-30 06:53:03', 'system', null, null, '1', '1167208436950208513', '1167208265520615425');
+INSERT INTO `sys_user_role` VALUES ('1275945455485333506', '2020-06-25 08:14:37', 'system', null, null, '1', '1167208436950208513', '1185514721474437122');
 
 -- ----------------------------
 -- Table structure for spring_session

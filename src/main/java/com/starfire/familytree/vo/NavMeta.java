@@ -14,5 +14,5 @@ import lombok.Data;
 public class NavMeta {
     private String icon;
     private String title;
-    private Boolean show;
+    private Boolean show=true;
 }

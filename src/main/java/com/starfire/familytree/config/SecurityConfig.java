@@ -39,7 +39,7 @@ http.authorizeRequests().antMatchers("/v2/api-docs",
         http.cors().and()
                 .antMatcher("/**").authorizeRequests()
                 .antMatchers("/login**","/logout","/SignUp/**","/baiduAPI/*").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and().addFilterAt(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin().permitAll()
                 .and().logout().permitAll().logoutSuccessHandler(new MyLogoutSuccessHandler()).deleteCookies("JSESSIONID")
