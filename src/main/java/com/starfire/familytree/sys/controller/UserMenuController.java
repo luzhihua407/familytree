@@ -25,7 +25,7 @@ import java.util.Map;
  * @since 2019-03-03
  */
 @RestController
-@RequestMapping("/sys/user_menu")
+@RequestMapping("user_menu")
 @Api(tags = "用户菜单模块")
 public class UserMenuController {
     @Autowired

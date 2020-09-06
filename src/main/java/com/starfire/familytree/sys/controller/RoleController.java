@@ -23,7 +23,7 @@ import java.util.Map;
  * @since 2019-03-03
  */
 @RestController
-@RequestMapping("/sys/role")
+@RequestMapping("role")
 @Api(tags = "角色模块")
 public class RoleController {
 

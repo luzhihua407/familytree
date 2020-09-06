@@ -22,7 +22,7 @@ import java.util.Map;
  * @since 2019-03-03
  */
 @RestController
-@RequestMapping("/sys/user_role")
+@RequestMapping("user_role")
 @Api(tags = "用户角色模块")
 public class UserRoleController {
     @Autowired

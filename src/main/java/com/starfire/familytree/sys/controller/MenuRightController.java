@@ -22,7 +22,7 @@ import java.util.Map;
  * @since 2019-03-03
  */
 @RestController
-@RequestMapping("/sys/menu_right")
+@RequestMapping("menu_right")
 @Api(tags = "菜单权限模块")
 public class MenuRightController {
     @Autowired

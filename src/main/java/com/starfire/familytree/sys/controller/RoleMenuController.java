@@ -23,7 +23,7 @@ import java.util.*;
  * @since 2019-03-03
  */
 @RestController
-@RequestMapping("/sys/role_menu")
+@RequestMapping("role_menu")
 @Api(tags = "角色菜单模块")
 public class RoleMenuController {
     @Autowired
