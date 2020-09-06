@@ -10,6 +10,7 @@
         <result column="edit_time" property="editTime"/>
         <result column="editor" property="editor"/>
         <result column="valid" property="valid"/>
+        <result column="order_no" property="orderno" />
         <result column="admin" property="admin"/>
         <result column="code" property="code"/>
         <result column="name" property="name"/>

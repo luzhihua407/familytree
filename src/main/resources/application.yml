@@ -47,16 +47,6 @@ spring:
       name: admin
       password: admin
 
-security:
-  oauth2:
-    client:
-      client-id: family_tree
-      client-secret: family_tree
-      access-token-uri: http://localhost/oauth/token
-      user-authorization-uri: http://localhost/oauth/authorize
-    resource:
-      user-info-uri: http://localhost/user/me
-
 logging:
   level: INFO
 

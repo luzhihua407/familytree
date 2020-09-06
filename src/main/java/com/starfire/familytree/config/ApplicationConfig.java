@@ -61,11 +61,11 @@ public class ApplicationConfig {
         return new RestTemplate();
     }
 
-    @Bean
-    public OAuth2RestTemplate ort(OAuth2ProtectedResourceDetails details) {
-        OAuth2RestTemplate oAuth2RestTemplate = new OAuth2RestTemplate(details);
-        return oAuth2RestTemplate;
-    }
+//    @Bean
+//    public OAuth2RestTemplate ort(OAuth2ProtectedResourceDetails details) {
+//        OAuth2RestTemplate oAuth2RestTemplate = new OAuth2RestTemplate(details);
+//        return oAuth2RestTemplate;
+//    }
     @Bean
     public PasswordEncoder passwordEncoder() {
 

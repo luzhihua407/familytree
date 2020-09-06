@@ -17,7 +17,9 @@
         <result column="remark" property="remark" />
         <result column="type" property="type" />
         <result column="url" property="url" />
+        <result column="redirect" property="redirect" />
         <result column="parent" property="parent" />
+        <result column="orderno" property="orderno" />
         <result column="parentMenuName" property="parentMenuName" />
     </resultMap>
     <select id="getChildMenu" resultMap="BaseResultMap" parameterType="Long">
@@ -54,7 +56,7 @@
     </select>
 
     <select id="getMenusByRoleId" resultMap="BaseResultMap" parameterType="Long">
-		select b.* from sys_role_menu a left join sys_menu b on a.menu_id=b.id  where role_id=#{roleId} and a.valid=1
+		select b.* from sys_role_menu a left join sys_menu b on a.menu_id=b.id  where role_id=#{roleId} and a.valid=1 order by orderno asc
 	</select>
     <select id="getParentMenusByRoleId" resultMap="BaseResultMap" parameterType="Long">
 		select DISTINCT c.* from sys_role_menu a left join sys_menu b on a.menu_id=b.id left join sys_menu c on b.parent=c.id where role_id=#{roleId} and a.valid=1
@@ -85,6 +87,6 @@
     <select id="getMenusByUserId" resultMap="BaseResultMap" parameterType="Long">
         	select b.* from sys_user_menu a
         	left join sys_menu b on a.menu_id=b.id
-        	where user_id=#{userId} and a.valid=1
+        	where user_id=#{userId} and a.valid=1 order by orderno asc
     </select>
 </mapper>

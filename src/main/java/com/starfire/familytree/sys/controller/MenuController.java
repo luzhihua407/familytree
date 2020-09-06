@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.*;
 
 import com.starfire.familytree.enums.MenuTypeEnum;
+import com.starfire.familytree.enums.ValidEnum;
 import com.starfire.familytree.sys.entity.MenuRight;
 import com.starfire.familytree.sys.entity.Role;
 import com.starfire.familytree.sys.service.IMenuRightService;
@@ -23,6 +24,7 @@ import com.starfire.familytree.sys.entity.Menu;
 import com.starfire.familytree.sys.service.IMenuService;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * <p>
@@ -163,29 +165,27 @@ public class MenuController {
                         menus.add(menu);
                     }
                 }
-
+                Collections.sort(menus);
                 for (Menu menu : menus) {
-                    if(menu==null){
-                        break;
-                    }
+                    String menuCode = menu.getCode();
+//                    if(!"sys".equals(menuCode) && !"menu".equals(menuCode)){
+//                        continue;
+//                    }
                     MenuTypeEnum type = menu.getType();
                     NavMenuTree menuTree = new NavMenuTree();
-                    menuTree.setName(menu.getCode());
+                    menuTree.setName(menuCode);
+//                    menuTree.setRedirect(menu.getRedirect());
                     menuTree.setId(menu.getId()+"");
-                    menuTree.setComponent(menu.getUrl());
                     if(type==MenuTypeEnum.不可见菜单){
                         menuTree.getMeta().setShow(false);
                     }else{
                         menuTree.setParentId(menu.getParent()==null?"0":menu.getParent()+"");
                         menuTree.getMeta().setShow(true);
                     }
-                    if(menu.getParent()==null){
-                        menuTree.setComponent("RouteView");
-                    }
                     menuTree.getMeta().setTitle(menu.getName());
                     menuTree.getMeta().setIcon(menu.getIcon());
                     menuTree.getMeta().setShow(true);
-                    menuTree.setRedirect(menu.getUrl());
+                    menuTree.setComponent(menu.getUrl());
                     list.add(menuTree);
                 }
 

@@ -51,5 +51,8 @@ public abstract class AbstractEntity implements Serializable {
 
     private ValidEnum valid = ValidEnum.是;
 
-
+    /**
+     * 序号
+     */
+    private Integer orderno =1;
 }
