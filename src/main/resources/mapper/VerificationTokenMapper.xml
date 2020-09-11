@@ -8,6 +8,7 @@
         <result column="token" property="token"/>
         <result column="user_id" property="userId"/>
         <result column="expiry_date" property="expiryDate"/>
+        <result column="version" property="version"/>
     </resultMap>
     <select id="findByToken" resultMap="BaseResultMap" parameterType="String">
 		select * from verification_token where token='${token}'

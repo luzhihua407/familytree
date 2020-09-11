@@ -26,11 +26,12 @@
         <result column="province" property="province"/>
         <result column="city" property="city"/>
         <result column="district" property="district"/>
+        <result column="version" property="version"/>
     </resultMap>
     <select id="getUserByUserName" resultMap="BaseResultMap">
 		select * from sys_user where username = #{username} limit 1
 	</select>
-    
+
     <select id="getUserByEmail" resultMap="BaseResultMap">
         select * from sys_user where email = #{email} limit 1
 

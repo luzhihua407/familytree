@@ -19,6 +19,7 @@
         <result column="short_name" property="shortName"/>
         <result column="area_id" property="areaId"/>
         <result column="type_id" property="typeId"/>
+        <result column="version" property="version"/>
     </resultMap>
     <select id="page" resultMap="BaseResultMap">
         select * from basic_region where 1=1
@@ -31,6 +32,7 @@
         <if test="param!=null and param.shortName!=null">
             and short_name like CONCAT(#{param.shortName},'%')
         </if>
+        order by create_time desc
     </select>
 
 </mapper>

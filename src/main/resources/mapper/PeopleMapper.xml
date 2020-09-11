@@ -32,6 +32,7 @@
         <result column="job" property="job"/>
         <result column="prod_team" property="prodTeam"/>
         <result column="village_code" property="villageCode"/>
+        <result column="version" property="version"/>
     </resultMap>
     <select id="getPeoplesByGeneration" resultMap="BaseResultMap">
         select * from bs_people where generations=#{gen}

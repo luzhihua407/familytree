@@ -15,6 +15,7 @@
         <result column="code" property="code"/>
         <result column="name" property="name"/>
         <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
     </resultMap>
 
     <select id="getRoleByCode" resultMap="BaseResultMap">

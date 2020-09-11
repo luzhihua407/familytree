@@ -13,6 +13,7 @@
         <result column="own" property="own"/>
         <result column="menu_id" property="menuId"/>
         <result column="role_id" property="roleId"/>
+        <result column="version" property="version"/>
     </resultMap>
     <delete id="deleteByRoleId">
         delete from sys_role_menu where role_id=#{roleId}

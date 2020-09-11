@@ -12,6 +12,7 @@
         <result column="editor" property="editor"/>
         <result column="edit_time" property="editTime"/>
         <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
     </resultMap>
 
     <select id="getChildrenList" resultType="com.starfire.familytree.folk.entity.People">

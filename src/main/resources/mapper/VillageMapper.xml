@@ -16,6 +16,7 @@
         <result column="address" property="address" />
         <result column="longitude" property="longitude" />
         <result column="latitude" property="latitude" />
+        <result column="version" property="version"/>
     </resultMap>
     <select id="page" resultMap="BaseResultMap">
         select a.* from bs_village a  where 1=1

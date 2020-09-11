@@ -85,7 +85,7 @@ public class RegionController {
      * @return
      */
     @GetMapping("/get")
-    public Response<Region> getDict(@RequestParam(required = true) Long id) {
+    public Response<Region> getRegion(@RequestParam(required = true) Long id) {
 
         Region region = regionService.getById(id);
         Response<Region> response = new Response<>();

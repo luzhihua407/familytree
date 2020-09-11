@@ -15,8 +15,8 @@ import lombok.experimental.Accessors;
  * @since 2019-03-07
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-@Accessors(chain = true)
+//@EqualsAndHashCode(callSuper = true)
+//@Accessors(chain = true)
 @TableName("basic_region")
 public class Region extends AbstractEntity {
 

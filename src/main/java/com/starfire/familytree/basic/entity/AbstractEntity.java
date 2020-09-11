@@ -1,5 +1,6 @@
 package com.starfire.familytree.basic.entity;
 
+import com.baomidou.mybatisplus.annotation.Version;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.starfire.familytree.enums.ValidEnum;
@@ -47,7 +48,7 @@ public abstract class AbstractEntity implements Serializable {
     /**
      * 编辑时间
      */
-    private LocalDateTime editTime;
+    private LocalDateTime editTime = LocalDateTime.now();
 
     private ValidEnum valid = ValidEnum.是;
 
@@ -55,4 +56,7 @@ public abstract class AbstractEntity implements Serializable {
      * 序号
      */
     private Integer orderno =1;
+
+    @Version
+    private int version=0;
 }

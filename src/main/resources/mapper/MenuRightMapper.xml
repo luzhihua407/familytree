@@ -9,6 +9,7 @@
         <result column="creator" property="creator"/>
         <result column="edit_time" property="editTime"/>
         <result column="editor" property="editor"/>
+        <result column="version" property="version"/>
         <result column="valid" property="valid"/>
         <result column="code" property="code"/>
         <result column="name" property="name"/>

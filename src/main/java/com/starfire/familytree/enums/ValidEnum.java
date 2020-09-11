@@ -1,7 +1,6 @@
 package com.starfire.familytree.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  *

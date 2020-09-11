@@ -14,6 +14,7 @@
         <result column="creator" property="creator"/>
         <result column="edit_time" property="editTime"/>
         <result column="editor" property="editor"/>
+        <result column="version" property="version"/>
     </resultMap>
     <select id="getPage" resultMap="BaseResultMap">
         select b.name as category_name,a.* from bs_category_content a left join bs_category b on b.id=a.category_id where 1=1
