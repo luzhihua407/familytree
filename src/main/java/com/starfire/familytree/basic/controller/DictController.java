@@ -87,7 +87,7 @@ public class DictController {
 
     @PostMapping("/getParentDict")
     public Response<List<Dict>> getParentDict(@RequestBody(required = false) Map<String,String> param) {
-        String code=param==null?"":param.get("code");
+        String code=param==null?null:param.get("code");
         List<Dict> dictList = dictService.getParentDict(code);
         Response<List<Dict>> response = new Response<>();
         return response.success(dictList);

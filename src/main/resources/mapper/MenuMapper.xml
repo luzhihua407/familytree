@@ -63,10 +63,10 @@
 		select DISTINCT c.* from sys_role_menu a left join sys_menu b on a.menu_id=b.id left join sys_menu c on b.parent=c.id where role_id=#{roleId} and a.valid=1
 	</select>
 
-    <select id="getParentMenusByAdmin" resultMap="BaseResultMap" parameterType="Long">
-		select b.* from sys_menu b where b.valid=1 and b.type=0
+    <select id="getMenusByAdmin" resultMap="BaseResultMap" parameterType="Long">
+		select b.* from sys_menu b where b.valid=1
 	</select>
-    <select id="getParentMenuIds" resultType="Long" parameterType="List">
+    <select id="getParentMenuIds" resultType="java.lang.Long" parameterType="List">
         select distinct parent from sys_menu where valid=1
         and id in
         <foreach collection="childMenuIds" item="item" open="(" separator="," close=")" index="idx">

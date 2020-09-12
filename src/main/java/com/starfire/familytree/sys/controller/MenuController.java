@@ -1,22 +1,16 @@
 package com.starfire.familytree.sys.controller;
 
-import java.security.Principal;
 import java.util.*;
 
 import com.starfire.familytree.enums.MenuTypeEnum;
-import com.starfire.familytree.enums.ValidEnum;
 import com.starfire.familytree.sys.entity.MenuRight;
 import com.starfire.familytree.sys.entity.Role;
 import com.starfire.familytree.sys.service.IMenuRightService;
+import com.starfire.familytree.sys.service.IRoleService;
 import com.starfire.familytree.sys.service.IUserRoleService;
-import com.starfire.familytree.usercenter.entity.User;
 import com.starfire.familytree.vo.*;
 import io.swagger.annotations.Api;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import com.starfire.familytree.response.Response;
@@ -24,7 +18,6 @@ import com.starfire.familytree.sys.entity.Menu;
 import com.starfire.familytree.sys.service.IMenuService;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 
 /**
  * <p>
@@ -47,6 +40,9 @@ public class MenuController {
 
     @Autowired
     private IUserRoleService userRoleService;
+
+    @Autowired
+    private IRoleService roleService;
     /**
      * 新增或修改
      *
@@ -148,47 +144,59 @@ public class MenuController {
         return response.success(pageInfo);
 
     }
+    private void findSubMenus(List<NavMenuTree> list, List<Menu> menus) {
+        list=convertMenu(menus);
+    }
+
+    private List<NavMenuTree> convertMenu(List<Menu> menus) {
+        List<NavMenuTree> toList=new ArrayList<>();
+        for (Menu menu : menus) {
+            String menuCode = menu.getCode();
+            MenuTypeEnum type = menu.getType();
+            NavMenuTree menuTree = new NavMenuTree();
+            menuTree.setName(menuCode);
+            menuTree.setId(menu.getId()+"");
+            if(type==MenuTypeEnum.不可见菜单){
+                menuTree.getMeta().setShow(false);
+            }else{
+                menuTree.setParentId(menu.getParent()==null?"0":menu.getParent()+"");
+                menuTree.getMeta().setShow(true);
+            }
+            menuTree.getMeta().setTitle(menu.getName());
+            menuTree.getMeta().setIcon(menu.getIcon());
+            menuTree.getMeta().setShow(true);
+            menuTree.setComponent(menu.getUrl());
+            toList.add(menuTree);
+        }
+        return toList;
+    }
 
     @RequestMapping("/getMenuNav")
     public List<NavMenuTree> getMenuNav(@RequestBody Map<String,Long[]> roles) {
                 List<NavMenuTree> list=new ArrayList<>();
+                List<Menu> menus;
                 Long roleId = roles.get("roles")[0];
-                Long userId = userRoleService.getUserIdsByRoleId(roleId);
-                //分配给角色的菜单集合
-                List<Menu> menus = menuService.getMenusByRoleId(roleId);
-                //分配给用户的菜单集合
-                List<Menu> menuList = menuService.getMenusByUserId(userId);
-                //去重
-                for (int i = 0; i < menuList.size(); i++) {
-                    Menu menu =  menuList.get(i);
-                    if(!menus.contains(menu)){
-                        menus.add(menu);
+                Role role = roleService.getById(roleId);
+                String roleCode = role.getCode();
+                if(roleCode.equals("admin")) {
+                    menus = menuService.getMenusByAdmin();
+                    list=convertMenu(menus);
+                }else{
+                    Long userId = userRoleService.getUserIdsByRoleId(roleId);
+                    //分配给角色的菜单集合
+                    menus = menuService.getMenusByRoleId(roleId);
+                    //分配给用户的菜单集合
+                    List<Menu> menuList = menuService.getMenusByUserId(userId);
+                    //去重
+                    for (int i = 0; i < menuList.size(); i++) {
+                        Menu menu =  menuList.get(i);
+                        if(!menus.contains(menu)){
+                            menus.add(menu);
+                        }
                     }
+                    Collections.sort(menus);
+                    list=convertMenu(menus);
                 }
-                Collections.sort(menus);
-                for (Menu menu : menus) {
-                    String menuCode = menu.getCode();
-//                    if(!"sys".equals(menuCode) && !"menu".equals(menuCode)){
-//                        continue;
-//                    }
-                    MenuTypeEnum type = menu.getType();
-                    NavMenuTree menuTree = new NavMenuTree();
-                    menuTree.setName(menuCode);
-//                    menuTree.setRedirect(menu.getRedirect());
-                    menuTree.setId(menu.getId()+"");
-                    if(type==MenuTypeEnum.不可见菜单){
-                        menuTree.getMeta().setShow(false);
-                    }else{
-                        menuTree.setParentId(menu.getParent()==null?"0":menu.getParent()+"");
-                        menuTree.getMeta().setShow(true);
-                    }
-                    menuTree.getMeta().setTitle(menu.getName());
-                    menuTree.getMeta().setIcon(menu.getIcon());
-                    menuTree.getMeta().setShow(true);
-                    menuTree.setComponent(menu.getUrl());
-                    list.add(menuTree);
-                }
-
         return list;
     }
 

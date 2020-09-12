@@ -127,8 +127,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     }
 
     @Override
-    public List<Menu> getParentMenusByAdmin(){
-        return baseMapper.getParentMenusByAdmin();
+    public List<Menu> getMenusByAdmin(){
+        return baseMapper.getMenusByAdmin();
     }
 
     @Override

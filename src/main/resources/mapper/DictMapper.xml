@@ -34,8 +34,8 @@
     </select>
     <select id="getParentDict" resultMap="BaseResultMap">
         select * from basic_dict where 1=1
-        <if test="name!=null">
-            and name like CONCAT(#{param.name},'%')
+        <if test="code!=null">
+            and code=#{code}
         </if>
     </select>
 

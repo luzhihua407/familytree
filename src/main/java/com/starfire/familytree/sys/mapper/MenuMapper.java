@@ -46,5 +46,5 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
     public  Menu getMenuByCode(String code);
 
-    public List<Menu> getParentMenusByAdmin();
+    public List<Menu> getMenusByAdmin();
 }
