@@ -62,38 +62,8 @@ public class FamilytreeApplicationTests {
 
     @Test
     public void text() throws IOException, URISyntaxException {
-//        rt.getMessageConverters().add(new StringHttpMessageConverter(Charset.forName("utf-8")));
-        File file=new File("D:\\需求文档\\数据挖掘需求说明书.docx");
-        byte[] bytes = FileUtils.readFileToByteArray(file);
-        String base64String = Base64.encodeBase64String(bytes);
-//        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
-//        map.add("access_token","24.92f625627b66692d50824103068fd98c.2592000.1578471196.282335-17464717");
-//        map.add("image",base64String);
-        System.err.println(base64String);
-        FileUtils.write(new File("d:/word.txt"),base64String);
 
-//        HttpHeaders headers = new HttpHeaders();
-//        List<HttpMessageConverter<?>> messageConverters = rt.getMessageConverters();
-//        for (int i = 0; i < messageConverters.size(); i++) {
-//            HttpMessageConverter<?> httpMessageConverter =  messageConverters.get(i);
-//            if(httpMessageConverter instanceof StringHttpMessageConverter){
-//                StringHttpMessageConverter stringHttpMessageConverter = (StringHttpMessageConverter) httpMessageConverter;
-//                stringHttpMessageConverter.setDefaultCharset(Charset.forName("UTF-8"));
-//            }
-//        }
-//        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);//设置参数类型和编码
-//        HttpEntity<MultiValueMap<String,String>> request1 = new HttpEntity<>(map, headers);//
-//        ResponseEntity<JsonNode> responseEntity = rt.postForEntity("https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic", request1, JsonNode.class);
-////        ResponseEntity<JsonNode> responseEntity = rt.postForEntity("https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic", request1, JsonNode.class);
-//        JsonNode body = responseEntity.getBody();
-//        ArrayNode words_result = (ArrayNode) body.get("words_result");
-//        Iterator<JsonNode> iterator = words_result.iterator();
-//        while (iterator.hasNext()) {
-//            ObjectNode next = (ObjectNode) iterator.next();
-//            TextNode words = (TextNode) next.get("words");
-//            String s = words.asText();
-//            System.err.println(s);
-//        }
+
 
     }
     @Test
