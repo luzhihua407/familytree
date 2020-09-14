@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.starfire.familytree.folk.entity.People">
         <result column="id" property="id"/>
+        <result column="orderno" property="orderno"/>
         <result column="avatar" property="avatar"/>
         <result column="nickname" property="nickname"/>
         <result column="full_name" property="fullName"/>

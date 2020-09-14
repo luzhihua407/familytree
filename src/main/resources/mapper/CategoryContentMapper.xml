@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.starfire.familytree.folk.entity.CategoryContent">
         <result column="id" property="id"/>
+        <result column="orderno" property="orderno"/>
         <result column="sub_title" property="subTitle"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>

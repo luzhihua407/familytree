@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.starfire.familytree.folk.entity.Partner">
         <result column="id" property="id"/>
+        <result column="orderno" property="orderno"/>
         <result column="husband_id" property="husbandId"/>
         <result column="wife_id" property="wifeId"/>
         <result column="creator" property="creator"/>

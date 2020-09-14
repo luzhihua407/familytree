@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.starfire.familytree.bs.entity.ImageFile">
     <result column="id" property="id" />
+        <result column="orderno" property="orderno"/>
         <result column="create_time" property="createTime" />
         <result column="creator" property="creator" />
         <result column="edit_time" property="editTime" />
