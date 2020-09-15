@@ -23,7 +23,7 @@ import java.util.Map;
  * @since 2019-03-03
  */
 @RestController
-@RequestMapping("role")
+@RequestMapping("/role")
 @Api(tags = "角色模块")
 public class RoleController {
 
@@ -71,6 +71,7 @@ public class RoleController {
         return response.success();
 
     }
+
     @GetMapping("/get")
     public Response<Role> getRole(Long id) {
         Role role = roleService.getById(id);
