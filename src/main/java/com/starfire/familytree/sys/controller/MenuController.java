@@ -144,10 +144,6 @@ public class MenuController {
         return response.success(pageInfo);
 
     }
-    private void findSubMenus(List<NavMenuTree> list, List<Menu> menus) {
-        list=convertMenu(menus);
-    }
-
     private List<NavMenuTree> convertMenu(List<Menu> menus) {
         List<NavMenuTree> toList=new ArrayList<>();
         for (Menu menu : menus) {
@@ -173,7 +169,7 @@ public class MenuController {
 
     @RequestMapping("/getMenuNav")
     public List<NavMenuTree> getMenuNav(@RequestBody Map<String,Long[]> roles) {
-                List<NavMenuTree> list=new ArrayList<>();
+                List<NavMenuTree> list;
                 List<Menu> menus;
                 Long roleId = roles.get("roles")[0];
                 Role role = roleService.getById(roleId);
