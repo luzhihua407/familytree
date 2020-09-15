@@ -4,6 +4,7 @@ import com.starfire.familytree.filter.CustomAuthenticationFilter;
 import com.starfire.familytree.filter.MyAuthenticationFailureHandler;
 import com.starfire.familytree.filter.MyAuthenticationSuccessHandler;
 import com.starfire.familytree.filter.MyLogoutSuccessHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+    
     @Override
     public void configure(WebSecurity web){
 //        web.ignoring().anyRequest();
@@ -49,7 +53,7 @@ http.authorizeRequests().antMatchers("/v2/api-docs",
     CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
         CustomAuthenticationFilter filter = new CustomAuthenticationFilter();
 
-        filter.setAuthenticationSuccessHandler(new MyAuthenticationSuccessHandler());
+        filter.setAuthenticationSuccessHandler(myAuthenticationSuccessHandler);
         filter.setAuthenticationFailureHandler(new MyAuthenticationFailureHandler());
         filter.setFilterProcessesUrl("/login");
         //这句很关键，重用WebSecurityConfigurerAdapter配置的AuthenticationManager，不然要自己组装AuthenticationManager

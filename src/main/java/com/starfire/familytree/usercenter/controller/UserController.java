@@ -105,7 +105,7 @@ public class UserController {
         for (int i = 0; i < userId.size(); i++) {
             Long aLong =  userId.get(i);
             String roles=String.valueOf(aLong);
-            user.getRoles().add(roles);
+//            user.getRoles().add(roles);
         }
         Response<User> response = new Response<>();
         return response.success(user);

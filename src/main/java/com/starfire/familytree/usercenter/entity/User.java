@@ -54,7 +54,7 @@ public class User extends AbstractEntity implements UserDetails {
     private String mobile;
 
     @TableField(exist = false)
-    private List<String> roles=new ArrayList<>();
+    private List<RoleVO> roles=new ArrayList<>();
 
     @NotNull(message = "用户名不能为空")
     @Size(min = 2, max = 32, message = "用户名长度为2-32个字符")

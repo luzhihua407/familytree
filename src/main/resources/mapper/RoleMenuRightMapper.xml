@@ -26,7 +26,7 @@
 		select a.menu_id,b.menu_right_id,b.role_menu_id,c.parent from sys_role_menu a  left join sys_role_menu_right b on b.menu_id=a.menu_id left join sys_menu c on a.menu_id=c.id where a.role_id=#{roleId}
 	</select>
     <select id="getPermission" resultType="java.lang.String">
-    select DISTINCT CONCAT(c.`code`,'.',d.`code`) as permission
+    select DISTINCT c.`code` as permissionId,d.`code` as action
     from sys_role_menu a,sys_menu c,sys_menu_right d,sys_role_menu_right e
 		where a.menu_id=c.id and a.menu_id=d.menu_id and  e.menu_right_id=d.id and a.role_id=#{roleId} ORDER BY a.menu_id
     </select>

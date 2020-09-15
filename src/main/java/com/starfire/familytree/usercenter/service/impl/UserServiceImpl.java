@@ -7,6 +7,7 @@ import com.starfire.familytree.sys.entity.Role;
 import com.starfire.familytree.sys.entity.UserRole;
 import com.starfire.familytree.sys.service.IRoleService;
 import com.starfire.familytree.sys.service.IUserRoleService;
+import com.starfire.familytree.usercenter.entity.RoleVO;
 import com.starfire.familytree.usercenter.entity.User;
 import com.starfire.familytree.usercenter.mapper.UserMapper;
 import com.starfire.familytree.usercenter.service.IUserService;
@@ -85,14 +86,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         if(user==null){
             throw new RuntimeException("不存在该用户");
         }
-        Long id = user.getId();
-        List<Long> roleIds = userRoleService.getRoleIdsByUserId(id);
-        for (Long roleId : roleIds) {
-            Role role = roleService.getById(roleId);
-            GrantedAuthority ga = new SimpleGrantedAuthority("ROLE_"+role.getCode());
-            user.getAuthorities().add(ga);
-            user.getRoles().add(roleId+"");
-        }
         return user;
     }
 
@@ -124,12 +117,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Transactional
     public User saveOrUpdateUser(User user) {
         saveOrUpdate(user);
-        List<String> roles = user.getRoles();
+        List<RoleVO> roles = user.getRoles();
         userRoleService.deleteRoleByUserId(user.getId());
         for (int i = 0; i < roles.size(); i++) {
-            String roleId = roles.get(i);
+            RoleVO roleVO = roles.get(i);
             UserRole userRole=new UserRole();
-            userRole.setRoleId(Long.valueOf(roleId));
+            userRole.setRoleId(Long.valueOf(roleVO.getId()));
             userRole.setUserId(user.getId());
             userRoleService.save(userRole);
         }

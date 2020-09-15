@@ -168,10 +168,9 @@ public class MenuController {
     }
 
     @RequestMapping("/getMenuNav")
-    public List<NavMenuTree> getMenuNav(@RequestBody Map<String,Long[]> roles) {
+    public List<NavMenuTree> getMenuNav(Long roleId) {
                 List<NavMenuTree> list;
                 List<Menu> menus;
-                Long roleId = roles.get("roles")[0];
                 Role role = roleService.getById(roleId);
                 String roleCode = role.getCode();
                 if(roleCode.equals("admin")) {
