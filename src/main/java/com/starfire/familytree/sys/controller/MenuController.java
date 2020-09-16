@@ -152,6 +152,7 @@ public class MenuController {
             NavMenuTree menuTree = new NavMenuTree();
             menuTree.setName(menuCode);
             menuTree.setId(menu.getId()+"");
+            menuTree.setRedirect(menu.getRedirect());
             if(type==MenuTypeEnum.不可见菜单){
                 menuTree.getMeta().setShow(false);
             }else{
@@ -161,6 +162,7 @@ public class MenuController {
             menuTree.getMeta().setTitle(menu.getName());
             menuTree.getMeta().setIcon(menu.getIcon());
             menuTree.getMeta().setShow(true);
+            menuTree.getMeta().setPermission(menuCode);
             menuTree.setComponent(menu.getUrl());
             toList.add(menuTree);
         }

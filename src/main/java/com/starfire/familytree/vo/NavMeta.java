@@ -15,4 +15,8 @@ public class NavMeta {
     private String icon;
     private String title;
     private Boolean show=true;
+    /**
+     * 权限 存放 menu code
+     */
+    private String permission;
 }

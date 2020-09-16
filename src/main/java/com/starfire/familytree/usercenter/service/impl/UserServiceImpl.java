@@ -117,15 +117,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Transactional
     public User saveOrUpdateUser(User user) {
         saveOrUpdate(user);
-        List<RoleVO> roles = user.getRoles();
+        RoleVO roleVO = user.getRole();
         userRoleService.deleteRoleByUserId(user.getId());
-        for (int i = 0; i < roles.size(); i++) {
-            RoleVO roleVO = roles.get(i);
-            UserRole userRole=new UserRole();
-            userRole.setRoleId(Long.valueOf(roleVO.getId()));
-            userRole.setUserId(user.getId());
-            userRoleService.save(userRole);
-        }
+        UserRole userRole=new UserRole();
+        userRole.setRoleId(Long.valueOf(roleVO.getId()));
+        userRole.setUserId(user.getId());
+        userRoleService.save(userRole);
         return  user;
     }
 

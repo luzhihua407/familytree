@@ -80,7 +80,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
                         convertMenu(roleVo, menu);
                     }
                 }
-                user.getRoles().add(roleVo);
+                user.setRole(roleVo);
             }
         }
         Response<Object> response = new Response<Object>();
