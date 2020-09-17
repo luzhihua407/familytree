@@ -57,6 +57,7 @@ public class UserController {
 
     @Autowired
     private IMenuService menuService;
+
     /**
      * 新增或修改
      *
@@ -68,8 +69,8 @@ public class UserController {
     public Response<User> addOrUpdateUser(@RequestBody(required = false) @Valid User user) {
         String username = user.getUsername();
         User byUserName = userService.getUserByUserName(username);
-        if(byUserName!=null && user.getId()==null){
-            throw  new  RuntimeException("该用户名已存在，请换一个用户名");
+        if (byUserName != null && user.getId() == null) {
+            throw new RuntimeException("该用户名已存在，请换一个用户名");
         }
         userService.saveOrUpdateUser(user);
         Response<User> response = new Response<User>();
@@ -95,6 +96,7 @@ public class UserController {
         return response.success();
 
     }
+
     /**
      * 获取单个用户
      *
@@ -106,8 +108,8 @@ public class UserController {
         User user = userService.getById(id);
         List<Long> userId = userRoleService.getRoleIdsByUserId(user.getId());
         for (int i = 0; i < userId.size(); i++) {
-            Long aLong =  userId.get(i);
-            String roles=String.valueOf(aLong);
+            Long aLong = userId.get(i);
+            String roles = String.valueOf(aLong);
 //            user.getRoles().add(roles);
         }
         Response<User> response = new Response<>();
@@ -116,48 +118,78 @@ public class UserController {
     }
 
     @GetMapping("/current")
-    public Response<User> current(Long id) {
-        User user = userService.getById(id);
-        List<Long> roleIds = userRoleService.getRoleIdsByUserId(id);
-        for (Long roleId : roleIds) {
-            Role role = roleService.getById(roleId);
-            RoleVO roleVo = new RoleVO();
-            roleVo.setId(role.getId()+"");
-            roleVo.setName(role.getName());
-            //超管
-            if(role.getCode().equals("admin")){
-                List<Menu> menusByAdmin = menuService.getMenusByAdmin();
-                for (int i = 0; i < menusByAdmin.size(); i++) {
-                    Menu menu =  menusByAdmin.get(i);
-                    convertMenu(roleVo, menu);
-                }
-            }else{
-                List<RoleMenu> roleMenus = roleMenuService.getListByRoleId(roleId);
-                for (int i = 0; i < roleMenus.size(); i++) {
-                    RoleMenu roleMenu =  roleMenus.get(i);
-                    Long menuId = roleMenu.getMenuId();
-                    Menu menu = menuService.getById(menuId);
-                    convertMenu(roleVo, menu);
-                }
+    public Response<User> current(Long roles) {
+        User user = new User();
+        Role role = roleService.getById(roles);
+        RoleVO roleVo = new RoleVO();
+        roleVo.setId(role.getId() + "");
+        roleVo.setName(role.getName());
+        //超管
+        if (role.getCode().equals("admin")) {
+            List<Menu> menusByAdmin = menuService.getMenusByAdmin();
+            for (int i = 0; i < menusByAdmin.size(); i++) {
+                Menu menu = menusByAdmin.get(i);
+                convertMenu(roleVo, menu);
             }
-            user.setRole(roleVo);
+        } else {
+            List<RoleMenu> roleMenus = roleMenuService.getListByRoleId(roles);
+            for (int i = 0; i < roleMenus.size(); i++) {
+                RoleMenu roleMenu = roleMenus.get(i);
+                Long menuId = roleMenu.getMenuId();
+                Menu menu = menuService.getById(menuId);
+                convertMenu(roleVo, menu);
+            }
         }
+        user.setRole(roleVo);
         Response<User> response = new Response<>();
         return response.success(user);
 
     }
+
+    //    @GetMapping("/current")
+//    public Response<User> current(Long id) {
+//        User user = userService.getById(id);
+//        List<Long> roleIds = userRoleService.getRoleIdsByUserId(id);
+//        for (Long roleId : roleIds) {
+//            Role role = roleService.getById(roleId);
+//            RoleVO roleVo = new RoleVO();
+//            roleVo.setId(role.getId()+"");
+//            roleVo.setName(role.getName());
+//            //超管
+//            if(role.getCode().equals("admin")){
+//                List<Menu> menusByAdmin = menuService.getMenusByAdmin();
+//                for (int i = 0; i < menusByAdmin.size(); i++) {
+//                    Menu menu =  menusByAdmin.get(i);
+//                    convertMenu(roleVo, menu);
+//                }
+//            }else{
+//                List<RoleMenu> roleMenus = roleMenuService.getListByRoleId(roleId);
+//                for (int i = 0; i < roleMenus.size(); i++) {
+//                    RoleMenu roleMenu =  roleMenus.get(i);
+//                    Long menuId = roleMenu.getMenuId();
+//                    Menu menu = menuService.getById(menuId);
+//                    convertMenu(roleVo, menu);
+//                }
+//            }
+//            user.setRole(roleVo);
+//        }
+//        Response<User> response = new Response<>();
+//        return response.success(user);
+//
+//    }
     private void convertMenu(RoleVO roleVo, Menu menu) {
         Permission pm = new Permission();
         pm.setPermissionId(menu.getCode());
         pm.setPermissionName(menu.getName());
         List<MenuRight> list = menuRightService.getList(menu.getId());
         for (int j = 0; j < list.size(); j++) {
-            MenuRight menuRight =  list.get(j);
+            MenuRight menuRight = list.get(j);
             pm.getActionList().add(menuRight.getCode());
         }
 
         roleVo.getPermissions().add(pm);
     }
+
     /**
      * 分页
      *
@@ -166,8 +198,8 @@ public class UserController {
      * @author luzh
      */
     @PostMapping("/page")
-    public Response<PageInfo<Map<String, Object>, User>> page(@RequestBody(required = false)  PageInfo<Map<String, Object>, User> page) {
-        page=page==null?new PageInfo<>():page;
+    public Response<PageInfo<Map<String, Object>, User>> page(@RequestBody(required = false) PageInfo<Map<String, Object>, User> page) {
+        page = page == null ? new PageInfo<>() : page;
         PageInfo<Map<String, Object>, User> pageInfo = userService.page(page);
         Response<PageInfo<Map<String, Object>, User>> response = new Response<PageInfo<Map<String, Object>, User>>();
         return response.success(pageInfo);
@@ -176,11 +208,11 @@ public class UserController {
 
     @PostMapping("/resetPassword")
     public Response resetPassword(@RequestBody ResetPasswordVO resetPasswordVO) {
-       String password = resetPasswordVO.getPassword();
-         String againPassword = resetPasswordVO.getAgainPassword();
-         if(!password.equals(againPassword)){
-             throw new RuntimeException("两次密码不一致，请检查");
-         }
+        String password = resetPasswordVO.getPassword();
+        String againPassword = resetPasswordVO.getAgainPassword();
+        if (!password.equals(againPassword)) {
+            throw new RuntimeException("两次密码不一致，请检查");
+        }
         userService.resetPassword(resetPasswordVO);
         Response response = new Response();
         return response.success();
