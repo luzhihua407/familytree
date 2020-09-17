@@ -61,26 +61,26 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
                 Role role = roleService.getById(roleId);
                 GrantedAuthority ga = new SimpleGrantedAuthority("ROLE_"+role.getCode());
                 user.getAuthorities().add(ga);
-                RoleVO roleVo = new RoleVO();
-                roleVo.setId(role.getId()+"");
-                roleVo.setName(role.getName());
-                //超管
-                if(role.getCode().equals("admin")){
-                    List<Menu> menusByAdmin = menuService.getMenusByAdmin();
-                    for (int i = 0; i < menusByAdmin.size(); i++) {
-                        Menu menu =  menusByAdmin.get(i);
-                        convertMenu(roleVo, menu);
-                    }
-                }else{
-                    List<RoleMenu> roleMenus = roleMenuService.getListByRoleId(roleId);
-                    for (int i = 0; i < roleMenus.size(); i++) {
-                        RoleMenu roleMenu =  roleMenus.get(i);
-                        Long menuId = roleMenu.getMenuId();
-                        Menu menu = menuService.getById(menuId);
-                        convertMenu(roleVo, menu);
-                    }
-                }
-                user.setRole(roleVo);
+//                RoleVO roleVo = new RoleVO();
+//                roleVo.setId(role.getId()+"");
+//                roleVo.setName(role.getName());
+//                //超管
+//                if(role.getCode().equals("admin")){
+//                    List<Menu> menusByAdmin = menuService.getMenusByAdmin();
+//                    for (int i = 0; i < menusByAdmin.size(); i++) {
+//                        Menu menu =  menusByAdmin.get(i);
+//                        convertMenu(roleVo, menu);
+//                    }
+//                }else{
+//                    List<RoleMenu> roleMenus = roleMenuService.getListByRoleId(roleId);
+//                    for (int i = 0; i < roleMenus.size(); i++) {
+//                        RoleMenu roleMenu =  roleMenus.get(i);
+//                        Long menuId = roleMenu.getMenuId();
+//                        Menu menu = menuService.getById(menuId);
+//                        convertMenu(roleVo, menu);
+//                    }
+//                }
+//                user.setRole(roleVo);
             }
         }
         Response<Object> response = new Response<Object>();

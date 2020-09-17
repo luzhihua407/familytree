@@ -118,65 +118,37 @@ public class UserController {
     }
 
     @GetMapping("/current")
-    public Response<User> current(Long roles) {
-        User user = new User();
-        Role role = roleService.getById(roles);
-        RoleVO roleVo = new RoleVO();
-        roleVo.setId(role.getId() + "");
-        roleVo.setName(role.getName());
-        //超管
-        if (role.getCode().equals("admin")) {
-            List<Menu> menusByAdmin = menuService.getMenusByAdmin();
-            for (int i = 0; i < menusByAdmin.size(); i++) {
-                Menu menu = menusByAdmin.get(i);
-                convertMenu(roleVo, menu);
+    public Response<User> current(Long userId) {
+        User user = userService.getById(userId);
+        List<Long> roleIds = userRoleService.getRoleIdsByUserId(userId);
+        for (Long roleId : roleIds) {
+            Role role = roleService.getById(roleId);
+            RoleVO roleVo = new RoleVO();
+            roleVo.setId(role.getId()+"");
+            roleVo.setName(role.getName());
+            //超管
+            if(role.getCode().equals("admin")){
+                List<Menu> menusByAdmin = menuService.getMenusByAdmin();
+                for (int i = 0; i < menusByAdmin.size(); i++) {
+                    Menu menu =  menusByAdmin.get(i);
+                    convertMenu(roleVo, menu);
+                }
+            }else{
+                List<RoleMenu> roleMenus = roleMenuService.getListByRoleId(roleId);
+                for (int i = 0; i < roleMenus.size(); i++) {
+                    RoleMenu roleMenu =  roleMenus.get(i);
+                    Long menuId = roleMenu.getMenuId();
+                    Menu menu = menuService.getById(menuId);
+                    convertMenu(roleVo, menu);
+                }
             }
-        } else {
-            List<RoleMenu> roleMenus = roleMenuService.getListByRoleId(roles);
-            for (int i = 0; i < roleMenus.size(); i++) {
-                RoleMenu roleMenu = roleMenus.get(i);
-                Long menuId = roleMenu.getMenuId();
-                Menu menu = menuService.getById(menuId);
-                convertMenu(roleVo, menu);
-            }
+            user.setRole(roleVo);
         }
-        user.setRole(roleVo);
         Response<User> response = new Response<>();
         return response.success(user);
 
     }
 
-    //    @GetMapping("/current")
-//    public Response<User> current(Long id) {
-//        User user = userService.getById(id);
-//        List<Long> roleIds = userRoleService.getRoleIdsByUserId(id);
-//        for (Long roleId : roleIds) {
-//            Role role = roleService.getById(roleId);
-//            RoleVO roleVo = new RoleVO();
-//            roleVo.setId(role.getId()+"");
-//            roleVo.setName(role.getName());
-//            //超管
-//            if(role.getCode().equals("admin")){
-//                List<Menu> menusByAdmin = menuService.getMenusByAdmin();
-//                for (int i = 0; i < menusByAdmin.size(); i++) {
-//                    Menu menu =  menusByAdmin.get(i);
-//                    convertMenu(roleVo, menu);
-//                }
-//            }else{
-//                List<RoleMenu> roleMenus = roleMenuService.getListByRoleId(roleId);
-//                for (int i = 0; i < roleMenus.size(); i++) {
-//                    RoleMenu roleMenu =  roleMenus.get(i);
-//                    Long menuId = roleMenu.getMenuId();
-//                    Menu menu = menuService.getById(menuId);
-//                    convertMenu(roleVo, menu);
-//                }
-//            }
-//            user.setRole(roleVo);
-//        }
-//        Response<User> response = new Response<>();
-//        return response.success(user);
-//
-//    }
     private void convertMenu(RoleVO roleVo, Menu menu) {
         Permission pm = new Permission();
         pm.setPermissionId(menu.getCode());
