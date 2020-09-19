@@ -133,6 +133,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         baseMapper.updateById(user);
     }
 
+    @Override
+    public User updateProfile(User user) {
+        saveOrUpdate(user);
+        return user;
+    }
+
     public static void main(String[] args) {
         BCryptPasswordEncoder bc=new BCryptPasswordEncoder();
         System.err.println(bc.encode("admin"));

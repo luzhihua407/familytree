@@ -79,6 +79,19 @@ public class UserController {
     }
 
     /**
+     * 修改个人资料
+     * @param user
+     * @return
+     */
+    @PostMapping("/updateProfile")
+    public Response<User> updateProfile(@RequestBody(required = false) @Valid User user) {
+        userService.updateProfile(user);
+        Response<User> response = new Response<User>();
+        return response.success(user);
+
+    }
+
+    /**
      * 删除
      *
      * @return

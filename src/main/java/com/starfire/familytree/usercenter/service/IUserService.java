@@ -33,4 +33,6 @@ public interface IUserService extends UserDetailsService, IService<User> {
     public User saveOrUpdateUser(User user);
 
     void resetPassword(ResetPasswordVO resetPasswordVO);
+
+    public User updateProfile(User user);
 }

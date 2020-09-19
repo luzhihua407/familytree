@@ -3,6 +3,7 @@ package com.starfire.familytree.usercenter.entity;
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.starfire.familytree.basic.entity.AbstractEntity;
 import com.starfire.familytree.enums.BooleanEnum;
@@ -70,6 +71,7 @@ public class User extends AbstractEntity implements UserDetails {
 
     private String realName;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime registerTime = LocalDateTime.now();
 
     private UserTypeEnum type= UserTypeEnum.普通用户;
