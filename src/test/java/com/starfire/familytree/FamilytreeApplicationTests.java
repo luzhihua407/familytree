@@ -34,7 +34,7 @@ public class FamilytreeApplicationTests {
     private RestTemplate rt;
 
     @Autowired
-    private IPeopleService peopleService;
+    private IMemberService memberService;
 
     @Autowired
     private IChildrenService childrenService;
@@ -68,33 +68,33 @@ public class FamilytreeApplicationTests {
     }
     @Test
     public void addChildren() {
-        People people = new People();
-        people.setFullName("开");
-        People father = peopleService.addPeople(people);
-        People children = new People();
+        Member member = new Member();
+        member.setFullName("开");
+        Member father = memberService.addMember(member);
+        Member children = new Member();
         children.setFullName("华");
-        People child = peopleService.addChildren(children,father.getId());
-        People third = new People();
+        Member child = memberService.addChildren(children,father.getId());
+        Member third = new Member();
         third.setFullName("静");
-        People fourth = peopleService.addChildren(third,children.getId());
+        Member fourth = memberService.addChildren(third,children.getId());
 
     }
 
     @Test
     public void addWife() {
-        People husband = peopleService.getHusband(1167415966955597826L);
-        People wife = new People();
+        Member husband = memberService.getHusband(1167415966955597826L);
+        Member wife = new Member();
         wife.setFullName("容");
-        People wif = peopleService.addWife(wife,husband.getId());
+        Member wif = memberService.addWife(wife,husband.getId());
 
     }
 
     @Test
     public void contextLoads2() {
-        List<People> peoples = peopleService.getPeoplesByGeneration(1);
-        for (int i = 0; i < peoples.size(); i++) {
-            People people = peoples.get(i);
-            System.err.println(people.getFullName());
+        List<Member> members = memberService.getMembersByGeneration(1);
+        for (int i = 0; i < members.size(); i++) {
+            Member member = members.get(i);
+            System.err.println(member.getFullName());
         }
 
     }
@@ -155,10 +155,10 @@ public class FamilytreeApplicationTests {
 
     @Test
     public void addUserRole() {
-        People p = peopleService.getById("1167241893457801217");
-        People people=new People();
-        people.setFullName("静");
-        peopleService.save(people);
+        Member p = memberService.getById("1167241893457801217");
+        Member member=new Member();
+        member.setFullName("静");
+        memberService.save(member);
     }
 
 }

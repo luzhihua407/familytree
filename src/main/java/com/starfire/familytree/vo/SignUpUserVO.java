@@ -17,12 +17,15 @@ public class SignUpUserVO {
     @NotNull(message = "用户名不能为空")
     private String username;
 
+    @NotNull(message = "真实姓名不能为空")
+    private String realName;
+
     @NotNull(message = "密码不能为空")
     private String password;
 
     @NotNull(message = "邮箱不能为空")
     private String email;
 
-    @NotNull(message = "村名不能为空")
-    private String villageName;
+    @NotNull(message = "手机号不能为空")
+    private String mobile;
 }

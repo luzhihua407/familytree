@@ -2,7 +2,7 @@ package com.starfire.familytree.folk.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.starfire.familytree.folk.entity.Partner;
-import com.starfire.familytree.folk.entity.People;
+import com.starfire.familytree.folk.entity.Member;
 
 import java.util.List;
 
@@ -16,5 +16,5 @@ import java.util.List;
  */
 public interface IPartnerService extends IService<Partner> {
 
-    public People getWife(Long husbandId);
+    public Member getWife(Long husbandId);
 }

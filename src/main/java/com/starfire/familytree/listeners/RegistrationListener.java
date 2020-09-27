@@ -1,4 +1,4 @@
-package com.starfire.familytree.service.impl;
+package com.starfire.familytree.listeners;
 
 import com.starfire.familytree.service.IVerificationTokenService;
 import com.starfire.familytree.service.OnRegistrationCompleteEvent;

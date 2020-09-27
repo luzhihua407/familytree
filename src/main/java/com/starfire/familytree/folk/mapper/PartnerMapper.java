@@ -2,7 +2,7 @@ package com.starfire.familytree.folk.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.starfire.familytree.folk.entity.Partner;
-import com.starfire.familytree.folk.entity.People;
+import com.starfire.familytree.folk.entity.Member;
 
 import java.util.List;
 
@@ -21,5 +21,5 @@ public interface PartnerMapper extends BaseMapper<Partner> {
      * @param husbandId
      * @return
      */
-    public People getWife(Long husbandId);
+    public Member getWife(Long husbandId);
 }

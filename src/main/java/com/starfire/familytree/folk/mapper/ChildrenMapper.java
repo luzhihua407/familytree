@@ -2,7 +2,7 @@ package com.starfire.familytree.folk.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.starfire.familytree.folk.entity.Children;
-import com.starfire.familytree.folk.entity.People;
+import com.starfire.familytree.folk.entity.Member;
 
 import java.util.List;
 
@@ -16,6 +16,6 @@ import java.util.List;
  */
 public interface ChildrenMapper extends BaseMapper<Children> {
 
-    public List<People> getChildrenList(Long parentId);
+    public List<Member> getChildrenList(Long parentId);
 
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.starfire.familytree.folk.mapper.PeopleMapper">
+<mapper namespace="com.starfire.familytree.folk.mapper.MemberMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.starfire.familytree.folk.entity.People">
+    <resultMap id="BaseResultMap" type="com.starfire.familytree.folk.entity.Member">
         <result column="id" property="id"/>
         <result column="orderno" property="orderno"/>
         <result column="avatar" property="avatar"/>
@@ -28,43 +28,43 @@
         <result column="edit_time" property="editTime"/>
         <result column="phone_number" property="phoneNumber"/>
         <result column="company" property="company"/>
-        <result column="people_branch" property="peopleBranch"/>
+        <result column="member_branch" property="memberBranch"/>
         <result column="branchName" property="branchName"/>
         <result column="job" property="job"/>
         <result column="prod_team" property="prodTeam"/>
         <result column="village_code" property="villageCode"/>
         <result column="version" property="version"/>
     </resultMap>
-    <select id="getPeoplesByGeneration" resultMap="BaseResultMap">
-        select * from bs_people where generations=#{gen}
+    <select id="getMembersByGeneration" resultMap="BaseResultMap">
+        select * from bs_member where generations=#{gen}
     </select>
     <select id="getForefather" resultMap="BaseResultMap">
-        select * from bs_people where generations=#{gen} limit 1
+        select * from bs_member where generations=#{gen} limit 1
     </select>
     <select id="getPage"  resultMap="BaseResultMap">
-        select c.name as branchName,b.name as education,a.* from bs_people a left join basic_dict b on a.education=b.code left join basic_dict c on a.people_branch=c.id where 1=1
+        select c.name as branchName,b.name as education,a.* from bs_member a left join basic_dict b on a.education=b.code left join basic_dict c on a.member_branch=c.id where 1=1
         <if test="param!=null and param.fullName!=null">
             and full_name like CONCAT(#{param.fullName},'%')
         </if>
-        <if test="param!=null and param.peopleBranch!=null">
-            and people_branch =#{param.peopleBranch}
+        <if test="param!=null and param.memberBranch!=null">
+            and member_branch =#{param.memberBranch}
         </if>
     </select>
     <select id="getFamilyTree"  resultMap="BaseResultMap">
-        select b.name as branchName,a.* from bs_people a left join basic_dict b on a.people_branch=b.id where b.code=#{branch} limit 1
+        select b.name as branchName,a.* from bs_member a left join basic_dict b on a.member_branch=b.id where b.code=#{branch} limit 1
     </select>
 
-    <select id="getPeopleByName" resultMap="BaseResultMap">
-        select * from bs_people a where valid=1
+    <select id="getMemberByName" resultMap="BaseResultMap">
+        select * from bs_member a where valid=1
             and full_name like CONCAT(#{name},'%')
     </select>
     <select id="getBranchByName" resultType="java.lang.String">
-        select people_branch from bs_people a where valid=1 and full_name = #{name}
+        select member_branch from bs_member a where valid=1 and full_name = #{name}
     </select>
     <select id="getNamesByPinyin" resultType="map">
-        select id,full_name from bs_people a where valid=1 and pinyin like CONCAT('%',#{pinyin},'%')
+        select id,full_name from bs_member a where valid=1 and pinyin like CONCAT('%',#{pinyin},'%')
     </select>
-    <select id="getPeopleNumByGender" resultType="java.util.Map">
+    <select id="getMemberNumByGender" resultType="java.util.Map">
      select count(gender) as num,CASE gender
         WHEN 1 THEN
             '男'
@@ -73,28 +73,28 @@
         ELSE
             '不清楚'
     END as gender
-     from bs_people where 1=1
+     from bs_member where 1=1
         <if test="villageCode!=null">
             and village_code=#{villageCode}
         </if>
       group by gender
     </select>
-    <select id="getPeopleNumByEducation" resultType="java.util.Map">
-             select count(education) as num,b.name from bs_people a LEFT JOIN basic_dict b on a.education=b.code  where 1=1
+    <select id="getMemberNumByEducation" resultType="java.util.Map">
+             select count(education) as num,b.name from bs_member a LEFT JOIN basic_dict b on a.education=b.code  where 1=1
             <if test="villageCode!=null">
                 and village_code=#{villageCode}
             </if>
-              and education is not null GROUP BY people_branch
+              and education is not null GROUP BY member_branch
     </select>
-    <select id="getPeopleNumByBranch" resultType="java.util.Map">
-         select count(people_branch) as num,b.name from bs_people a LEFT JOIN basic_dict b on a.people_branch=b.id  where 1=1
+    <select id="getMemberNumByBranch" resultType="java.util.Map">
+         select count(member_branch) as num,b.name from bs_member a LEFT JOIN basic_dict b on a.member_branch=b.id  where 1=1
         <if test="villageCode!=null">
             and village_code=#{villageCode}
         </if>
-        and people_branch is not null GROUP BY people_branch
+        and member_branch is not null GROUP BY member_branch
     </select>
-    <select id="getPeopleNumByProTeam" resultType="java.util.Map">
-        select count(prod_team) as num,b.name from bs_people a LEFT JOIN basic_dict b on a.prod_team=b.id  where 1=1
+    <select id="getMemberNumByProTeam" resultType="java.util.Map">
+        select count(prod_team) as num,b.name from bs_member a LEFT JOIN basic_dict b on a.prod_team=b.id  where 1=1
         <if test="villageCode!=null">
             and village_code=#{villageCode}
         </if>
@@ -108,7 +108,7 @@
          gender when
          2 THEN num ELSE 0 END) girl
          FROM (
-         select generations,gender,count(gender) as num  from bs_people a where 1=1
+         select generations,gender,count(gender) as num  from bs_member a where 1=1
             <if test="villageCode!=null">
                 and village_code=#{villageCode}
             </if>

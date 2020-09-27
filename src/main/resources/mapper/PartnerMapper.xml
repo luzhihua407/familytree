@@ -16,8 +16,8 @@
         <result column="version" property="version"/>
     </resultMap>
 
-    <select id="getWife" resultType="com.starfire.familytree.folk.entity.People">
+    <select id="getWife" resultType="com.starfire.familytree.folk.entity.Member">
         select b.*
-        from bs_partner a,bs_people b where a.wife_id=b.id and a.husband_id=#{husbandId};
+        from bs_partner a,bs_member b where a.wife_id=b.id and a.husband_id=#{husbandId};
     </select>
 </mapper>

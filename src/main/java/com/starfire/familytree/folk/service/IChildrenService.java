@@ -2,7 +2,7 @@ package com.starfire.familytree.folk.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.starfire.familytree.folk.entity.Children;
-import com.starfire.familytree.folk.entity.People;
+import com.starfire.familytree.folk.entity.Member;
 
 import java.util.List;
 
@@ -21,13 +21,13 @@ public interface IChildrenService extends IService<Children> {
      * @param parentId
      * @return
      */
-    public List<People> getChildrenList(Long parentId);
+    public List<Member> getChildrenList(Long parentId);
 
     /**
      * 获取所有后辈
      * @param parentId
      * @return
      */
-    public List<People> getJuniorList(Long parentId);
+    public List<Member> getJuniorList(Long parentId);
 
 }

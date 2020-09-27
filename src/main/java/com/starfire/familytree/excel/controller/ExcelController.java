@@ -30,10 +30,10 @@ public class ExcelController {
     @Autowired
     private IExcelService excelService;
 
-    @PostMapping(value="/importPeople")
-    public Response<String> importPeople(@RequestParam("file") MultipartFile multipartFile) {
+    @PostMapping(value="/importMember")
+    public Response<String> importMember(@RequestParam("file") MultipartFile multipartFile) {
         try {
-            excelService.importPeople(multipartFile.getInputStream());
+            excelService.importMember(multipartFile.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

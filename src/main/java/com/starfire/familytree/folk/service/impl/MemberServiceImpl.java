@@ -7,11 +7,11 @@ import com.starfire.familytree.basic.service.IDictService;
 import com.starfire.familytree.enums.BooleanEnum;
 import com.starfire.familytree.folk.entity.Children;
 import com.starfire.familytree.folk.entity.Partner;
-import com.starfire.familytree.folk.entity.People;
+import com.starfire.familytree.folk.entity.Member;
 import com.starfire.familytree.folk.mapper.ChildrenMapper;
 import com.starfire.familytree.folk.mapper.PartnerMapper;
-import com.starfire.familytree.folk.mapper.PeopleMapper;
-import com.starfire.familytree.folk.service.IPeopleService;
+import com.starfire.familytree.folk.mapper.MemberMapper;
+import com.starfire.familytree.folk.service.IMemberService;
 import com.starfire.familytree.utils.ChineseNumber;
 import com.starfire.familytree.utils.StringHelper;
 import com.starfire.familytree.vo.PageInfo;
@@ -36,10 +36,10 @@ import java.util.*;
  * @since 2019-08-09
  */
 @Service
-public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> implements IPeopleService {
+public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> implements IMemberService {
 
     @Autowired
-    private PeopleMapper peopleMapper;
+    private MemberMapper memberMapper;
 
     @Autowired
     private ChildrenMapper childrenMapper;
@@ -51,17 +51,26 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
     private IDictService dictService;
 
     @Override
-    public PageInfo<Map<String, Object>, People> page(PageInfo<Map<String, Object>, People> pageInfo) {
+    public PageInfo<Map<String, Object>, Member> page(PageInfo<Map<String, Object>, Member> pageInfo) {
         Map<String, Object> param = pageInfo.getParam();
-        Page<People> page = pageInfo.toMybatisPlusPage();
-        Page<People> result = peopleMapper.getPage(page, param);
+        Page<Member> page = pageInfo.toMybatisPlusPage();
+        Page<Member> result = memberMapper.getPage(page, param);
         pageInfo.from(result);
         return pageInfo;
     }
 
     @Override
-    public List<People> getPeopleByName(String name) {
-        return peopleMapper.getPeopleByName(name);
+    public List<Member> getMemberByName(String name) {
+        return memberMapper.getMemberByName(name);
+    }
+
+    @Override
+    public Member getMember(String name) {
+        List<Member> memberList = memberMapper.getMemberByName(name);
+        if(memberList!=null && memberList.size()>0){
+            return memberList.get(0);
+        }
+        return null;
     }
 
     @Override
@@ -93,7 +102,7 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
     public List<Map<String,Object>> getNames(String name) {
         List<Map<String, Object>> names=new ArrayList<>();
         if(StringUtils.isNotEmpty(name)){
-            names = peopleMapper.getNamesByPinyin(name);
+            names = memberMapper.getNamesByPinyin(name);
             for (int i = 0; i < names.size(); i++) {
                 Map<String, Object> map =  names.get(i);
                 Long id = (Long)map.get("id");
@@ -111,13 +120,13 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
      * @return
      */
     @Override
-    public People addWife(People wife, Long husbandId) {
-        People husband = peopleMapper.selectById(husbandId);
+    public Member addWife(Member wife, Long husbandId) {
+        Member husband = memberMapper.selectById(husbandId);
         husband.setIsMarried(BooleanEnum.是);
-        peopleMapper.updateById(husband);
+        memberMapper.updateById(husband);
         wife.setIsMarried(BooleanEnum.是);
         wife.setHasChild(husband.getHasChild());
-        peopleMapper.insert(wife);
+        memberMapper.insert(wife);
         Partner partner = new Partner();
         partner.setWifeId(wife.getId());
         partner.setHusbandId(husbandId);
@@ -134,14 +143,14 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
      */
     @Override
     @Transactional
-    public People addChildren(People child, Long parentId) {
-        People parent = peopleMapper.selectById(parentId);
+    public Member addChildren(Member child, Long parentId) {
+        Member parent = memberMapper.selectById(parentId);
         parent.setHasChild(BooleanEnum.是);
         Integer generations = parent.getGenerations();
-        peopleMapper.updateById(parent);
+        memberMapper.updateById(parent);
         //世代在父的基础上+1
         child.setGenerations(generations + 1);
-        peopleMapper.insert(child);
+        memberMapper.insert(child);
         Children children = new Children();
         children.setParentId(parentId);
         children.setChildrenId(child.getId());
@@ -151,74 +160,74 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
     }
 
     @Override
-    public People getHusband(Long husbandId) {
-        People husband = peopleMapper.selectById(husbandId);
+    public Member getHusband(Long husbandId) {
+        Member husband = memberMapper.selectById(husbandId);
         return husband;
     }
 
     @Override
-    public People addPeople(People people)  {
-        String pinyin = StringHelper.toPinyin(people.getFullName());
-        people.setPinyin(pinyin);
-        peopleMapper.insert(people);
-        return people;
+    public Member addMember(Member member)  {
+        String pinyin = StringHelper.toPinyin(member.getFullName());
+        member.setPinyin(pinyin);
+        memberMapper.insert(member);
+        return member;
     }
 
     @Override
-    public List<People> getPeoplesByGeneration(int gen) {
-        List<People> peoples = peopleMapper.getPeoplesByGeneration(gen);
-        return peoples;
+    public List<Member> getMembersByGeneration(int gen) {
+        List<Member> members = memberMapper.getMembersByGeneration(gen);
+        return members;
     }
 
     @Override
-    public People getForefather(int gen) {
-        return peopleMapper.getForefather(gen);
+    public Member getForefather(int gen) {
+        return memberMapper.getForefather(gen);
     }
 
     @Override
-    public People getPeople(Long id) {
+    public Member getMember(Long id) {
         Dict dict=null;
-        People people = this.getById(id);
-        Long peopleBranch = people.getPeopleBranch();
-        if(peopleBranch!=null){
+        Member member = this.getById(id);
+        Long memberBranch = member.getMemberBranch();
+        if(memberBranch!=null){
 
-            dict = dictService.getById(peopleBranch);
-            people.setBranchName(dict.getName());
+            dict = dictService.getById(memberBranch);
+            member.setBranchName(dict.getName());
         }
-        Integer generations = people.getGenerations();
-        people.setGenerationsText("第"+ ChineseNumber.numberToCH(generations)+"世");
-        Long prodTeam = people.getProdTeam();
+        Integer generations = member.getGenerations();
+        member.setGenerationsText("第"+ ChineseNumber.numberToCH(generations)+"世");
+        Long prodTeam = member.getProdTeam();
         if(prodTeam!=null){
 
         dict = dictService.getById(prodTeam);
-        people.setProdTeamName(dict.getName());
+        member.setProdTeamName(dict.getName());
         }
-        String education = people.getEducation();
+        String education = member.getEducation();
         if(StringUtils.isNotEmpty(education)){
 
         dict = dictService.getDict(education);
-        people.setEducation(dict.getName());
+        member.setEducation(dict.getName());
         }
-        Date death = people.getDeath();
-        Date birth = people.getBirth();
+        Date death = member.getDeath();
+        Date birth = member.getBirth();
         if(death!=null && birth!=null){
             long time = death.getTime() - birth.getTime();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(new Date(time));
             long totalDay = time/(24*60*60*1000);// a day
             long aliveAge = totalDay / 365;
-            people.setAliveAge((int)aliveAge);
+            member.setAliveAge((int)aliveAge);
         }
-        return people;
+        return member;
     }
 
     @Override
-    public People getFamilyTree(Map<String,String> param) {
+    public Member getFamilyTree(Map<String,String> param) {
         String branch=param.get("branch");
         String name=param.get("name");
 
         if(StringUtils.isNotEmpty(name)){
-            String branchId = peopleMapper.getBranchByName(name);
+            String branchId = memberMapper.getBranchByName(name);
 
             if(StringUtils.isEmpty(branchId)){
                 throw  new RuntimeException("搜索不到"+name);
@@ -226,6 +235,6 @@ public class PeopleServiceImpl extends ServiceImpl<PeopleMapper, People> impleme
                 branch=branchId;
             }
         }
-        return peopleMapper.getFamilyTree(branch);
+        return memberMapper.getFamilyTree(branch);
     }
 }

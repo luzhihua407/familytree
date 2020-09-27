@@ -2,10 +2,12 @@ package com.starfire.familytree.folk.controller;
 
 
 import com.starfire.familytree.enums.GenderEnum;
-import com.starfire.familytree.folk.entity.People;
+import com.starfire.familytree.folk.entity.Member;
 import com.starfire.familytree.folk.service.IChildrenService;
 import com.starfire.familytree.folk.service.IPartnerService;
-import com.starfire.familytree.folk.service.IPeopleService;
+import com.starfire.familytree.folk.service.IMemberService;
+import com.starfire.familytree.usercenter.entity.User;
+import com.starfire.familytree.usercenter.service.IUserService;
 import com.starfire.familytree.utils.ChineseNumber;
 import com.starfire.familytree.utils.StringHelper;
 import com.starfire.familytree.vo.*;
@@ -30,18 +32,21 @@ import java.util.*;
  * @since 2019-08-15
  */
 @RestController
-@RequestMapping("/folk/people")
+@RequestMapping("/folk/member")
 @Api(tags = "人物模块")
-public class PeopleController {
+public class MemberController {
 
     @Autowired
-    private IPeopleService peopleService;
+    private IMemberService memberService;
 
     @Autowired
     private IPartnerService partnerService;
 
     @Autowired
     private IChildrenService childrenService;
+
+    @Autowired
+    private IUserService userService;
 
     /**
      * 分页
@@ -51,66 +56,66 @@ public class PeopleController {
      * @author luzh
      */
     @PostMapping("/page")
-    public PageInfo<Map<String, Object>, People> page(@RequestBody(required = false) PageInfo<Map<String, Object>, People> page) {
+    public PageInfo<Map<String, Object>, Member> page(@RequestBody(required = false) PageInfo<Map<String, Object>, Member> page) {
         page = page == null ? new PageInfo<>() : page;
-        PageInfo<Map<String, Object>, People> pageInfo = peopleService.page(page);
+        PageInfo<Map<String, Object>, Member> pageInfo = memberService.page(page);
         return pageInfo;
 
     }
 
 
     @PostMapping("add")
-    public People addPeople(@RequestBody @Valid People people) {
-        People pl = peopleService.addPeople(people);
+    public Member addMember(@RequestBody @Valid Member member) {
+        Member pl = memberService.addMember(member);
         return pl;
     }
 
-    @GetMapping("get_peoples_by_generation")
-    public List<People> getPeoplesByGeneration(@RequestParam(required = true) int gen) {
-        List<People> peoples = peopleService.getPeoplesByGeneration(gen);
-        return peoples;
+    @GetMapping("get_members_by_generation")
+    public List<Member> getMembersByGeneration(@RequestParam(required = true) int gen) {
+        List<Member> members = memberService.getMembersByGeneration(gen);
+        return members;
     }
 
-    @GetMapping("getPeopleByName")
-    public List<People> getPeopleByName(@RequestParam(required = true) String name) {
-        List<People> peoples = peopleService.getPeopleByName(name);
-        return peoples;
+    @GetMapping("getMemberByName")
+    public List<Member> getMemberByName(@RequestParam(required = true) String name) {
+        List<Member> members = memberService.getMemberByName(name);
+        return members;
     }
 
     @GetMapping("/get")
-    public People getPeople(Long id) {
-        People people = peopleService.getById(id);
-        return people;
-    }   
-    
+    public Member getMember(Long id) {
+        Member member = memberService.getById(id);
+        return member;
+    }
+
     @GetMapping("/view")
-    public People viewPeople(Long id) {
-        People people = peopleService.getPeople(id);
-        return people;
+    public Member viewMember(Long id) {
+        Member member = memberService.getMember(id);
+        return member;
     }
 
     @PostMapping("/delete")
-    public Boolean deletePeople(@RequestBody DeleteVO<Long[]> deleteVO) {
+    public Boolean deleteMember(@RequestBody DeleteVO<Long[]> deleteVO) {
         Long[] ids = deleteVO.getIds();
         for (int i = 0; i < ids.length; i++) {
             Long id = Long.valueOf(ids[i]);
-            boolean b = peopleService.removeById(id);
+            boolean b = memberService.removeById(id);
 
         }
         return true;
     }
 
     @PostMapping("/edit")
-    public Boolean editPeople(@RequestBody People people) {
-        String pinyin = StringHelper.toPinyin(people.getFullName());
-        people.setPinyin(pinyin);
-        boolean b = peopleService.updateById(people);
+    public Boolean editMember(@RequestBody Member member) {
+        String pinyin = StringHelper.toPinyin(member.getFullName());
+        member.setPinyin(pinyin);
+        boolean b = memberService.updateById(member);
         return b;
     }
 
     @PostMapping("/addRelationship")
     public Boolean addRelationship(@RequestBody RelationshipVO relationshipVO) {
-        boolean b = peopleService.addRelationship(relationshipVO);
+        boolean b = memberService.addRelationship(relationshipVO);
         return b;
     }
 
@@ -120,29 +125,29 @@ public class PeopleController {
         String name = param.get("name");
         if(name.length()>1) {
 
-        names = peopleService.getNames(name);
+        names = memberService.getNames(name);
         }
         return names;
     }
     @GetMapping("/test")
     public void test() {
-        List<People> list = peopleService.list();
+        List<Member> list = memberService.list();
         for (int i = 0; i < list.size(); i++) {
-            People people =  list.get(i);
-            String pinyin = StringHelper.toPinyin(people.getFullName());
-            people.setPinyin(pinyin);
-            peopleService.saveOrUpdate(people);
+            Member member =  list.get(i);
+            String pinyin = StringHelper.toPinyin(member.getFullName());
+            member.setPinyin(pinyin);
+            memberService.saveOrUpdate(member);
         }
     }
 
     @PostMapping("/tree")
     public OrgChartVO tree(@RequestBody Map<String,Integer> param) {
         OrgChartVO orgChartVO = new OrgChartVO();
-        People husband = peopleService.getForefather(param.get("gen"));
+        Member husband = memberService.getForefather(param.get("gen"));
         Long fatherId = husband.getId();
         Long husbandId = husband.getId();
         //获取妻子
-        People wife = partnerService.getWife(husbandId);
+        Member wife = partnerService.getWife(husbandId);
         if(wife!=null){
             OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(husbandId,wife);
             orgChartVO.getItems().add(orgChartItemVO);
@@ -153,7 +158,7 @@ public class PeopleController {
         String avatar = husband.getAvatar();
         OrgChartItemVO orgChartItemVO = new OrgChartItemVO();
         orgChartItemVO.setId(Math.abs(fatherId.hashCode()));
-        orgChartItemVO.setPeopleId(fatherId+"");
+        orgChartItemVO.setMemberId(fatherId+"");
         orgChartItemVO.setParents(null);
         orgChartItemVO.setTitle(fullName);
         orgChartItemVO.setDescription(brief);
@@ -165,13 +170,15 @@ public class PeopleController {
     @PostMapping("/getFamilyTree")
     public OrgChartVO getFamilyTree(@RequestBody Map<String,String> param) {
         OrgChartVO orgChartVO = new OrgChartVO();
-
-        People husband = peopleService.getFamilyTree(param);
+        String userId = param.get("userId");
+        User user = userService.getById(userId);
+        Member husband = memberService.getMember(user.getRealName());
+//        Member husband = memberService.getFamilyTree(param);
         Integer generations = husband.getGenerations();
         Long fatherId = husband.getId();
         Long husbandId = husband.getId();
         //获取妻子
-        People wife = partnerService.getWife(husbandId);
+        Member wife = partnerService.getWife(husbandId);
         if(wife!=null){
             OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(husbandId,wife);
             String avatar = wife.getAvatar();
@@ -179,7 +186,7 @@ public class PeopleController {
             GenderEnum gender = wife.getGender();
             String sex = gender.name();
             orgChartItemVO.setSex(sex);
-            orgChartItemVO.setPeopleId(wife.getId()+"");
+            orgChartItemVO.setMemberId(wife.getId()+"");
             orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
             orgChartItemVO.setDescription(brief);
             orgChartItemVO.setRemark(wife.getRemark());
@@ -189,13 +196,16 @@ public class PeopleController {
         String fullName = husband.getFullName();
         String brief = husband.getBrief();
         GenderEnum gender = husband.getGender();
-        String sex = gender.name();
         OrgChartItemVO orgChartItemVO = new OrgChartItemVO();
+        if(gender!=null){
+
+        String sex = gender.name();
+        orgChartItemVO.setSex(sex);
+        }
         orgChartItemVO.setId(Math.abs(fatherId.hashCode()));
         orgChartItemVO.setParents(null);
-        orgChartItemVO.setPeopleId(fatherId+"");
+        orgChartItemVO.setMemberId(fatherId+"");
         orgChartItemVO.setTitle(fullName);
-        orgChartItemVO.setSex(sex);
         orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
         orgChartItemVO.setDescription(brief);
         orgChartItemVO.setRemark(husband.getRemark());
@@ -207,15 +217,15 @@ public class PeopleController {
      * 轮询取出所有后代
      * @param orgChartVO
      */
-    private void loopChildren(OrgChartVO orgChartVO, People father,People mother) {
+    private void loopChildren(OrgChartVO orgChartVO, Member father,Member mother) {
         Long fatherId=father.getId();
         Long motherId=null;
         if(mother!=null){
             motherId=mother.getId();
         }
-        List<People> childrenList = childrenService.getChildrenList(fatherId);
+        List<Member> childrenList = childrenService.getChildrenList(fatherId);
         for (int j = 0; j < childrenList.size(); j++) {
-            People children = childrenList.get(j);
+            Member children = childrenList.get(j);
             String fullName = children.getFullName();
             String brief = children.getBrief();
             GenderEnum gender = children.getGender();
@@ -223,7 +233,7 @@ public class PeopleController {
             String sex = gender.name();
             Long childrenId = children.getId();
             //获取妻子
-            People wife = partnerService.getWife(childrenId);
+            Member wife = partnerService.getWife(childrenId);
             if(wife!=null){
                 OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(childrenId,wife);
                 String wifeBrief = wife.getBrief();
@@ -231,7 +241,7 @@ public class PeopleController {
                Integer generations = wife.getGenerations();
                 String wifesex = wifeGender.name();
                 orgChartItemVO.setSex(wifesex);
-                orgChartItemVO.setPeopleId(wife.getId()+"");
+                orgChartItemVO.setMemberId(wife.getId()+"");
                 orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
                 orgChartItemVO.setDescription(wifeBrief);
                 orgChartItemVO.setRemark(wife.getRemark());
@@ -240,7 +250,7 @@ public class PeopleController {
             //获取孩子
             OrgChartItemVO orgChartItemVO = new OrgChartItemVO();
             orgChartItemVO.setId(Math.abs(childrenId.hashCode()));
-            orgChartItemVO.setPeopleId(childrenId+"");
+            orgChartItemVO.setMemberId(childrenId+"");
             Integer[] parents=new Integer[2];
             parents[0]=Math.abs(fatherId.hashCode());
             if(motherId!=null){
@@ -248,7 +258,7 @@ public class PeopleController {
             parents[1]=Math.abs(motherId.hashCode());
             }
             Integer generations = children.getGenerations();
-            orgChartItemVO.setPeopleId(children.getId()+"");
+            orgChartItemVO.setMemberId(children.getId()+"");
             orgChartItemVO.setParents(parents);
             orgChartItemVO.setTitle(fullName);
             orgChartItemVO.setLabel(children.getHeir());
@@ -262,13 +272,13 @@ public class PeopleController {
     }
 
 
-    private OrgChartItemVO convertOrgChartItemVO(Long husbandId,People wife) {
+    private OrgChartItemVO convertOrgChartItemVO(Long husbandId,Member wife) {
         String fullName = wife.getFullName();
         String brief = wife.getBrief();
         OrgChartItemVO orgChartItemVO = new OrgChartItemVO();
         orgChartItemVO.setId(Math.abs(wife.getId().hashCode()));
         orgChartItemVO.setParents(null);
-        orgChartItemVO.setPeopleId(wife.getId()+"");
+        orgChartItemVO.setMemberId(wife.getId()+"");
         orgChartItemVO.setTitle(fullName);
         orgChartItemVO.setDescription(brief);
         orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(wife.getGenerations())+"世");

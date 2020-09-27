@@ -2,7 +2,7 @@ package com.starfire.familytree.excel.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.starfire.familytree.folk.entity.Category;
-import com.starfire.familytree.folk.entity.People;
+import com.starfire.familytree.folk.entity.Member;
 
 import java.io.InputStream;
 
@@ -13,7 +13,7 @@ import java.io.InputStream;
  * @Description TODO
  * @createTime 2019年12月12日 14:41:00
  */
-public interface IExcelService  extends IService<People> {
+public interface IExcelService  extends IService<Member> {
 
-    public void importPeople(InputStream inp);
+    public void importMember(InputStream inp);
 }

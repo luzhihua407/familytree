@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.starfire.familytree.enums.GenderEnum;
 import com.starfire.familytree.excel.service.ExcelHeaderEnum;
 import com.starfire.familytree.excel.service.IExcelService;
-import com.starfire.familytree.folk.entity.People;
-import com.starfire.familytree.folk.mapper.PeopleMapper;
+import com.starfire.familytree.folk.entity.Member;
+import com.starfire.familytree.folk.mapper.MemberMapper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.*;
@@ -24,10 +24,10 @@ import java.util.*;
  * @createTime 2019年12月12日 14:39:00
  */
 @Service
-public class ExcelServiceImpl extends ServiceImpl<PeopleMapper, People> implements IExcelService {
+public class ExcelServiceImpl extends ServiceImpl<MemberMapper, Member> implements IExcelService {
 
     @Override
-    public void importPeople(InputStream inp) {
+    public void importMember(InputStream inp) {
         List<Map<String, Object>> list = parseExcel(inp);
         for (int i = 0; i < list.size(); i++) {
             Map<String, Object> map =  list.get(i);
@@ -35,16 +35,16 @@ public class ExcelServiceImpl extends ServiceImpl<PeopleMapper, People> implemen
             Object gender = map.get(ExcelHeaderEnum.性别.name());
             Object generations =map.get(ExcelHeaderEnum.第几世.name());
             if(name!=null && gender!=null && generations!=null){
-                People people = new People();
-                people.setFullName((String) name);
+                Member member = new Member();
+                member.setFullName((String) name);
                 if("男".equals(gender)){
-                    people.setGender(GenderEnum.男);
+                    member.setGender(GenderEnum.男);
                 }
                 if("女".equals(gender)){
-                    people.setGender(GenderEnum.女);
+                    member.setGender(GenderEnum.女);
                 }
-                people.setGenerations(((Double)generations).intValue());
-                this.save(people);
+                member.setGenerations(((Double)generations).intValue());
+                this.save(member);
             }else{
                 throw new RuntimeException("第"+(i+1)+"行，【姓名】，【性别】、【第几世】不能为空");
             }

@@ -16,7 +16,7 @@
         <result column="version" property="version"/>
     </resultMap>
 
-    <select id="getChildrenList" resultType="com.starfire.familytree.folk.entity.People">
-        select  b.* from bs_children a,bs_people b where b.id=a.children_id and a.parent_id=#{parentId}
+    <select id="getChildrenList" resultType="com.starfire.familytree.folk.entity.Member">
+        select  b.* from bs_children a,bs_member b where b.id=a.children_id and a.parent_id=#{parentId}
     </select>
 </mapper>

@@ -27,8 +27,8 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("bs_people")
-public class People extends AbstractEntity {
+@TableName("bs_member")
+public class Member extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -146,7 +146,7 @@ public class People extends AbstractEntity {
      * 分支 关联category
      */
     @JsonSerialize(using = ToStringSerializer.class)
-    private Long peopleBranch;
+    private Long memberBranch;
 
 
     @TableField(exist = false)

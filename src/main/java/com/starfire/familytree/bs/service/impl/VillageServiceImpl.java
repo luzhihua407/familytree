@@ -7,7 +7,7 @@ import com.starfire.familytree.bs.mapper.VillageMapper;
 import com.starfire.familytree.bs.service.IImageFileService;
 import com.starfire.familytree.bs.service.IVillageService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.starfire.familytree.folk.mapper.PeopleMapper;
+import com.starfire.familytree.folk.mapper.MemberMapper;
 import com.starfire.familytree.utils.ChineseNumber;
 import com.starfire.familytree.vo.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import java.util.*;
 public class VillageServiceImpl extends ServiceImpl<VillageMapper, Village> implements IVillageService {
 
     @Autowired
-    private PeopleMapper peopleMapper;
+    private MemberMapper memberMapper;
 
     @Autowired
     private IImageFileService imageFileService;
@@ -50,11 +50,11 @@ public class VillageServiceImpl extends ServiceImpl<VillageMapper, Village> impl
     public Map<String, Object> getOverview(String villageCode) {
         Village village = baseMapper.getVillage(villageCode);
         Map<String, Object> map = new HashMap<>();
-        List<Map<String, Object>> numByBranch = peopleMapper.getPeopleNumByBranch(villageCode);
-        List<Map<String, Object>> numByGender = peopleMapper.getPeopleNumByGender(villageCode);
-        List<Map<String, Object>> numByEducation = peopleMapper.getPeopleNumByEducation(villageCode);
-        List<Map<String, Object>> numByProTeam = peopleMapper.getPeopleNumByProTeam(villageCode);
-        List<Map<String, Object>> genderByGenerations = peopleMapper.getGenderByGenerations(villageCode);
+        List<Map<String, Object>> numByBranch = memberMapper.getMemberNumByBranch(villageCode);
+        List<Map<String, Object>> numByGender = memberMapper.getMemberNumByGender(villageCode);
+        List<Map<String, Object>> numByEducation = memberMapper.getMemberNumByEducation(villageCode);
+        List<Map<String, Object>> numByProTeam = memberMapper.getMemberNumByProTeam(villageCode);
+        List<Map<String, Object>> genderByGenerations = memberMapper.getGenderByGenerations(villageCode);
 
         map.put("numByBranch", numByBranch);
         map.put("numByGender", numByGender);

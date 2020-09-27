@@ -3,7 +3,10 @@ package com.starfire.familytree.bs.controller;
 
 import com.starfire.familytree.bs.service.IVillageService;
 import com.starfire.familytree.entity.VerificationToken;
+import com.starfire.familytree.enums.GenderEnum;
+import com.starfire.familytree.folk.entity.Member;
 import com.starfire.familytree.response.Response;
+import com.starfire.familytree.service.AddMemberEvent;
 import com.starfire.familytree.service.IVerificationTokenService;
 import com.starfire.familytree.service.OnForgotPasswordEvent;
 import com.starfire.familytree.service.OnRegistrationCompleteEvent;
@@ -47,7 +50,7 @@ public class SignUpController {
 
     @Autowired
     private ApplicationEventPublisher eventPublisher;
-    
+
     @Autowired
     private IVerificationTokenService verificationTokenService;
 
@@ -55,10 +58,10 @@ public class SignUpController {
     private String loginPage ;
     /*/**
      * @title 判断是否已经存在该村名
-     * @description 
-     * @author luzh 
-     * @updateTime   
-     * @throws 
+     * @description
+     * @author luzh
+     * @updateTime
+     * @throws
      */
     @ResponseBody
     @GetMapping("/getVillageName")
@@ -80,12 +83,16 @@ public class SignUpController {
             newUser = createUserAccount(user);
             if (newUser == null) {
                 result.rejectValue("email", "message.regError");
-            } else {
-
             }
+            //发送成功注册邮件
             String appUrl = "http://" + request.getRequest().getServerName() + ":"
                     + request.getRequest().getServerPort();
             eventPublisher.publishEvent(new OnRegistrationCompleteEvent(newUser, request.getLocale(), appUrl));
+            //添加自己为成员
+            Member member = new Member();
+            member.setFullName(userVO.getRealName());
+            member.setGender(GenderEnum.男);
+            eventPublisher.publishEvent(new AddMemberEvent(member));
         } else {
             List<FieldError> fieldErrors = result.getFieldErrors();
             String error = FieldErrorUtils.toString(fieldErrors);
@@ -96,10 +103,10 @@ public class SignUpController {
     }
     /*/**
      * @title 注册后激活账户页面
-     * @description 
-     * @author luzh 
-     * @updateTime   
-     * @throws 
+     * @description
+     * @author luzh
+     * @updateTime
+     * @throws
      */
     @RequestMapping("/regitrationConfirm")
     public String regitrationConfirm(String token, Model model) {
