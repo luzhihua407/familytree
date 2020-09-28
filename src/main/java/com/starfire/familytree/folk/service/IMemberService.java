@@ -21,8 +21,36 @@ import java.util.Map;
 public interface IMemberService extends IService<Member> {
 
 
+    /**
+     * 添加配偶
+     * @param wife 妻子
+     * @param husbandId 丈夫Id
+     * @return
+     */
     public Member addWife(Member wife,Long husbandId);
 
+    /**
+     * 添加父母
+     * @param parent 父母
+     * @param childId 小孩Id
+     * @return
+     */
+    public Member addParent(Member parent,Long childId);
+
+    /**
+     * 添加兄弟姐妹
+     * @param siblings 兄弟姐妹
+     * @param brotherId 兄弟Id
+     * @return
+     */
+    public Member addSiblings(Member siblings,Long brotherId);
+
+    /**
+     * 添加小孩
+     * @param child 小孩
+     * @param parentId 父母Id
+     * @return
+     */
     public Member addChildren(Member child,Long parentId);
 
     public Member getHusband(Long husbandId);

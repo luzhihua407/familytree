@@ -33,7 +33,7 @@ import java.util.*;
  */
 @RestController
 @RequestMapping("/folk/member")
-@Api(tags = "人物模块")
+@Api(tags = "成员模块")
 public class MemberController {
 
     @Autowired
@@ -64,9 +64,58 @@ public class MemberController {
     }
 
 
+
     @PostMapping("add")
     public Member addMember(@RequestBody @Valid Member member) {
         Member pl = memberService.addMember(member);
+        return pl;
+    }
+
+    /**
+     * 添加父母
+     * @param parent
+     * @param childId
+     * @return
+     */
+    @PostMapping("addParent")
+    public Member addParent(@RequestBody @Valid Member parent,Long childId) {
+        Member pl = memberService.addParent(parent,childId);
+        return pl;
+    }
+
+    /**
+     * 添加配偶
+     * @param wife
+     * @param husbandId
+     * @return
+     */
+    @PostMapping("addWife")
+    public Member addWife(@RequestBody @Valid Member wife,Long husbandId) {
+        Member pl = memberService.addSiblings(wife,husbandId);
+        return pl;
+    }
+
+    /**
+     * 添加孩子
+     * @param child
+     * @param parentId
+     * @return
+     */
+    @PostMapping("addChildren")
+    public Member addChildren(@RequestBody @Valid Member child,Long parentId) {
+        Member pl = memberService.addChildren(child,parentId);
+        return pl;
+    }
+
+    /**
+     * 添加兄弟姐妹
+     * @param siblings
+     * @param brotherId
+     * @return
+     */
+    @PostMapping("addSiblings")
+    public Member addSiblings(@RequestBody @Valid Member siblings,Long brotherId) {
+        Member pl = memberService.addSiblings(siblings,brotherId);
         return pl;
     }
 

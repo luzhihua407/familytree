@@ -134,6 +134,22 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         return wife;
     }
 
+    @Override
+    public Member addParent(Member parent, Long childId) {
+        Member child = memberMapper.selectById(childId);
+        memberMapper.insert(parent);
+        Children children = new Children();
+        children.setChildrenId(childId);
+        children.setParentId(parent.getId());
+        childrenMapper.insert(children);
+        return parent;
+    }
+
+    @Override
+    public Member addSiblings(Member siblings, Long brotherId) {
+        return null;
+    }
+
     /**
      * 保存孩子，设置父子关系，并标记父类有孩子
      *
