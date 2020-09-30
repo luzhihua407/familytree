@@ -3727,7 +3727,7 @@ CREATE TABLE `bs_member`  (
   `editor` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '',
   `edit_time` datetime(0) NULL DEFAULT NULL,
   `partner_id` bigint(20) NULL DEFAULT NULL,
-  `people_branch` bigint(20) UNSIGNED NULL DEFAULT NULL COMMENT '几房',
+  `member_branch` bigint(20) UNSIGNED NULL DEFAULT NULL COMMENT '几房',
   `heir` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '入嗣',
   `prod_team` bigint(20) UNSIGNED NULL DEFAULT NULL COMMENT '生产队',
   `village_code` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '乡村编码',

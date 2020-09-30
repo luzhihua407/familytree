@@ -66,7 +66,7 @@ public class MemberController {
 
 
     @PostMapping("add")
-    public Member addMember(@RequestBody @Valid Member member) {
+    public Member addMember(@Valid Member member) {
         Member pl = memberService.addMember(member);
         return pl;
     }
@@ -78,7 +78,7 @@ public class MemberController {
      * @return
      */
     @PostMapping("addParent")
-    public Member addParent(@RequestBody @Valid Member parent,Long childId) {
+    public Member addParent(@Valid Member parent,Long childId) {
         Member pl = memberService.addParent(parent,childId);
         return pl;
     }
@@ -90,8 +90,8 @@ public class MemberController {
      * @return
      */
     @PostMapping("addWife")
-    public Member addWife(@RequestBody @Valid Member wife,Long husbandId) {
-        Member pl = memberService.addSiblings(wife,husbandId);
+    public Member addWife(@Valid Member wife,Long husbandId) {
+        Member pl = memberService.addWife(wife,husbandId);
         return pl;
     }
 
@@ -102,7 +102,7 @@ public class MemberController {
      * @return
      */
     @PostMapping("addChildren")
-    public Member addChildren(@RequestBody @Valid Member child,Long parentId) {
+    public Member addChildren(@Valid Member child,Long parentId) {
         Member pl = memberService.addChildren(child,parentId);
         return pl;
     }
@@ -114,7 +114,7 @@ public class MemberController {
      * @return
      */
     @PostMapping("addSiblings")
-    public Member addSiblings(@RequestBody @Valid Member siblings,Long brotherId) {
+    public Member addSiblings(@Valid Member siblings,Long brotherId) {
         Member pl = memberService.addSiblings(siblings,brotherId);
         return pl;
     }
@@ -219,10 +219,53 @@ public class MemberController {
     @PostMapping("/getFamilyTree")
     public OrgChartVO getFamilyTree(@RequestBody Map<String,String> param) {
         OrgChartVO orgChartVO = new OrgChartVO();
+        Member husband = memberService.getFamilyTree(param);
+        Integer generations = husband.getGenerations();
+        Long fatherId = husband.getId();
+        Long husbandId = husband.getId();
+        //获取妻子
+        Member wife = partnerService.getWife(husbandId);
+        if(wife!=null){
+            OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(husbandId,wife);
+            String avatar = wife.getAvatar();
+            String brief = wife.getBrief();
+            GenderEnum gender = wife.getGender();
+            String sex = gender.name();
+            orgChartItemVO.setSex(sex);
+            orgChartItemVO.setMemberId(wife.getId()+"");
+            orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
+            orgChartItemVO.setDescription(brief);
+            orgChartItemVO.setRemark(wife.getRemark());
+            orgChartVO.getItems().add(orgChartItemVO);
+        }
+        loopChildren(orgChartVO, husband,wife);
+        String fullName = husband.getFullName();
+        String brief = husband.getBrief();
+        GenderEnum gender = husband.getGender();
+        OrgChartItemVO orgChartItemVO = new OrgChartItemVO();
+        if(gender!=null){
+
+        String sex = gender.name();
+        orgChartItemVO.setSex(sex);
+        }
+        orgChartItemVO.setId(Math.abs(fatherId.hashCode()));
+        orgChartItemVO.setParents(null);
+        orgChartItemVO.setMemberId(fatherId+"");
+        orgChartItemVO.setTitle(fullName);
+        orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
+        orgChartItemVO.setDescription(brief);
+        orgChartItemVO.setRemark(husband.getRemark());
+        orgChartVO.getItems().add(orgChartItemVO);
+        return orgChartVO;
+    }
+
+    @PostMapping("/getMemberTree")
+    public OrgChartVO getMemberTree(@RequestBody Map<String,String> param) {
+        OrgChartVO orgChartVO = new OrgChartVO();
         String userId = param.get("userId");
         User user = userService.getById(userId);
-        Member husband = memberService.getMember(user.getRealName());
-//        Member husband = memberService.getFamilyTree(param);
+        Member member = memberService.getMember(user.getRealName());
+        Member husband = memberService.getForefatherByMemberId(member.getId());
         Integer generations = husband.getGenerations();
         Long fatherId = husband.getId();
         Long husbandId = husband.getId();
@@ -278,8 +321,11 @@ public class MemberController {
             String fullName = children.getFullName();
             String brief = children.getBrief();
             GenderEnum gender = children.getGender();
+            String sex =GenderEnum.不清楚.name();
+            if(gender !=null){
 
-            String sex = gender.name();
+                sex = gender.name();
+            }
             Long childrenId = children.getId();
             //获取妻子
             Member wife = partnerService.getWife(childrenId);

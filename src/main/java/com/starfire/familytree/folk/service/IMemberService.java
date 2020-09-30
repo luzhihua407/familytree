@@ -67,6 +67,13 @@ public interface IMemberService extends IService<Member> {
      */
     public Member getForefather(int gen);
 
+    /**
+     * 获取当前节点的祖先
+     * @param currentMemberId
+     * @return
+     */
+    public Member getForefatherByMemberId(Long currentMemberId);
+
     public Member getMember(Long id);
 
     public Member getFamilyTree(Map<String,String> param);

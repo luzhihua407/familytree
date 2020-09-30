@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.starfire.familytree.basic.entity.Dict;
 import com.starfire.familytree.basic.service.IDictService;
 import com.starfire.familytree.enums.BooleanEnum;
+import com.starfire.familytree.exception.FamilyException;
 import com.starfire.familytree.folk.entity.Children;
 import com.starfire.familytree.folk.entity.Partner;
 import com.starfire.familytree.folk.entity.Member;
@@ -121,6 +122,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
      */
     @Override
     public Member addWife(Member wife, Long husbandId) {
+        if(husbandId==null){
+            throw new FamilyException(husbandId+"不能为空");
+        }
         Member husband = memberMapper.selectById(husbandId);
         husband.setIsMarried(BooleanEnum.是);
         memberMapper.updateById(husband);
@@ -136,7 +140,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
 
     @Override
     public Member addParent(Member parent, Long childId) {
-        Member child = memberMapper.selectById(childId);
+        if(childId==null){
+            throw new FamilyException(childId+"不能为空");
+        }
         memberMapper.insert(parent);
         Children children = new Children();
         children.setChildrenId(childId);
@@ -147,7 +153,19 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
 
     @Override
     public Member addSiblings(Member siblings, Long brotherId) {
-        return null;
+        if(brotherId==null){
+            throw new FamilyException(brotherId+"不能为空");
+        }
+        Member parent = childrenMapper.getParent(brotherId);
+        if(parent==null){
+            throw new FamilyException("请先添加父母");
+        }
+        memberMapper.insert(siblings);
+        Children children = new Children();
+        children.setChildrenId(siblings.getId());
+        children.setParentId(parent.getId());
+        childrenMapper.insert(children);
+        return siblings;
     }
 
     /**
@@ -160,6 +178,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
     @Override
     @Transactional
     public Member addChildren(Member child, Long parentId) {
+        if(parentId==null){
+            throw new FamilyException(parentId+"不能为空");
+        }
         Member parent = memberMapper.selectById(parentId);
         parent.setHasChild(BooleanEnum.是);
         Integer generations = parent.getGenerations();
@@ -198,6 +219,25 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
     @Override
     public Member getForefather(int gen) {
         return memberMapper.getForefather(gen);
+    }
+
+    @Override
+    public Member getForefatherByMemberId(Long currentMemberId) {
+        //循环去取最顶级的祖先,如果还没有，则返回自己
+        Member parent = childrenMapper.getParent(currentMemberId);
+        Member result=null;
+        if(parent==null){
+            return memberMapper.selectById(currentMemberId);
+        }
+        while(true){
+            if(parent == null){
+                return  result;
+            }else{
+                result = parent;
+            }
+            Long childId = parent.getId();
+            parent = childrenMapper.getParent(childId);
+        }
     }
 
     @Override

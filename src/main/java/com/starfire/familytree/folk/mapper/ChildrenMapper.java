@@ -18,4 +18,11 @@ public interface ChildrenMapper extends BaseMapper<Children> {
 
     public List<Member> getChildrenList(Long parentId);
 
+    /**
+     * 根据孩子找父母
+     * @param childId
+     * @return
+     */
+    public Member getParent(Long childId);
+
 }
