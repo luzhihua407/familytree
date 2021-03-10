@@ -265,43 +265,46 @@ public class MemberController {
         String userId = param.get("userId");
         User user = userService.getById(userId);
         Member member = memberService.getMember(user.getRealName());
+		if(member!=null){
         Member husband = memberService.getForefatherByMemberId(member.getId());
-        Integer generations = husband.getGenerations();
-        Long fatherId = husband.getId();
-        Long husbandId = husband.getId();
-        //获取妻子
-        Member wife = partnerService.getWife(husbandId);
-        if(wife!=null){
-            OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(husbandId,wife);
-            String avatar = wife.getAvatar();
-            String brief = wife.getBrief();
-            GenderEnum gender = wife.getGender();
-            String sex = gender.name();
-            orgChartItemVO.setSex(sex);
-            orgChartItemVO.setMemberId(wife.getId()+"");
-            orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
-            orgChartItemVO.setDescription(brief);
-            orgChartItemVO.setRemark(wife.getRemark());
-            orgChartVO.getItems().add(orgChartItemVO);
-        }
-        loopChildren(orgChartVO, husband,wife);
-        String fullName = husband.getFullName();
-        String brief = husband.getBrief();
-        GenderEnum gender = husband.getGender();
-        OrgChartItemVO orgChartItemVO = new OrgChartItemVO();
-        if(gender!=null){
 
-        String sex = gender.name();
-        orgChartItemVO.setSex(sex);
-        }
-        orgChartItemVO.setId(Math.abs(fatherId.hashCode()));
-        orgChartItemVO.setParents(null);
-        orgChartItemVO.setMemberId(fatherId+"");
-        orgChartItemVO.setTitle(fullName);
-        orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
-        orgChartItemVO.setDescription(brief);
-        orgChartItemVO.setRemark(husband.getRemark());
-        orgChartVO.getItems().add(orgChartItemVO);
+			Integer generations = husband.getGenerations();
+			Long fatherId = husband.getId();
+			Long husbandId = husband.getId();
+			//获取妻子
+			Member wife = partnerService.getWife(husbandId);
+			if(wife!=null){
+				OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(husbandId,wife);
+				String avatar = wife.getAvatar();
+				String brief = wife.getBrief();
+				GenderEnum gender = wife.getGender();
+				String sex = gender.name();
+				orgChartItemVO.setSex(sex);
+				orgChartItemVO.setMemberId(wife.getId()+"");
+				orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
+				orgChartItemVO.setDescription(brief);
+				orgChartItemVO.setRemark(wife.getRemark());
+				orgChartVO.getItems().add(orgChartItemVO);
+			}
+        	loopChildren(orgChartVO, husband,wife);
+			String fullName = husband.getFullName();
+			String brief = husband.getBrief();
+			GenderEnum gender = husband.getGender();
+			OrgChartItemVO orgChartItemVO = new OrgChartItemVO();
+			if(gender!=null){
+
+			String sex = gender.name();
+			orgChartItemVO.setSex(sex);
+			}
+			orgChartItemVO.setId(Math.abs(fatherId.hashCode()));
+			orgChartItemVO.setParents(null);
+			orgChartItemVO.setMemberId(fatherId+"");
+			orgChartItemVO.setTitle(fullName);
+			orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
+			orgChartItemVO.setDescription(brief);
+			orgChartItemVO.setRemark(husband.getRemark());
+			orgChartVO.getItems().add(orgChartItemVO);
+		}
         return orgChartVO;
     }
 

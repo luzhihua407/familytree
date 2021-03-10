@@ -223,6 +223,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
 
     @Override
     public Member getForefatherByMemberId(Long currentMemberId) {
+        if(currentMemberId==null){
+            return null;
+        }
         //循环去取最顶级的祖先,如果还没有，则返回自己
         Member parent = childrenMapper.getParent(currentMemberId);
         Member result=null;
