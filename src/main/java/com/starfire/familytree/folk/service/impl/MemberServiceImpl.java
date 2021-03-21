@@ -113,6 +113,27 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         return names;
     }
 
+    @Override
+    @Transactional
+    public void bindRelationship(Long memberId, String parentCode) {
+        Member parentMember = memberMapper.getMemberByCode(parentCode);
+
+        Member member = memberMapper.selectById(memberId);
+
+        Children children = childrenMapper.getEntityByChildrenId(memberId);
+        if(children!=null){
+            if(parentMember!=null){
+
+                children.setParentId(parentMember.getId());
+                childrenMapper.updateById(children);
+            }
+        }else {
+            if(parentMember!=null){
+                addChildren(member,parentMember.getId());
+            }
+        }
+    }
+
     /**
      * 保存妻子和相关关系，并设置为已婚,是否有孩子跟丈夫一样
      *

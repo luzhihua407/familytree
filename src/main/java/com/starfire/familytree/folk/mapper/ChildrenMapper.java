@@ -25,4 +25,5 @@ public interface ChildrenMapper extends BaseMapper<Children> {
      */
     public Member getParent(Long childId);
 
+    public Children getEntityByChildrenId(Long childrenId);
 }

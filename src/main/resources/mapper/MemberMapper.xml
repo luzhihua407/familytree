@@ -115,4 +115,7 @@
           GROUP BY generations,gender
          ) a GROUP BY generations
     </select>
+    <select id="getMemberByCode" resultMap="BaseResultMap">
+        select * from bs_member where code=#{code}
+    </select>
 </mapper>

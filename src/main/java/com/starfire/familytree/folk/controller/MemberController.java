@@ -13,6 +13,10 @@ import com.starfire.familytree.utils.StringHelper;
 import com.starfire.familytree.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.models.auth.In;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.math3.util.MathUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.io.File;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -119,7 +125,18 @@ public class MemberController {
         return pl;
     }
 
-    @GetMapping("get_members_by_generation")
+    /**
+     * 绑定上下级关系
+     * @param param
+     */
+    @PostMapping("bindRelationship")
+    public void bindRelationship(@RequestBody Map<String,String> param) {
+       String memberId= param.get("memberId");
+        String code=param.get("code");
+        memberService.bindRelationship(Long.valueOf(memberId),code);
+    }
+
+    @GetMapping(name="get_members_by_generation")
     public List<Member> getMembersByGeneration(@RequestParam(required = true) int gen) {
         List<Member> members = memberService.getMembersByGeneration(gen);
         return members;
@@ -183,8 +200,10 @@ public class MemberController {
         List<Member> list = memberService.list();
         for (int i = 0; i < list.size(); i++) {
             Member member =  list.get(i);
-            String pinyin = StringHelper.toPinyin(member.getFullName());
-            member.setPinyin(pinyin);
+            Long id = member.getId();
+            member.setCode(Math.abs(id.hashCode())+"");
+//            String pinyin = StringHelper.toPinyin(member.getFullName());
+//            member.setPinyin(pinyin);
             memberService.saveOrUpdate(member);
         }
     }
@@ -280,6 +299,7 @@ public class MemberController {
 				GenderEnum gender = wife.getGender();
 				String sex = gender.name();
 				orgChartItemVO.setSex(sex);
+                orgChartItemVO.setCode(wife.getCode());
 				orgChartItemVO.setMemberId(wife.getId()+"");
 				orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
 				orgChartItemVO.setDescription(brief);
@@ -297,6 +317,7 @@ public class MemberController {
 			orgChartItemVO.setSex(sex);
 			}
 			orgChartItemVO.setId(Math.abs(fatherId.hashCode()));
+            orgChartItemVO.setCode(husband.getCode());
 			orgChartItemVO.setParents(null);
 			orgChartItemVO.setMemberId(fatherId+"");
 			orgChartItemVO.setTitle(fullName);
@@ -323,6 +344,7 @@ public class MemberController {
             Member children = childrenList.get(j);
             String fullName = children.getFullName();
             String brief = children.getBrief();
+            String code = children.getCode();
             GenderEnum gender = children.getGender();
             String sex =GenderEnum.不清楚.name();
             if(gender !=null){
@@ -339,6 +361,7 @@ public class MemberController {
                Integer generations = wife.getGenerations();
                 String wifesex = wifeGender.name();
                 orgChartItemVO.setSex(wifesex);
+                orgChartItemVO.setCode(wife.getCode());
                 orgChartItemVO.setMemberId(wife.getId()+"");
                 orgChartItemVO.setGenerations("第"+ ChineseNumber.numberToCH(generations)+"世");
                 orgChartItemVO.setDescription(wifeBrief);
@@ -357,6 +380,7 @@ public class MemberController {
             }
             Integer generations = children.getGenerations();
             orgChartItemVO.setMemberId(children.getId()+"");
+            orgChartItemVO.setCode(code);
             orgChartItemVO.setParents(parents);
             orgChartItemVO.setTitle(fullName);
             orgChartItemVO.setLabel(children.getHeir());
@@ -385,6 +409,17 @@ public class MemberController {
 
 
         return orgChartItemVO;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Collection<File> files = FileUtils.listFiles(new File("D:\\视频编辑工具\\图片"), new String[]{"svg"}, true);
+        Iterator<File> iterator = files.iterator();
+        while (iterator.hasNext()) {
+            File next =  iterator.next();
+            String name = next.getName();
+            name=name.replace(" ","").replace("(","").replace(")","");
+            FileUtils.copyFile(next,new File("D:\\视频编辑工具\\图片2\\"+name));
+        }
     }
 
 }
