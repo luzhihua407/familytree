@@ -2,17 +2,12 @@ package com.starfire.familytree.excel.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.starfire.familytree.enums.GenderEnum;
+import com.starfire.familytree.excel.helper.EasyExcelReader;
 import com.starfire.familytree.excel.service.ExcelHeaderEnum;
 import com.starfire.familytree.excel.service.IExcelService;
 import com.starfire.familytree.folk.entity.Member;
 import com.starfire.familytree.folk.mapper.MemberMapper;
-import org.apache.commons.lang.StringUtils;
-import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
-
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
@@ -28,7 +23,7 @@ public class ExcelServiceImpl extends ServiceImpl<MemberMapper, Member> implemen
 
     @Override
     public void importMember(InputStream inp) {
-        List<Map<String, Object>> list = parseExcel(inp);
+        List<Map<String, Object>> list =  EasyExcelReader.readExcel(inp);
         for (int i = 0; i < list.size(); i++) {
             Map<String, Object> map =  list.get(i);
             Object name = map.get(ExcelHeaderEnum.姓名.name());
@@ -53,79 +48,4 @@ public class ExcelServiceImpl extends ServiceImpl<MemberMapper, Member> implemen
 
     }
 
-    public List<Map<String, Object>> parseExcel(InputStream inp) {
-        Workbook wb = null;
-        try {
-            wb = WorkbookFactory.create(inp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Sheet sheet = wb.getSheetAt(0);
-        List<Map<String, Object>> list = readSheet(sheet);
-        return  list;
-
-    }
-
-    /**
-     * 提取Excel的表头
-     * @param row
-     * @return
-     */
-    public List<String> extractHeader(Row row){
-        List<String> header=new ArrayList<>();
-        for (Cell cell : row) {
-            String value=null;
-            CellType cellType = cell.getCellType();
-            if(cellType==CellType.STRING){
-                value= cell.getStringCellValue();
-            }
-            header.add(value);
-        }
-        return  header;
-    }
-
-    /**
-     * 提取Excel的值
-     * @param row
-     * @return
-     */
-    public Map<String,Object> extractPerRowValue(Row row,List<String> header){
-        Map<String,Object> map=new HashMap<>();
-        for (Cell cell : row) {
-            int columnIndex = cell.getColumnIndex();
-            String name = header.get(columnIndex);
-            Object value=null;
-            CellType cellType = cell.getCellType();
-            if(cellType==CellType.STRING){
-                value= cell.getStringCellValue();
-            }
-            if(cellType==CellType.NUMERIC){
-                value= cell.getNumericCellValue();
-            }
-            if(cellType==CellType.BOOLEAN){
-                value= cell.getBooleanCellValue();
-            }
-            if(cellType==CellType.FORMULA){
-                value= cell.getDateCellValue();
-            }
-            map.put(name,value);
-        }
-        return  map;
-    }
-
-    public List<Map<String,Object>> readSheet(Sheet sheet){
-        List<Map<String,Object>> valueList=new ArrayList<>();
-        List<String> header=new ArrayList<>();
-        for (Row row : sheet) {
-            int rowNum = row.getRowNum();
-
-            if(rowNum==0){
-                header = extractHeader(row);
-            }else{
-                Map<String, Object> map = extractPerRowValue(row, header);
-                valueList.add(map);
-            }
-        }
-        return  valueList;
-    }
 }
