@@ -42,4 +42,9 @@ public interface MemberMapper extends BaseMapper<Member> {
 
     public List<Map<String, Object>> getGenderByGenerations(@Param("villageCode")String villageCode);
 
+    /**
+     * 根据编码获取实体
+     * @param code
+     */
+    public Member getMemberByCode(String code);
 }

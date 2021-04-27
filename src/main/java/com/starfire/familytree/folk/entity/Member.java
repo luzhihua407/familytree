@@ -44,6 +44,10 @@ public class Member extends AbstractEntity {
     private String nickname;
 
     /**
+     * 编码
+     */
+    private String code;
+    /**
      * 全名
      */
     @NotNull(message = "全名不能为空")

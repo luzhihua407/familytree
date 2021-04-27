@@ -22,4 +22,7 @@
     <select id="getParent" resultType="com.starfire.familytree.folk.entity.Member">
         select  b.* from bs_children a,bs_member b where b.id=a.parent_id and a.children_id=#{childId}
     </select>
+    <select id="getEntityByChildrenId" resultMap="BaseResultMap">
+        select  * from bs_children a where a.children_id=#{childId}
+    </select>
 </mapper>

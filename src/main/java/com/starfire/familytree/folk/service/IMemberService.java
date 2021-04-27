@@ -87,4 +87,11 @@ public interface IMemberService extends IService<Member> {
     boolean addRelationship(RelationshipVO relationshipVO);
 
     public List<Map<String,Object>> getNames(String name);
+
+    /**
+     * 绑定关系
+     * @param memberId 自己的id
+     * @param parentCode 上级编码
+     */
+    public void bindRelationship(Long memberId, String parentCode);
 }
