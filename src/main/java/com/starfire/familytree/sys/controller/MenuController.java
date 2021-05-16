@@ -132,6 +132,16 @@ public class MenuController {
         Response<List<MenuTree>> response = new Response<List<MenuTree>>();
         return response.success(menus);
     }
+    /**
+     * 获取角色的分配的菜单Tree
+     * @return
+     */
+    @GetMapping("/getMenusTreeByRoleId")
+    public Response<List<MenuTree>> getMenusTreeByRoleId(Long roleId) {
+        List<MenuTree> menus = menuService.getMenusTreeByRoleId(roleId);
+        Response<List<MenuTree>> response = new Response<List<MenuTree>>();
+        return response.success(menus);
+    }
 
     /**
      * 分页

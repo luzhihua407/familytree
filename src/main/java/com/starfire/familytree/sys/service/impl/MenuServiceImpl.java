@@ -97,6 +97,43 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     }
 
     @Override
+    public List<MenuTree> getMenusTreeByRoleId(Long roleId) {
+        List<MenuTree> menuTree=new ArrayList<MenuTree>();
+        List<Menu> parentMenus = baseMapper.getRootMenuTreeByRoleId(roleId);
+        for (int i = 0; i < parentMenus.size(); i++) {
+
+            Menu menu = parentMenus.get(i);
+            Long id = menu.getId();
+            String code = menu.getCode();
+            String name = menu.getName();
+            MenuTree parent=new MenuTree(name,id.toString(),id+"");
+            List<Menu> childMenu = getChildMenu(menu.getId());
+            //菜单权限
+            for (int j = 0; j < childMenu.size(); j++) {
+                Menu sub = childMenu.get(j);
+                Long _id = sub.getId();
+                String _code = sub.getCode();
+                String _name = sub.getName();
+                MenuTree child=new MenuTree(_name,_id.toString(),id+"-"+_id);
+                parent.getChildren().add(child);
+                List<MenuRight> menuRights = menuRightService.getList(_id);
+                //以下为操作权限
+                for (int k = 0; k < menuRights.size(); k++) {
+                    MenuRight menuRight =  menuRights.get(k);
+                    String code1 = menuRight.getCode();
+                    String name1 = menuRight.getName();
+                    Long menuId = menuRight.getMenuId();
+                    Long menuRightId = menuRight.getId();
+                    MenuTree children=new MenuTree(name1+"["+code1+"]",menuRightId.toString(),id+"-"+_id+"-"+menuRightId);
+                    child.getChildren().add(children);
+                }
+            }
+            menuTree.add(parent);
+        }
+        return menuTree;
+    }
+
+    @Override
     public List<Menu> getMenusByRoleId(Long roleId){
         List<Menu> result=new ArrayList<>();
         //目录菜单
