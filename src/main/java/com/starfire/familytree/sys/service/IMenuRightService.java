@@ -23,6 +23,8 @@ public interface IMenuRightService extends IService<MenuRight> {
 
     public List<MenuRightVO> convert(List<MenuRight> menuRights);
 
+    List<String> convertStringList(List<MenuRight> menuRights);
+
     public void removeByMenuId(Long menuId);
 
     public List<String> getPermissionForAdmin();

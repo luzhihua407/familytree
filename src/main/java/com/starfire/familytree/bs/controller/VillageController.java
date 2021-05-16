@@ -7,8 +7,6 @@ import com.starfire.familytree.bs.service.IImageFileService;
 import com.starfire.familytree.bs.service.IVillageService;
 import com.starfire.familytree.response.Response;
 import com.starfire.familytree.vo.*;
-import org.apache.commons.lang.math.NumberUtils;
-import org.apache.commons.math3.util.MathUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

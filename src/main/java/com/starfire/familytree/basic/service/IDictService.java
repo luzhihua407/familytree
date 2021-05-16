@@ -25,9 +25,13 @@ public interface IDictService extends IService<Dict> {
 
     List<Dict> getSubDictListByParentCode(String code);
 
+    List<Map<String,String>> getSubMapListByParentCode(String code);
+
     List<Dict> getBranchList();
 
     List<Dict> getProdTeam();
 
     List<String> getPermissionList();
+
+    public Dict getDictByCode(String parentCode,String code);
 }

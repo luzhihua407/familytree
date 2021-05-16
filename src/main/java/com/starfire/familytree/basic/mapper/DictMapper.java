@@ -25,7 +25,11 @@ public interface DictMapper extends BaseMapper<Dict> {
 
     Dict getDict(String code);
 
+    Dict getDictByCode(@Param(value = "parentCode") String parentCode,@Param(value = "code") String code);
+
     List<Dict> getSubDictListByParentCode(String parentCode);
+
+    List<Map<String,String>> getSubMapListByParentCode(String parentCode);
 
     List<Dict> getBranchList();
 

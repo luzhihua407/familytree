@@ -49,6 +49,11 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
     }
 
     @Override
+    public List<Map<String,String>> getSubMapListByParentCode(String code) {
+        return baseMapper.getSubMapListByParentCode(code);
+    }
+
+    @Override
     public List<Dict> getBranchList() {
         return baseMapper.getBranchList();
     }
@@ -61,6 +66,11 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
     @Override
     public List<String> getPermissionList() {
         return baseMapper.getPermissionList();
+    }
+
+    @Override
+    public Dict getDictByCode(String parentCode, String code) {
+        return baseMapper.getDictByCode(parentCode,code);
     }
 
 }

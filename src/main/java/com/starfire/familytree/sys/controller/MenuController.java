@@ -2,6 +2,8 @@ package com.starfire.familytree.sys.controller;
 
 import java.util.*;
 
+import com.starfire.familytree.basic.entity.Dict;
+import com.starfire.familytree.basic.service.IDictService;
 import com.starfire.familytree.enums.MenuTypeEnum;
 import com.starfire.familytree.sys.entity.MenuRight;
 import com.starfire.familytree.sys.entity.Role;
@@ -43,6 +45,9 @@ public class MenuController {
 
     @Autowired
     private IRoleService roleService;
+
+    @Autowired
+    private IDictService dictService;
     /**
      * 新增或修改
      *
@@ -58,13 +63,14 @@ public class MenuController {
             throw new  RuntimeException("已存在该编码，请换一个编码");
         }
         menuService.saveOrUpdate(menu);
-        List<MenuRightVO> menuRights = menu.getMenuRights();
+        List<String> menuRights = menu.getMenuRights();
         List<MenuRight> menuRightList=new ArrayList<>();
         for (int i = 0; i < menuRights.size(); i++) {
-            MenuRightVO menuRightVO =  menuRights.get(i);
+            String dictCode = menuRights.get(i);
+            Dict dict = dictService.getDictByCode("opt_permission",dictCode);
             MenuRight mr=new MenuRight();
-            mr.setCode(menuRightVO.getKey());
-            mr.setName(menuRightVO.getLabel());
+            mr.setCode(dict.getCode());
+            mr.setName(dict.getName());
             mr.setMenuId(menu.getId());
             menuRightList.add(mr);
         }
@@ -101,7 +107,7 @@ public class MenuController {
     public Response<Menu> getUser(Long id) {
         Menu menu = menuService.getById(id);
         List<MenuRight> menuRights = menuRightService.getList(menu.getId());
-        List<MenuRightVO> menuRightVOList = menuRightService.convert(menuRights);
+        List<String> menuRightVOList = menuRightService.convertStringList(menuRights);
         menu.setMenuRights(menuRightVOList);
         Response<Menu> response = new Response<Menu>();
         return response.success(menu);

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -101,6 +102,21 @@ public class DictController {
         return response.success(dictList);
 
     }
+
+    /**
+     * 通过父编码取子编码集合
+     * @param param
+     * @return [{id:,name:}...]
+     */
+    @PostMapping("/getSubMapListByParentCode")
+    public Response<List<Map<String,String>>> getSubMapListByParentCode(@RequestBody(required = true) Map<String,String> param) {
+        String code=param.get("parentCode");
+        List<Map<String,String>> dictList = dictService.getSubMapListByParentCode(code);
+        Response<List<Map<String,String>>> response = new Response<>();
+        return response.success(dictList);
+
+    }
+
 
     /**
      * 分页

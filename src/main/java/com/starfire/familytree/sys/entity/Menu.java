@@ -61,7 +61,7 @@ public class Menu extends AbstractEntity implements Comparable {
     private String parentMenuName;
 
     @TableField(exist=false)
-    private List<MenuRightVO> menuRights=new ArrayList<>();
+    private List<String> menuRights=new ArrayList<>();
 
     @Override
     public int compareTo(Object o) {

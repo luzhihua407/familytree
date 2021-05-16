@@ -48,9 +48,20 @@ public class MenuRightServiceImpl extends ServiceImpl<MenuRightMapper, MenuRight
         for (int i = 0; i < menuRights.size(); i++) {
             MenuRight menuRight =  menuRights.get(i);
             MenuRightVO vo=new MenuRightVO();
-            vo.setKey(menuRight.getCode());
+            vo.setValue(menuRight.getMenuId()+"");
+            vo.setKey(menuRight.getMenuId()+"");
             vo.setLabel(menuRight.getName());
             list.add(vo);
+        }
+        return list;
+    }
+
+    @Override
+    public List<String> convertStringList(List<MenuRight> menuRights) {
+        List<String> list=new ArrayList<>();
+        for (int i = 0; i < menuRights.size(); i++) {
+            MenuRight menuRight =  menuRights.get(i);
+            list.add(menuRight.getCode());
         }
         return list;
     }
