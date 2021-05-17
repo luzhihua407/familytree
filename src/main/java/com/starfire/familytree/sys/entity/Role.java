@@ -1,5 +1,6 @@
 package com.starfire.familytree.sys.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.starfire.familytree.basic.entity.AbstractEntity;
 import com.starfire.familytree.enums.BooleanEnum;
@@ -8,6 +9,8 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -36,5 +39,7 @@ public class Role extends AbstractEntity {
 
     private String remark;
 
+    @TableField(exist = false)
+    private List<String> menus=new ArrayList<>();
 
 }

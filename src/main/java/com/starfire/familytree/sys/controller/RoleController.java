@@ -2,9 +2,11 @@ package com.starfire.familytree.sys.controller;
 
 import com.starfire.familytree.response.Response;
 import com.starfire.familytree.sys.entity.Role;
+import com.starfire.familytree.sys.service.IRoleMenuService;
 import com.starfire.familytree.sys.service.IRoleService;
 import com.starfire.familytree.vo.DeleteVO;
 import com.starfire.familytree.vo.PageInfo;
+import com.starfire.familytree.vo.RoleMenuVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,9 @@ public class RoleController {
     @Autowired
     private IRoleService roleService;
 
+    @Autowired
+    private IRoleMenuService roleMenuService;
+
     @PostMapping("/page")
     public PageInfo<Map<String, Object>, Role> page(@RequestBody(required = false) PageInfo<Map<String, Object>, Role> page) {
         if(page==null){
@@ -49,6 +54,11 @@ public class RoleController {
     @PostMapping("/addOrUpdate")
     public Response<String> addOrUpdateRole(@RequestBody @Valid Role role) {
         roleService.saveOrUpdate(role);
+        List<String> menus = role.getMenus();
+        RoleMenuVO roleMenuVO = new RoleMenuVO();
+        roleMenuVO.setRoleId(role.getId()+"");
+        roleMenuVO.setMenuIds(menus);
+        roleMenuService.addOrUpdateRoleMenu(roleMenuVO);
         Response<String> response = new Response<String>();
         return response.success();
 
