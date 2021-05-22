@@ -36,7 +36,7 @@
 	   select * from sys_menu where  valid=1 and type =0
 	</select>
     <select id="getRootMenuTreeByRoleId" resultMap="BaseResultMap">
-        select a.* from sys_menu a,sys_role_menu b  where a.id=b.menu_id and  a.valid=1 and a.type =0  and role_id=#{roleId}
+        select a.* from sys_menu a,sys_role_menu b  where a.id=b.menu_id and  a.valid=1 and a.type in (1,2)  and role_id=#{roleId}
 	</select>
     <select id="queryPage" resultMap="BaseResultMap">
         select b.name as parentMenuName,a.* from sys_menu a LEFT JOIN sys_menu b ON a.parent=b.id WHERE 1=1

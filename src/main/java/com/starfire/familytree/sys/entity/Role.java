@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.starfire.familytree.basic.entity.AbstractEntity;
 import com.starfire.familytree.enums.BooleanEnum;
+import com.starfire.familytree.vo.MenuTree;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -41,5 +42,8 @@ public class Role extends AbstractEntity {
 
     @TableField(exist = false)
     private List<String> menus=new ArrayList<>();
+
+    @TableField(exist = false)
+    private List<String> checkedTree=new ArrayList<>();
 
 }

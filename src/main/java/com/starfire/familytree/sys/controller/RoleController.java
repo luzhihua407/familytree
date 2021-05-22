@@ -2,9 +2,11 @@ package com.starfire.familytree.sys.controller;
 
 import com.starfire.familytree.response.Response;
 import com.starfire.familytree.sys.entity.Role;
+import com.starfire.familytree.sys.service.IMenuService;
 import com.starfire.familytree.sys.service.IRoleMenuService;
 import com.starfire.familytree.sys.service.IRoleService;
 import com.starfire.familytree.vo.DeleteVO;
+import com.starfire.familytree.vo.MenuTree;
 import com.starfire.familytree.vo.PageInfo;
 import com.starfire.familytree.vo.RoleMenuVO;
 import io.swagger.annotations.Api;
@@ -34,6 +36,9 @@ public class RoleController {
 
     @Autowired
     private IRoleMenuService roleMenuService;
+
+    @Autowired
+    private IMenuService menuService;
 
     @PostMapping("/page")
     public PageInfo<Map<String, Object>, Role> page(@RequestBody(required = false) PageInfo<Map<String, Object>, Role> page) {
@@ -85,6 +90,9 @@ public class RoleController {
     @GetMapping("/get")
     public Response<Role> getRole(Long id) {
         Role role = roleService.getById(id);
+        List<String> menus = menuService.getMenusIdByRoleId(role.getId());
+        role.setMenus(menus);
+        role.setCheckedTree(menus);
         Response<Role> response = new Response<Role>();
         return response.success(role);
 

@@ -37,6 +37,11 @@ public class RoleMenuRightServiceImpl extends ServiceImpl<RoleMenuRightMapper, R
     }
 
     @Override
+    public List<RoleMenuRight> getRoleMenuRight(Long menuId) {
+        return baseMapper.getRoleMenuRight(menuId);
+    }
+
+    @Override
     public List<String> getPermission(Long roleId) {
         return baseMapper.getPermission(roleId);
     }

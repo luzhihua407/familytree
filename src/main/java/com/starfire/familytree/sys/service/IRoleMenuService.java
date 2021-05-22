@@ -1,6 +1,7 @@
 package com.starfire.familytree.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.starfire.familytree.sys.entity.Role;
 import com.starfire.familytree.sys.entity.RoleMenu;
 import com.starfire.familytree.vo.PageInfo;
 import com.starfire.familytree.vo.RoleMenuVO;
@@ -27,4 +28,5 @@ public interface IRoleMenuService extends IService<RoleMenu> {
     public void deleteByRoleId(Long roleId);
 
     public void addOrUpdateRoleMenu(RoleMenuVO roleMenuVo);
+
 }

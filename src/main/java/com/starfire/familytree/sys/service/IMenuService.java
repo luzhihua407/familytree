@@ -36,6 +36,8 @@ public interface IMenuService extends IService<Menu> {
 
     public List<Menu> getMenusByRoleId(Long roleId);
 
+    public List<String> getMenusIdByRoleId(Long roleId);
+
     public Menu getMenuByCode(String code);
 
     public List<Menu> getMenusByAdmin();
