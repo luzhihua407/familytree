@@ -23,9 +23,9 @@ public class SignUpUserVO {
     @NotNull(message = "密码不能为空")
     private String password;
 
-    @NotNull(message = "邮箱不能为空")
-    private String email;
-
-    @NotNull(message = "手机号不能为空")
-    private String mobile;
+//    @NotNull(message = "邮箱不能为空")
+//    private String email;
+//
+//    @NotNull(message = "手机号不能为空")
+//    private String mobile;
 }

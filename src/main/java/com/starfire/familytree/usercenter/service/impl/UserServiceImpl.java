@@ -67,7 +67,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setValid(ValidEnum.否);// default set false,need user to active
+        Role role = roleService.getRoleByCode("member");
+        UserRole userRole=new UserRole();
+        userRole.setRoleId(role.getId());
         super.save(user);
+        userRole.setUserId(user.getId());
+        userRoleService.save(userRole);
         return user;
     }
 

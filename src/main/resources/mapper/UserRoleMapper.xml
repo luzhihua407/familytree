@@ -19,7 +19,7 @@
     <select id="getRoleIdsByUserId" resultType="Long" parameterType="Long">
 		select role_id from sys_user_role where user_id=#{userId}
 	</select>
-    <select id="getUserIdsByRoleId" resultType="Long" parameterType="Long">
-        select user_id from sys_user_role where role_id=#{roleId}
-    </select>
+<!--    <select id="getUserIdsByRoleId" resultType="Long" parameterType="Long">-->
+<!--        select user_id from sys_user_role where role_id=#{roleId}-->
+<!--    </select>-->
 </mapper>

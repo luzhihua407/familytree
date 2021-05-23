@@ -36,6 +36,11 @@ public abstract class AbstractEntity implements Serializable {
     private String creator="system";
 
     /**
+     * 创建用户id
+     */
+    private Long createUser;
+
+    /**
      * 创建时间
      */
     private LocalDateTime createTime = LocalDateTime.now();
@@ -45,6 +50,10 @@ public abstract class AbstractEntity implements Serializable {
      */
     private String editor;
 
+    /**
+     * 编辑用户
+     */
+    private Long editUser;
     /**
      * 编辑时间
      */

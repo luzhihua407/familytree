@@ -46,8 +46,8 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
         baseMapper.deleteRoleByUserId(userId);
     }
 
-    @Override
-    public Long getUserIdsByRoleId(Long roleId) {
-        return baseMapper.getUserIdsByRoleId(roleId);
-    }
+//    @Override
+//    public Long getUserIdsByRoleId(Long roleId) {
+//        return baseMapper.getUserIdsByRoleId(roleId);
+//    }
 }

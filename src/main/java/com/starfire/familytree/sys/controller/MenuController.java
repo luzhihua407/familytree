@@ -10,6 +10,7 @@ import com.starfire.familytree.sys.entity.Role;
 import com.starfire.familytree.sys.service.IMenuRightService;
 import com.starfire.familytree.sys.service.IRoleService;
 import com.starfire.familytree.sys.service.IUserRoleService;
+import com.starfire.familytree.utils.SessionHelper;
 import com.starfire.familytree.vo.*;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,7 @@ public class MenuController {
 
     @Autowired
     private IDictService dictService;
+
     /**
      * 新增或修改
      *
@@ -195,7 +197,7 @@ public class MenuController {
                     menus = menuService.getMenusByAdmin();
                     list=convertMenu(menus);
                 }else{
-                    Long userId = userRoleService.getUserIdsByRoleId(roleId);
+                    Long userId =new SessionHelper().getUserId();
                     //分配给角色的菜单集合
                     menus = menuService.getMenusByRoleId(roleId);
                     //分配给用户的菜单集合

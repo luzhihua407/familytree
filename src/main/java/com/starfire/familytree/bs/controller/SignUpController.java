@@ -13,11 +13,15 @@ import com.starfire.familytree.service.OnRegistrationCompleteEvent;
 import com.starfire.familytree.usercenter.entity.User;
 import com.starfire.familytree.usercenter.service.IUserService;
 import com.starfire.familytree.utils.FieldErrorUtils;
+import com.starfire.familytree.utils.SessionHelper;
 import com.starfire.familytree.vo.SignUpUserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -84,14 +88,11 @@ public class SignUpController {
             if (newUser == null) {
                 result.rejectValue("email", "message.regError");
             }
-            //发送成功注册邮件
-            String appUrl = "http://" + request.getRequest().getServerName() + ":"
-                    + request.getRequest().getServerPort();
-            eventPublisher.publishEvent(new OnRegistrationCompleteEvent(newUser, request.getLocale(), appUrl));
             //添加自己为成员
             Member member = new Member();
             member.setFullName(userVO.getRealName());
-            member.setGender(GenderEnum.男);
+            member.setGender(GenderEnum.不清楚);
+            member.setCreateUser(newUser.getId());
             eventPublisher.publishEvent(new AddMemberEvent(member));
         } else {
             List<FieldError> fieldErrors = result.getFieldErrors();
@@ -101,6 +102,35 @@ public class SignUpController {
         Response<Boolean> response = new Response<Boolean>();
         return response.success(null);
     }
+//    @ResponseBody
+//    @PostMapping(value = "/signUp")
+//    public Response signUp(@RequestBody @Valid SignUpUserVO userVO, BindingResult result,
+//                           ServletWebRequest request, Errors errors) {
+//        User newUser = new User();
+//        if (!result.hasErrors()) {
+//            User user=new User();
+//            BeanUtils.copyProperties(userVO,user);
+//            newUser = createUserAccount(user);
+//            if (newUser == null) {
+//                result.rejectValue("email", "message.regError");
+//            }
+//            //发送成功注册邮件
+//            String appUrl = "http://" + request.getRequest().getServerName() + ":"
+//                    + request.getRequest().getServerPort();
+//            eventPublisher.publishEvent(new OnRegistrationCompleteEvent(newUser, request.getLocale(), appUrl));
+//            //添加自己为成员
+//            Member member = new Member();
+//            member.setFullName(userVO.getRealName());
+//            member.setGender(GenderEnum.男);
+//            eventPublisher.publishEvent(new AddMemberEvent(member));
+//        } else {
+//            List<FieldError> fieldErrors = result.getFieldErrors();
+//            String error = FieldErrorUtils.toString(fieldErrors);
+//            return Response.failure(100, error);
+//        }
+//        Response<Boolean> response = new Response<Boolean>();
+//        return response.success(null);
+//    }
     /*/**
      * @title 注册后激活账户页面
      * @description

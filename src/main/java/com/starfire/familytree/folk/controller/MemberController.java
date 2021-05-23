@@ -9,13 +9,20 @@ import com.starfire.familytree.folk.service.IPartnerService;
 import com.starfire.familytree.usercenter.entity.User;
 import com.starfire.familytree.usercenter.service.IUserService;
 import com.starfire.familytree.utils.ChineseNumber;
+import com.starfire.familytree.utils.SessionHelper;
 import com.starfire.familytree.utils.StringHelper;
 import com.starfire.familytree.vo.*;
 import io.swagger.annotations.Api;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
@@ -54,8 +61,12 @@ public class MemberController {
      * @author luzh
      */
     @PostMapping("/page")
-    public PageInfo<Map<String, Object>, Member> page(@RequestBody(required = false) PageInfo<Map<String, Object>, Member> page) {
+    public PageInfo<Map<String, Object>, Member> page(@RequestBody(required = false) PageInfo<Map<String, Object>, Member> page, HttpServletRequest request,@SessionAttribute("JSESSIONID") SecurityContextImpl securityContext) {
+        Long userId = new SessionHelper().getUserId();
         page = page == null ? new PageInfo<>() : page;
+        HashMap hashMap = new HashMap();
+        hashMap.put("userId",userId);
+        page.setParam(hashMap);
         PageInfo<Map<String, Object>, Member> pageInfo = memberService.page(page);
         return pageInfo;
 

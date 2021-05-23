@@ -19,9 +19,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    public static final String JSESSIONID = "JSESSIONID";
     @Autowired
     private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
-    
+
     @Override
     public void configure(WebSecurity web){
 //        web.ignoring().anyRequest();
@@ -46,7 +47,7 @@ http.authorizeRequests().antMatchers("/v2/api-docs",
                 .anyRequest().permitAll()
                 .and().addFilterAt(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin().permitAll()
-                .and().logout().permitAll().logoutSuccessHandler(new MyLogoutSuccessHandler()).deleteCookies("JSESSIONID")
+                .and().logout().permitAll().logoutSuccessHandler(new MyLogoutSuccessHandler()).deleteCookies(JSESSIONID)
                 .and().csrf().disable();
     }
     @Bean

@@ -24,5 +24,5 @@ public interface IUserRoleService extends IService<UserRole> {
 
     public void deleteRoleByUserId(Long userId);
 
-    public Long getUserIdsByRoleId(Long roleId);
+//    public Long getUserIdsByRoleId(Long roleId);
 }
