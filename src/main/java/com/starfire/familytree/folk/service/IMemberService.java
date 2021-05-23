@@ -33,9 +33,10 @@ public interface IMemberService extends IService<Member> {
      * 添加父母
      * @param parent 父母
      * @param childId 小孩Id
+     * @param isFarther true=爸爸,false=妈妈
      * @return
      */
-    public Member addParent(Member parent,Long childId);
+    public Member addParent(Member parent,Long childId,Boolean isFarther);
 
     /**
      * 添加兄弟姐妹

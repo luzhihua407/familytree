@@ -160,16 +160,33 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
     }
 
     @Override
-    public Member addParent(Member parent, Long childId) {
+    public Member addParent(Member member,Long childId,Boolean isFarther) {
         if(childId==null){
             throw new FamilyException(childId+"不能为空");
         }
-        memberMapper.insert(parent);
-        Children children = new Children();
-        children.setChildrenId(childId);
-        children.setParentId(parent.getId());
-        childrenMapper.insert(children);
-        return parent;
+        memberMapper.insert(member);
+        //如果已存在父亲或者母亲
+        Member parent = childrenMapper.getParent(childId);
+        if(parent!=null){
+            //把父亲和母亲设置为配偶关系
+            Partner partner = new Partner();
+            if(isFarther){
+                partner.setWifeId(parent.getId());
+                partner.setHusbandId(member.getId());
+            }else {
+                partner.setWifeId(member.getId());
+                partner.setHusbandId(parent.getId());
+            }
+            partnerMapper.insert(partner);
+
+        }else{
+            //设置父子关系
+            Children children = new Children();
+            children.setChildrenId(childId);
+            children.setParentId(member.getId());
+            childrenMapper.insert(children);
+        }
+        return member;
     }
 
     @Override

@@ -13,11 +13,16 @@ public class SessionHelper {
     public SessionHelper() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
-        UsernamePasswordAuthenticationToken auth=(UsernamePasswordAuthenticationToken)authentication;
-        user=(User)  auth.getPrincipal();;
+        if(authentication instanceof UsernamePasswordAuthenticationToken){
+            UsernamePasswordAuthenticationToken auth=(UsernamePasswordAuthenticationToken)authentication;
+            user=(User)  auth.getPrincipal();;
+        }
     }
     public Long getUserId(){
-        return user.getId();
+        if(user!=null){
+            return user.getId();
+        }
+        return null;
     }
 
     public User getUser(){

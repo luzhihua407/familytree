@@ -87,8 +87,8 @@ public class MemberController {
      * @return
      */
     @PostMapping("addParent")
-    public Member addParent(@Valid Member parent,Long childId) {
-        Member pl = memberService.addParent(parent,childId);
+    public Member addParent(@Valid Member parent,Long childId,Boolean isFarther) {
+        Member pl = memberService.addParent(parent,childId,isFarther);
         return pl;
     }
 
