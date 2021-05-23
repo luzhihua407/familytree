@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2021-03-21 14:16:32
+Date: 2021-05-23 15:38:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,8 +23,10 @@ CREATE TABLE `basic_dict` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `code` varchar(32) DEFAULT '',
@@ -42,33 +44,33 @@ CREATE TABLE `basic_dict` (
 -- ----------------------------
 -- Records of basic_dict
 -- ----------------------------
-INSERT INTO `basic_dict` VALUES ('1167618369256423425', '2019-08-31 10:01:27', 'system', null, null, '0', '1', 'education', null, '学历', null, null, null, null, null);
-INSERT INTO `basic_dict` VALUES ('1167622564470595586', '2019-08-31 10:17:56', 'system', null, null, '0', '1', 'dazhuan', null, '大专', null, '1167618369256423425', null, '大专', null);
-INSERT INTO `basic_dict` VALUES ('1167637075726434306', '2019-08-31 11:15:47', 'system', null, null, '0', '1', 'gaozhong', null, '高中', null, '1167618369256423425', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1167637227673485313', '2019-08-31 11:16:23', 'system', null, null, '0', '1', 'chuzhong', null, '初中', null, '1167618369256423425', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1167637413690867714', '2019-08-31 11:17:08', 'system', null, null, '0', '1', '中专', null, '中专', null, '1167618369256423425', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1167637559774281730', '2019-08-31 11:17:43', 'system', null, null, '0', '1', 'xiaoxue', null, '小学', null, '1167618369256423425', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1171395568387883009', '2019-09-10 20:10:42', 'system', null, null, '0', '1', 'none', null, '不清楚', null, '1167618369256423425', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1172882825645064194', '2019-09-14 22:40:30', 'system', null, null, '0', '1', '房支', null, '房支', null, null, null, null, null);
-INSERT INTO `basic_dict` VALUES ('1171374472506826753', '2019-09-14 22:40:48', 'system', null, null, '0', '1', '五房', null, '五房', null, '1172882825645064194', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1173254983692984322', '2019-09-15 23:19:20', 'system', null, null, '0', '1', '一房', null, '一房', null, '1172882825645064194', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1174330682776395778', '2019-09-18 22:33:46', 'system', null, null, '0', '1', '生产队', null, '生产队', null, null, null, null, null);
-INSERT INTO `basic_dict` VALUES ('1174330762594000898', '2019-09-18 22:34:06', 'system', null, null, '0', '1', '一队', null, '一队', null, '1174330682776395778', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1174330813332496386', '2019-09-18 22:34:19', 'system', null, null, '0', '1', '二队', null, '二队', null, '1174330682776395778', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1174330860799434753', '2019-09-18 22:34:30', 'system', null, null, '0', '1', '三队', null, '三队', null, '1174330682776395778', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1174330908610306049', '2019-09-18 22:34:41', 'system', null, null, '0', '1', '四队', null, '四队', null, '1174330682776395778', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1174330950943416321', '2019-09-18 22:34:51', 'system', null, null, '0', '1', '五队', null, '五队', null, '1174330682776395778', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1174331002529161217', '2019-09-18 22:35:04', 'system', null, null, '0', '1', '六队', null, '六队', null, '1174330682776395778', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1181566736331857922', '2019-10-08 21:53:47', 'system', null, null, '0', '1', 'opt_permission', null, '操作权限', null, null, null, null, null);
-INSERT INTO `basic_dict` VALUES ('1181566808993980418', '2019-10-08 21:47:34', 'system', null, null, '0', '1', 'add', null, '新建', null, '1181566736331857922', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1181566917894889474', '2019-10-08 21:48:00', 'system', null, null, '0', '1', 'edit', null, '编辑', null, '1181566736331857922', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1181566973947568129', '2019-10-08 21:48:14', 'system', null, null, '0', '1', 'delete', null, '删除', null, '1181566736331857922', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1181567520326967297', '2019-10-08 21:50:24', 'system', null, null, '0', '1', 'setting_relationship', null, '设置关系', null, '1181566736331857922', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1183270495206408193', '2019-10-13 14:37:24', 'system', null, null, '0', '1', 'search', null, '查询', null, '1181566736331857922', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1185737776175935490', '2019-10-20 10:01:30', 'system', null, null, '0', '1', 'auth_menu', null, '分配菜单', null, '1181566736331857922', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1185754569770692610', '2019-10-20 11:08:14', 'system', null, null, '0', '1', 'reset_password', null, '重设密码', null, '1181566736331857922', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1187902543825100802', '2019-10-26 09:23:30', 'system', null, null, '0', '1', 'two_brank', null, '二房', null, '1172882825645064194', null, null, null);
-INSERT INTO `basic_dict` VALUES ('1193041470223429634', '2019-11-09 13:43:47', 'system', null, null, '0', '1', 'view', null, '查看', null, '1181566736331857922', '查看', null, null);
+INSERT INTO `basic_dict` VALUES ('1167618369256423425', '2019-08-31 10:01:27', 'system', null, null, null, null, '0', '1', 'education', null, '学历', null, null, null, null, null);
+INSERT INTO `basic_dict` VALUES ('1167622564470595586', '2019-08-31 10:17:56', 'system', null, null, null, null, '0', '1', 'dazhuan', null, '大专', null, '1167618369256423425', null, '大专', null);
+INSERT INTO `basic_dict` VALUES ('1167637075726434306', '2019-08-31 11:15:47', 'system', null, null, null, null, '0', '1', 'gaozhong', null, '高中', null, '1167618369256423425', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1167637227673485313', '2019-08-31 11:16:23', 'system', null, null, null, null, '0', '1', 'chuzhong', null, '初中', null, '1167618369256423425', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1167637413690867714', '2019-08-31 11:17:08', 'system', null, null, null, null, '0', '1', '中专', null, '中专', null, '1167618369256423425', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1167637559774281730', '2019-08-31 11:17:43', 'system', null, null, null, null, '0', '1', 'xiaoxue', null, '小学', null, '1167618369256423425', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1171395568387883009', '2019-09-10 20:10:42', 'system', null, null, null, null, '0', '1', 'none', null, '不清楚', null, '1167618369256423425', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1172882825645064194', '2019-09-14 22:40:30', 'system', null, null, null, null, '0', '1', '房支', null, '房支', null, null, null, null, null);
+INSERT INTO `basic_dict` VALUES ('1171374472506826753', '2019-09-14 22:40:48', 'system', null, null, null, null, '0', '1', '五房', null, '五房', null, '1172882825645064194', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1173254983692984322', '2019-09-15 23:19:20', 'system', null, null, null, null, '0', '1', '一房', null, '一房', null, '1172882825645064194', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1174330682776395778', '2019-09-18 22:33:46', 'system', null, null, null, null, '0', '1', '生产队', null, '生产队', null, null, null, null, null);
+INSERT INTO `basic_dict` VALUES ('1174330762594000898', '2019-09-18 22:34:06', 'system', null, null, null, null, '0', '1', '一队', null, '一队', null, '1174330682776395778', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1174330813332496386', '2019-09-18 22:34:19', 'system', null, null, null, null, '0', '1', '二队', null, '二队', null, '1174330682776395778', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1174330860799434753', '2019-09-18 22:34:30', 'system', null, null, null, null, '0', '1', '三队', null, '三队', null, '1174330682776395778', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1174330908610306049', '2019-09-18 22:34:41', 'system', null, null, null, null, '0', '1', '四队', null, '四队', null, '1174330682776395778', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1174330950943416321', '2019-09-18 22:34:51', 'system', null, null, null, null, '0', '1', '五队', null, '五队', null, '1174330682776395778', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1174331002529161217', '2019-09-18 22:35:04', 'system', null, null, null, null, '0', '1', '六队', null, '六队', null, '1174330682776395778', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1181566736331857922', '2019-10-08 21:53:47', 'system', null, null, null, null, '0', '1', 'opt_permission', null, '操作权限', null, null, null, null, null);
+INSERT INTO `basic_dict` VALUES ('1181566808993980418', '2019-10-08 21:47:34', 'system', null, null, null, null, '0', '1', 'add', null, '新建', null, '1181566736331857922', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1181566917894889474', '2019-10-08 21:48:00', 'system', null, null, null, null, '0', '1', 'edit', null, '编辑', null, '1181566736331857922', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1181566973947568129', '2019-10-08 21:48:14', 'system', null, null, null, null, '0', '1', 'delete', null, '删除', null, '1181566736331857922', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1181567520326967297', '2019-10-08 21:50:24', 'system', null, null, null, null, '0', '1', 'setting_relationship', null, '设置关系', null, '1181566736331857922', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1183270495206408193', '2019-10-13 14:37:24', 'system', null, null, null, null, '0', '1', 'search', null, '查询', null, '1181566736331857922', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1185737776175935490', '2019-10-20 10:01:30', 'system', null, null, null, null, '0', '1', 'auth_menu', null, '分配菜单', null, '1181566736331857922', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1185754569770692610', '2019-10-20 11:08:14', 'system', null, null, null, null, '0', '1', 'reset_password', null, '重设密码', null, '1181566736331857922', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1187902543825100802', '2019-10-26 09:23:30', 'system', null, null, null, null, '0', '1', 'two_brank', null, '二房', null, '1172882825645064194', null, null, null);
+INSERT INTO `basic_dict` VALUES ('1193041470223429634', '2019-11-09 13:43:47', 'system', null, null, null, null, '0', '1', 'view', null, '查看', null, '1181566736331857922', '查看', null, null);
 
 -- ----------------------------
 -- Table structure for basic_region
@@ -3489,8 +3491,10 @@ CREATE TABLE `bs_category` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `name` varchar(32) DEFAULT '',
@@ -3503,8 +3507,8 @@ CREATE TABLE `bs_category` (
 -- ----------------------------
 -- Records of bs_category
 -- ----------------------------
-INSERT INTO `bs_category` VALUES ('1193039930192441346', '2019-11-09 13:37:39', 'system', null, null, '0', '1', '部分先辈族人生平事迹简介', null, '部分先辈族人生平事迹简介', null);
-INSERT INTO `bs_category` VALUES ('1275986374876139522', '2020-06-25 10:57:13', 'system', null, null, '0', '1', '捐款榜', null, null, null);
+INSERT INTO `bs_category` VALUES ('1193039930192441346', '2019-11-09 13:37:39', 'system', null, null, null, null, '0', '1', '部分先辈族人生平事迹简介', null, '部分先辈族人生平事迹简介', null);
+INSERT INTO `bs_category` VALUES ('1275986374876139522', '2020-06-25 10:57:13', 'system', null, null, null, null, '0', '1', '捐款榜', null, null, null);
 
 -- ----------------------------
 -- Table structure for bs_category_content
@@ -3514,8 +3518,10 @@ CREATE TABLE `bs_category_content` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `category_id` bigint(20) DEFAULT NULL,
@@ -3529,10 +3535,10 @@ CREATE TABLE `bs_category_content` (
 -- ----------------------------
 -- Records of bs_category_content
 -- ----------------------------
-INSERT INTO `bs_category_content` VALUES ('1193040647607169026', '2019-11-09 21:11:25', 'system', null, null, '0', '1', '1193039930192441346', '<p><strong>联播+</strong>6年前，党的十八届三中全会提出&ldquo;全面深化改革的总目标是完善和发展中国特色社会主义制度，推进国家治理体系和治理能力现代化&rdquo;，开启了全面深化改革新征程。</p>\n\n<p>今年，党的十九届四中全会审议通过了重磅文件《中共中央关于坚持和完善中国特色社会主义制度、推进国家治理体系和治理能力现代化若干重大问题的决定》。《决定》对党的十八届三中全会提出的总目标进行深化和展开，为我们推动各方面制度更加成熟更加定型明确了时间表、路线图。</p>\n\n<p>从&ldquo;点题&rdquo;到&ldquo;破题&rdquo;，中国共产党人如何把改革蓝图转化成全方位治理中的改革实践？让我们从习近平关于全面深化改革的重要论述中寻找答案。</p>\n\n<p><strong>经济体制改革取得重大突破</strong></p>\n\n<p>我们是在中国共产党领导和社会主义制度的大前提下发展市场经济，什么时候都不能忘了&ldquo;社会主义&rdquo;这个定语。之所以说是社会主义市场经济，就是要坚持我们的制度优越性，有效防范资本主义市场经济的弊端。</p>\n\n<p>&mdash;&mdash;2015年11月23日，在十八届中央政治局第二十八次集体学习时的讲话</p>\n\n<p>公有制经济、非公有制经济应该相辅相成、相得益彰，而不是相互排斥、相互抵消。</p>\n\n<p>&mdash;&mdash;2016年3月4日，在参加全国政协十二届四次会议民建、工商联界委员联组会时的讲话</p>\n\n<p>经济体制改革必须以完善产权制度和要素市场化配置为重点，实现产权有效激励、要素自由流动、价格反应灵活、竞争公平有序、企业优胜劣汰。</p>\n\n<p>&mdash;&mdash;2017年10月18日，在中国共产党第十九次全国代表大会上的报告</p>\n', '录四七年族谱', '十五世允甫公（录四七年族谱）', null);
-INSERT INTO `bs_category_content` VALUES ('1275986374817419266', '2020-06-25 10:57:13', 'system', null, null, '0', '1', '1161093219849654274', '<font>张三是好人1</font>', null, '人物事迹-张三1', null);
-INSERT INTO `bs_category_content` VALUES ('1206066294071955458', '2019-12-15 12:50:35', 'system', null, null, '0', '1', null, '<p>训 喝 淫 赌 计 开 农 交 乡 教 夫 兄 父 人 依<br />\n示 酒 荡 搏 生 放 家 朋 邻 儿 妻 弟 母 之 据<br />\n列 要 害 和 是 政 要 和 须 需 要 需 养 本 情<br />\n如 适 死 吸 国 策 致 接 和 善 和 和 儿 于 理<br />\n此 量 人 毒 策 好 富 友 睦 诱 顺 睦 女 祖 法<br />\n&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<br />\n众 不 家 祸 公 抓 勤 人 亲 切 逢 妯 恩 物 荟<br />\n人 能 产 害 粮 住 劳 人 情 莫 事 娌 情 之 萃<br />\n要 太 会 实 乃 好 是 都 如 用 多 要 重 本 先<br />\n遵 过 挥 惊 本 机 根 需 手 粗 商 相 如 于 祖<br />\n循 份 尽 人 份 遇 本 有 足 暴 量 亲 山 天 言 族<br />\n&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<br />\n修 酒 伤 财 遵 从 新 相 凡 过 互 凡 养 为 作 训<br />\n身 醉 天 空 纪 事 法 交 事 于 敬 事 儿 人 为<br />\n兼 能 又 又 又 工 搞 讲 相 娇 又 多 为 来 我<br />\n自 乱 害 害 守 商 种 信 关 和 互 忍 待 处 族<br />\n省 性 理 命 法 业 养 诚 照 宠 爱 让 老 世 训<br />\n&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<br />\n做 把 家 切 爱 生 科 肝 彼 多 相 天 奉 首 以<br />\n个 盏 国 勿 国 意 学 胆 此 是 敬 地 侍 要 正<br />\n好 要 不 被 又 好 来 定 多 不 应 才 理 敬 我<br />\n族 留 容 沾 爱 赚 耕 相 尊 成 如 能 当 祖 族<br />\n人 神 忍 染 家 钱 田 照 重 材 宾 宽 然 先 风<br />\n&nbsp;</p>\n', null, '族 训', null);
-INSERT INTO `bs_category_content` VALUES ('1206088338981457922', '2019-12-15 13:47:23', 'system', null, null, '0', '1', null, '<p>行第又叫排行、字辈、行辈，即按某种预定的字词联缀方式，既有内涵意义,又有稳定而整齐的格式。字辈命名,是我国旧时代各姓氏、宗族中一种极为重要的取名方式，形式独特，历史悠久。</p>\n\n<p>字辈一般在修谱时,由本族尊长及学问渊深之人议定,因派定名因名取字,无使雷同，无俾鄙俚，寄望人尚隽雅，代有英贤，百世不衰。</p>\n\n<p>字辈用字，一般选择吉祥或有褒扬，激励、劝勉意义的语词。采取字义相连而有诗意的字，联缀而成，因而又称排辈诗。可使词句朗朗上口，便于记诵，传授，形成前后联贯的世序，井然有序。它被载入族谱，具有宗法的权威性。各代后裔严格按世次取名，一代一字，秩序分明，使人一望而知其上下辈份。而所取之名或将辈份字安于名字之中，或置于名字之后。名行一般用于未成年（未婚人）的取名，字行供结婚男子命名。</p>\n\n<p>我族行第仍按一九四七年以前旧族谱所定的执行。但考虑到现代人不喜欢安大号名（结婚名）的习惯，本次修谱时，故而把名行与字行合一，统一称名。希望我族今后各辈按此规定行第取名，宗系是：</p>\n\n<p>始履萃中和，</p>\n\n<p>继芳应位育。</p>\n\n<p>圣贤万世存，</p>\n\n<p>斯道为之鹄。</p>\n\n<p>文章乃国华,</p>\n\n<p>诗礼是家福。</p>\n\n<p>守义与怀仁，</p>\n\n<p>子孙受百禄。</p>\n\n<p>&nbsp;</p>\n', null, '行第', null);
+INSERT INTO `bs_category_content` VALUES ('1193040647607169026', '2019-11-09 21:11:25', 'system', null, null, null, null, '0', '1', '1193039930192441346', '<p><strong>联播+</strong>6年前，党的十八届三中全会提出&ldquo;全面深化改革的总目标是完善和发展中国特色社会主义制度，推进国家治理体系和治理能力现代化&rdquo;，开启了全面深化改革新征程。</p>\n\n<p>今年，党的十九届四中全会审议通过了重磅文件《中共中央关于坚持和完善中国特色社会主义制度、推进国家治理体系和治理能力现代化若干重大问题的决定》。《决定》对党的十八届三中全会提出的总目标进行深化和展开，为我们推动各方面制度更加成熟更加定型明确了时间表、路线图。</p>\n\n<p>从&ldquo;点题&rdquo;到&ldquo;破题&rdquo;，中国共产党人如何把改革蓝图转化成全方位治理中的改革实践？让我们从习近平关于全面深化改革的重要论述中寻找答案。</p>\n\n<p><strong>经济体制改革取得重大突破</strong></p>\n\n<p>我们是在中国共产党领导和社会主义制度的大前提下发展市场经济，什么时候都不能忘了&ldquo;社会主义&rdquo;这个定语。之所以说是社会主义市场经济，就是要坚持我们的制度优越性，有效防范资本主义市场经济的弊端。</p>\n\n<p>&mdash;&mdash;2015年11月23日，在十八届中央政治局第二十八次集体学习时的讲话</p>\n\n<p>公有制经济、非公有制经济应该相辅相成、相得益彰，而不是相互排斥、相互抵消。</p>\n\n<p>&mdash;&mdash;2016年3月4日，在参加全国政协十二届四次会议民建、工商联界委员联组会时的讲话</p>\n\n<p>经济体制改革必须以完善产权制度和要素市场化配置为重点，实现产权有效激励、要素自由流动、价格反应灵活、竞争公平有序、企业优胜劣汰。</p>\n\n<p>&mdash;&mdash;2017年10月18日，在中国共产党第十九次全国代表大会上的报告</p>\n', '录四七年族谱', '十五世允甫公（录四七年族谱）', null);
+INSERT INTO `bs_category_content` VALUES ('1275986374817419266', '2020-06-25 10:57:13', 'system', null, null, null, null, '0', '1', '1161093219849654274', '<font>张三是好人1</font>', null, '人物事迹-张三1', null);
+INSERT INTO `bs_category_content` VALUES ('1206066294071955458', '2019-12-15 12:50:35', 'system', null, null, null, null, '0', '1', null, '<p>训 喝 淫 赌 计 开 农 交 乡 教 夫 兄 父 人 依<br />\n示 酒 荡 搏 生 放 家 朋 邻 儿 妻 弟 母 之 据<br />\n列 要 害 和 是 政 要 和 须 需 要 需 养 本 情<br />\n如 适 死 吸 国 策 致 接 和 善 和 和 儿 于 理<br />\n此 量 人 毒 策 好 富 友 睦 诱 顺 睦 女 祖 法<br />\n&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<br />\n众 不 家 祸 公 抓 勤 人 亲 切 逢 妯 恩 物 荟<br />\n人 能 产 害 粮 住 劳 人 情 莫 事 娌 情 之 萃<br />\n要 太 会 实 乃 好 是 都 如 用 多 要 重 本 先<br />\n遵 过 挥 惊 本 机 根 需 手 粗 商 相 如 于 祖<br />\n循 份 尽 人 份 遇 本 有 足 暴 量 亲 山 天 言 族<br />\n&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<br />\n修 酒 伤 财 遵 从 新 相 凡 过 互 凡 养 为 作 训<br />\n身 醉 天 空 纪 事 法 交 事 于 敬 事 儿 人 为<br />\n兼 能 又 又 又 工 搞 讲 相 娇 又 多 为 来 我<br />\n自 乱 害 害 守 商 种 信 关 和 互 忍 待 处 族<br />\n省 性 理 命 法 业 养 诚 照 宠 爱 让 老 世 训<br />\n&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<br />\n做 把 家 切 爱 生 科 肝 彼 多 相 天 奉 首 以<br />\n个 盏 国 勿 国 意 学 胆 此 是 敬 地 侍 要 正<br />\n好 要 不 被 又 好 来 定 多 不 应 才 理 敬 我<br />\n族 留 容 沾 爱 赚 耕 相 尊 成 如 能 当 祖 族<br />\n人 神 忍 染 家 钱 田 照 重 材 宾 宽 然 先 风<br />\n&nbsp;</p>\n', null, '族 训', null);
+INSERT INTO `bs_category_content` VALUES ('1206088338981457922', '2019-12-15 13:47:23', 'system', null, null, null, null, '0', '1', null, '<p>行第又叫排行、字辈、行辈，即按某种预定的字词联缀方式，既有内涵意义,又有稳定而整齐的格式。字辈命名,是我国旧时代各姓氏、宗族中一种极为重要的取名方式，形式独特，历史悠久。</p>\n\n<p>字辈一般在修谱时,由本族尊长及学问渊深之人议定,因派定名因名取字,无使雷同，无俾鄙俚，寄望人尚隽雅，代有英贤，百世不衰。</p>\n\n<p>字辈用字，一般选择吉祥或有褒扬，激励、劝勉意义的语词。采取字义相连而有诗意的字，联缀而成，因而又称排辈诗。可使词句朗朗上口，便于记诵，传授，形成前后联贯的世序，井然有序。它被载入族谱，具有宗法的权威性。各代后裔严格按世次取名，一代一字，秩序分明，使人一望而知其上下辈份。而所取之名或将辈份字安于名字之中，或置于名字之后。名行一般用于未成年（未婚人）的取名，字行供结婚男子命名。</p>\n\n<p>我族行第仍按一九四七年以前旧族谱所定的执行。但考虑到现代人不喜欢安大号名（结婚名）的习惯，本次修谱时，故而把名行与字行合一，统一称名。希望我族今后各辈按此规定行第取名，宗系是：</p>\n\n<p>始履萃中和，</p>\n\n<p>继芳应位育。</p>\n\n<p>圣贤万世存，</p>\n\n<p>斯道为之鹄。</p>\n\n<p>文章乃国华,</p>\n\n<p>诗礼是家福。</p>\n\n<p>守义与怀仁，</p>\n\n<p>子孙受百禄。</p>\n\n<p>&nbsp;</p>\n', null, '行第', null);
 
 -- ----------------------------
 -- Table structure for bs_cemetery
@@ -3542,8 +3548,10 @@ CREATE TABLE `bs_cemetery` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `name` varchar(64) DEFAULT '',
@@ -3557,53 +3565,53 @@ CREATE TABLE `bs_cemetery` (
 -- ----------------------------
 -- Records of bs_cemetery
 -- ----------------------------
-INSERT INTO `bs_cemetery` VALUES ('1181204108153626625', '2019-11-09 13:33:16', 'system', null, null, '0', '1', '迺炯公', '藤县新白马上腾山', '石灰山', null, null);
-INSERT INTO `bs_cemetery` VALUES ('1181204054596558850', '2019-12-16 14:55:41', 'system', null, null, '0', '1', '李氏婆', '封门英才岭', '与媳妇合葬', '渔翁撒网地', null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559042781185', '2019-12-16 15:01:22', 'system', null, null, '0', '1', '谭氏婆', '白马辰岭金鱼窝龙烛山', '龙石面村和仓家上边', '', null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329477242881', '2019-12-16 15:37:03', 'system', null, null, '0', '1', '育梅公', '大安红粉塘', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559239913473', '2019-12-16 14:59:08', 'system', null, null, '0', '1', '芳茂公', '园岭村前面天鹅塘', null, '坐甲向庚兼卯酉', null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329527574530', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '位相公', '旺村旱塘西边', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559260884993', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '谭氏婆', '龙石角', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329544351745', '2019-12-16 15:39:02', 'system', null, null, '0', '1', '位纲公', '大安狮子岭', '公婆合葬', null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559281856514', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '芳卓公', '西棹石桥头', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329569517570', '2019-12-16 15:40:31', 'system', null, null, '0', '1', '吴氏婆', '城金塘冲中虎地', null, '虎地', null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559298633729', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '芳文公', '旱塘边', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559315410946', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '芳英公', '旱塘边', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559336382465', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '芳猷公', '旱塘边', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559353159682', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '潘氏婆', '莲塘南边岭', '与家婆合葬', null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559369936898', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '继宗公', '莲塘边', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559390908417', '2019-12-16 14:56:33', 'system', null, null, '0', '1', '继信公', '南河牛寮佛子茶亭后背', null, '虎地', null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559416074242', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '继义公', '旺村背近莲塘边双孖坟', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559432851458', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '继仁公', '旺村旱塘西边', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559453822978', '2019-12-16 15:02:45', 'system', null, null, '0', '1', '潘氏婆', '莲塘南边岭', '与媳妇合葬', null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559470600193', '2019-12-16 15:05:08', 'system', null, null, '0', '1', '奕华公', '旺村旱塘边', '墓门石栏，碑石作界', null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559487377410', '2019-12-16 15:03:50', 'system', null, null, '0', '1', '赵氏婆', '白架村背下边大成基角口', '结砖砌石', '飞凤岭', null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559512543234', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '麦氏婆', '封门英才岭', '与家婆合葬', null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206463559546097665', '2019-12-16 14:38:22', 'system', null, null, '0', '1', '奕生公', '柳州', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329586294786', '2019-12-16 15:39:34', 'system', null, null, '0', '1', '位泰公', '白马辰岭文笔塔脚', '座巽向乾兼己亥', null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329607266306', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '位安公', '藤县白石岭', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329632432130', '2019-12-16 15:40:54', 'system', null, null, '0', '1', '朱氏婆', '白架村回龙塘下边', null, '金鱼地', null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329645015042', '2019-12-16 15:41:19', 'system', null, null, '0', '1', '位汉公', '下勒塘淡塘南边', '座南朝北', '狮子地', null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329678569473', '2019-12-16 15:38:45', 'system', null, null, '0', '1', '应辉公', '大湴垌', '公婆合葬', null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329686958082', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '何氏婆', '南河木星地', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329712123905', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '应宣公', '虾鹤村虾学岭', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329728901122', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '冯氏婆', '蒙江人参军', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329745678338', '2019-12-16 15:41:40', 'system', null, null, '0', '1', '应仟公', '蘑新水口村入鱼子桥第二条岭', null, '鱼笱地又名灵龟拜', null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329758261250', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '应辅公', '村前石路口', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329775038466', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '应俊公', '贤山子', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329791815681', '2019-12-16 15:38:28', 'system', null, null, '0', '1', '芳灿公', '白架村回龙岭', '公婆合葬', null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329812787201', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '继信刘氏婆', '白架村回龙塘山脚', null, null, null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329829564418', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '继信伍氏婆', '白架村旺冲尾', null, '金鱼尾', null);
-INSERT INTO `bs_cemetery` VALUES ('1206478329837953025', '2019-12-16 15:37:04', 'system', null, null, '0', '1', '芳茂刘氏婆', '藤县马塘村昌塘岭', null, '仙人仰睡地', null);
-INSERT INTO `bs_cemetery` VALUES ('1206494067739013121', '2019-12-16 16:39:36', 'system', null, null, '0', '1', '圣裔婆周氏', '桂平罗秀良福村左边大钵岭', '贤铃点穴郑贞记主葬', ' ', null);
-INSERT INTO `bs_cemetery` VALUES ('1206494075284566017', '2019-12-16 16:39:38', 'system', null, null, '0', '1', '李氏婆', '长历塘尾地中社北边', ' ', ' ', null);
-INSERT INTO `bs_cemetery` VALUES ('1206494080246427650', '2019-12-16 16:39:39', 'system', null, null, '0', '1', '位昇公', '岐岭塘前沙子岭石头根', ' ', ' ', null);
-INSERT INTO `bs_cemetery` VALUES ('1206494083429904385', '2019-12-16 16:39:40', 'system', null, null, '0', '1', '位政公', '旺村旱塘边', ' ', ' ', null);
-INSERT INTO `bs_cemetery` VALUES ('1206494086458191874', '2019-12-16 16:39:40', 'system', null, null, '0', '1', '育彦公', '大安常留塘', '黄氏葬大安翰塘头', ' ', null);
-INSERT INTO `bs_cemetery` VALUES ('1206494089352261633', '2019-12-16 16:39:41', 'system', null, null, '0', '1', '育璣公', '山岭垌', '唐氏葬成金塘', ' ', null);
-INSERT INTO `bs_cemetery` VALUES ('1206494100626550785', '2019-12-16 16:39:44', 'system', null, null, '0', '1', '育芝公', '东平白竹水塘新大坝龙潭头', '坐寅向申', '五马归槽', null);
-INSERT INTO `bs_cemetery` VALUES ('1206494100672688129', '2019-12-16 16:39:44', 'system', null, null, '0', '1', '育瑜公', '柑子崖蟠龙洲', ' ', ' ', null);
-INSERT INTO `bs_cemetery` VALUES ('1206494100727214082', '2019-12-16 16:39:44', 'system', null, null, '0', '1', '贤铃婆周氏', '六陈独牛岭人六陈圩口路尚有三里', '坐乙向辛后土石上刻有卢字', '结砖打灰', null);
+INSERT INTO `bs_cemetery` VALUES ('1181204108153626625', '2019-11-09 13:33:16', 'system', null, null, null, null, '0', '1', '迺炯公', '藤县新白马上腾山', '石灰山', null, null);
+INSERT INTO `bs_cemetery` VALUES ('1181204054596558850', '2019-12-16 14:55:41', 'system', null, null, null, null, '0', '1', '李氏婆', '封门英才岭', '与媳妇合葬', '渔翁撒网地', null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559042781185', '2019-12-16 15:01:22', 'system', null, null, null, null, '0', '1', '谭氏婆', '白马辰岭金鱼窝龙烛山', '龙石面村和仓家上边', '', null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329477242881', '2019-12-16 15:37:03', 'system', null, null, null, null, '0', '1', '育梅公', '大安红粉塘', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559239913473', '2019-12-16 14:59:08', 'system', null, null, null, null, '0', '1', '芳茂公', '园岭村前面天鹅塘', null, '坐甲向庚兼卯酉', null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329527574530', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '位相公', '旺村旱塘西边', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559260884993', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '谭氏婆', '龙石角', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329544351745', '2019-12-16 15:39:02', 'system', null, null, null, null, '0', '1', '位纲公', '大安狮子岭', '公婆合葬', null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559281856514', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '芳卓公', '西棹石桥头', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329569517570', '2019-12-16 15:40:31', 'system', null, null, null, null, '0', '1', '吴氏婆', '城金塘冲中虎地', null, '虎地', null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559298633729', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '芳文公', '旱塘边', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559315410946', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '芳英公', '旱塘边', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559336382465', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '芳猷公', '旱塘边', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559353159682', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '潘氏婆', '莲塘南边岭', '与家婆合葬', null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559369936898', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '继宗公', '莲塘边', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559390908417', '2019-12-16 14:56:33', 'system', null, null, null, null, '0', '1', '继信公', '南河牛寮佛子茶亭后背', null, '虎地', null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559416074242', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '继义公', '旺村背近莲塘边双孖坟', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559432851458', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '继仁公', '旺村旱塘西边', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559453822978', '2019-12-16 15:02:45', 'system', null, null, null, null, '0', '1', '潘氏婆', '莲塘南边岭', '与媳妇合葬', null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559470600193', '2019-12-16 15:05:08', 'system', null, null, null, null, '0', '1', '奕华公', '旺村旱塘边', '墓门石栏，碑石作界', null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559487377410', '2019-12-16 15:03:50', 'system', null, null, null, null, '0', '1', '赵氏婆', '白架村背下边大成基角口', '结砖砌石', '飞凤岭', null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559512543234', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '麦氏婆', '封门英才岭', '与家婆合葬', null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206463559546097665', '2019-12-16 14:38:22', 'system', null, null, null, null, '0', '1', '奕生公', '柳州', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329586294786', '2019-12-16 15:39:34', 'system', null, null, null, null, '0', '1', '位泰公', '白马辰岭文笔塔脚', '座巽向乾兼己亥', null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329607266306', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '位安公', '藤县白石岭', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329632432130', '2019-12-16 15:40:54', 'system', null, null, null, null, '0', '1', '朱氏婆', '白架村回龙塘下边', null, '金鱼地', null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329645015042', '2019-12-16 15:41:19', 'system', null, null, null, null, '0', '1', '位汉公', '下勒塘淡塘南边', '座南朝北', '狮子地', null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329678569473', '2019-12-16 15:38:45', 'system', null, null, null, null, '0', '1', '应辉公', '大湴垌', '公婆合葬', null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329686958082', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '何氏婆', '南河木星地', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329712123905', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '应宣公', '虾鹤村虾学岭', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329728901122', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '冯氏婆', '蒙江人参军', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329745678338', '2019-12-16 15:41:40', 'system', null, null, null, null, '0', '1', '应仟公', '蘑新水口村入鱼子桥第二条岭', null, '鱼笱地又名灵龟拜', null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329758261250', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '应辅公', '村前石路口', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329775038466', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '应俊公', '贤山子', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329791815681', '2019-12-16 15:38:28', 'system', null, null, null, null, '0', '1', '芳灿公', '白架村回龙岭', '公婆合葬', null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329812787201', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '继信刘氏婆', '白架村回龙塘山脚', null, null, null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329829564418', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '继信伍氏婆', '白架村旺冲尾', null, '金鱼尾', null);
+INSERT INTO `bs_cemetery` VALUES ('1206478329837953025', '2019-12-16 15:37:04', 'system', null, null, null, null, '0', '1', '芳茂刘氏婆', '藤县马塘村昌塘岭', null, '仙人仰睡地', null);
+INSERT INTO `bs_cemetery` VALUES ('1206494067739013121', '2019-12-16 16:39:36', 'system', null, null, null, null, '0', '1', '圣裔婆周氏', '桂平罗秀良福村左边大钵岭', '贤铃点穴郑贞记主葬', ' ', null);
+INSERT INTO `bs_cemetery` VALUES ('1206494075284566017', '2019-12-16 16:39:38', 'system', null, null, null, null, '0', '1', '李氏婆', '长历塘尾地中社北边', ' ', ' ', null);
+INSERT INTO `bs_cemetery` VALUES ('1206494080246427650', '2019-12-16 16:39:39', 'system', null, null, null, null, '0', '1', '位昇公', '岐岭塘前沙子岭石头根', ' ', ' ', null);
+INSERT INTO `bs_cemetery` VALUES ('1206494083429904385', '2019-12-16 16:39:40', 'system', null, null, null, null, '0', '1', '位政公', '旺村旱塘边', ' ', ' ', null);
+INSERT INTO `bs_cemetery` VALUES ('1206494086458191874', '2019-12-16 16:39:40', 'system', null, null, null, null, '0', '1', '育彦公', '大安常留塘', '黄氏葬大安翰塘头', ' ', null);
+INSERT INTO `bs_cemetery` VALUES ('1206494089352261633', '2019-12-16 16:39:41', 'system', null, null, null, null, '0', '1', '育璣公', '山岭垌', '唐氏葬成金塘', ' ', null);
+INSERT INTO `bs_cemetery` VALUES ('1206494100626550785', '2019-12-16 16:39:44', 'system', null, null, null, null, '0', '1', '育芝公', '东平白竹水塘新大坝龙潭头', '坐寅向申', '五马归槽', null);
+INSERT INTO `bs_cemetery` VALUES ('1206494100672688129', '2019-12-16 16:39:44', 'system', null, null, null, null, '0', '1', '育瑜公', '柑子崖蟠龙洲', ' ', ' ', null);
+INSERT INTO `bs_cemetery` VALUES ('1206494100727214082', '2019-12-16 16:39:44', 'system', null, null, null, null, '0', '1', '贤铃婆周氏', '六陈独牛岭人六陈圩口路尚有三里', '坐乙向辛后土石上刻有卢字', '结砖打灰', null);
 
 -- ----------------------------
 -- Table structure for bs_children
@@ -3613,8 +3621,10 @@ CREATE TABLE `bs_children` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `children_id` bigint(20) DEFAULT NULL,
@@ -3627,60 +3637,60 @@ CREATE TABLE `bs_children` (
 -- ----------------------------
 -- Records of bs_children
 -- ----------------------------
-INSERT INTO `bs_children` VALUES ('1167415967467302913', '2019-08-30 20:37:11', 'system', null, null, '0', '1', '1167415967458914306', '1167415966955597826', null, null);
-INSERT INTO `bs_children` VALUES ('1167415967542800386', '2019-08-30 20:37:11', 'system', null, null, '0', '1', '1167415967526023170', '1167415967458914306', null, null);
-INSERT INTO `bs_children` VALUES ('1172649663040040962', '2019-09-14 07:14:01', 'system', null, null, '0', '1', '1171397885233344514', '1171395252133167105', null, null);
-INSERT INTO `bs_children` VALUES ('1172649663048429569', '2019-09-14 07:14:01', 'system', null, null, '0', '1', '1171398178184507393', '1171395252133167105', null, null);
-INSERT INTO `bs_children` VALUES ('1172649786725871618', '2019-09-14 07:14:31', 'system', null, null, '0', '1', '1171397885233344514', '1171395252133167105', null, null);
-INSERT INTO `bs_children` VALUES ('1172649786738454530', '2019-09-14 07:14:31', 'system', null, null, '0', '1', '1171398178184507393', '1171395252133167105', null, null);
-INSERT INTO `bs_children` VALUES ('1172649939801190402', '2019-09-14 07:15:07', 'system', null, null, '0', '1', '1171397885233344514', '1171395252133167105', null, null);
-INSERT INTO `bs_children` VALUES ('1172655462021836802', '2019-09-14 07:37:04', 'system', null, null, '0', '1', '1172655212397834241', '1171395252133167105', null, null);
-INSERT INTO `bs_children` VALUES ('1172655462034419714', '2019-09-14 07:37:04', 'system', null, null, '0', '1', '1172655303003189249', '1171395252133167105', null, null);
-INSERT INTO `bs_children` VALUES ('1172656096791998466', '2019-09-14 07:39:35', 'system', null, null, '0', '1', '1172655753215586306', '1171398178184507393', null, null);
-INSERT INTO `bs_children` VALUES ('1172656096812969985', '2019-09-14 07:39:35', 'system', null, null, '0', '1', '1172655845884538882', '1171398178184507393', null, null);
-INSERT INTO `bs_children` VALUES ('1172656096812969986', '2019-09-14 07:39:35', 'system', null, null, '0', '1', '1172655933511938049', '1171398178184507393', null, null);
-INSERT INTO `bs_children` VALUES ('1172656096821358594', '2019-09-14 07:39:35', 'system', null, null, '0', '1', '1172656026348662786', '1171398178184507393', null, null);
-INSERT INTO `bs_children` VALUES ('1172662845036982273', '2019-09-14 08:06:24', 'system', null, null, '0', '1', '1172662670029647873', '1172655212397834241', null, null);
-INSERT INTO `bs_children` VALUES ('1172662845057953794', '2019-09-14 08:06:24', 'system', null, null, '0', '1', '1172662754440015873', '1172655212397834241', null, null);
-INSERT INTO `bs_children` VALUES ('1172663168724004866', '2019-09-14 08:07:41', 'system', null, null, '0', '1', '1172663033944240129', '1172655753215586306', null, null);
-INSERT INTO `bs_children` VALUES ('1172663725371060226', '2019-09-14 08:09:54', 'system', null, null, '0', '1', '1172663527236333570', '1172663033944240129', null, null);
-INSERT INTO `bs_children` VALUES ('1172663725375254530', '2019-09-14 08:09:54', 'system', null, null, '0', '1', '1172663668693430274', '1172663033944240129', null, null);
-INSERT INTO `bs_children` VALUES ('1172663970586849282', '2019-09-14 08:10:52', 'system', null, null, '0', '1', '1172663874554064897', '1172663668693430274', null, null);
-INSERT INTO `bs_children` VALUES ('1172668645419675650', '2019-09-14 08:29:27', 'system', null, null, '0', '1', '1172668491434192897', '1172655845884538882', null, null);
-INSERT INTO `bs_children` VALUES ('1172668645428064257', '2019-09-14 08:29:27', 'system', null, null, '0', '1', '1172668587617972225', '1172655845884538882', null, null);
-INSERT INTO `bs_children` VALUES ('1172668874168627202', '2019-09-14 08:30:21', 'system', null, null, '0', '1', '1172668816438226946', '1172655933511938049', null, null);
-INSERT INTO `bs_children` VALUES ('1172669307012411394', '2019-09-14 08:32:05', 'system', null, null, '0', '1', '1172669194126913538', '1172655303003189249', null, null);
-INSERT INTO `bs_children` VALUES ('1172669307020800001', '2019-09-14 08:32:05', 'system', null, null, '0', '1', '1172669091173527553', '1172655303003189249', null, null);
-INSERT INTO `bs_children` VALUES ('1172670194866876417', '2019-09-14 08:35:36', 'system', null, null, '0', '1', '1172669826527293441', '1172669194126913538', null, null);
-INSERT INTO `bs_children` VALUES ('1172670256212766721', '2019-09-14 08:35:51', 'system', null, null, '0', '1', '1172669932441858049', '1172669826527293441', null, null);
-INSERT INTO `bs_children` VALUES ('1172670256221155329', '2019-09-14 08:35:51', 'system', null, null, '0', '1', '1172670122536103937', '1172669826527293441', null, null);
-INSERT INTO `bs_children` VALUES ('1172726603373506562', '2019-09-14 12:19:45', 'system', null, null, '0', '1', '1172726352843534337', '1172669932441858049', null, null);
-INSERT INTO `bs_children` VALUES ('1172726603386089474', '2019-09-14 12:19:45', 'system', null, null, '0', '1', '1172726420086616065', '1172669932441858049', null, null);
-INSERT INTO `bs_children` VALUES ('1172726603402866690', '2019-09-14 12:19:45', 'system', null, null, '0', '1', '1172726511711186945', '1172669932441858049', null, null);
-INSERT INTO `bs_children` VALUES ('1172726800199610370', '2019-09-14 12:20:32', 'system', null, null, '0', '1', '1172726683442769922', '1172726420086616065', null, null);
-INSERT INTO `bs_children` VALUES ('1172726853651820546', '2019-09-14 12:20:45', 'system', null, null, '0', '1', '1172726730393808897', '1172726511711186945', null, null);
-INSERT INTO `bs_children` VALUES ('1172727224847724545', '2019-09-14 12:22:13', 'system', null, null, '0', '1', '1172726947918802946', '1172670122536103937', null, null);
-INSERT INTO `bs_children` VALUES ('1172727224856113153', '2019-09-14 12:22:13', 'system', null, null, '0', '1', '1172727012037128194', '1172670122536103937', null, null);
-INSERT INTO `bs_children` VALUES ('1172727612854398978', '2019-09-14 12:23:46', 'system', null, null, '0', '1', '1172727437515714561', '1172726947918802946', null, null);
-INSERT INTO `bs_children` VALUES ('1172727665874595841', '2019-09-14 12:23:58', 'system', null, null, '0', '1', '1172727527286403074', '1172727012037128194', null, null);
-INSERT INTO `bs_children` VALUES ('1173265799674732545', '2019-09-16 00:02:20', 'system', null, null, '0', '1', '1173255475408019458', '1173255387671568385', null, null);
-INSERT INTO `bs_children` VALUES ('1311141816241790978', '2020-09-30 11:12:23', 'system', '2020-09-30 11:12:23', null, '0', '1', '1311122278355927042', '1311141816216625154', null, '1');
-INSERT INTO `bs_children` VALUES ('1311126926651301889', '2020-09-30 10:13:14', 'system', '2020-09-30 10:13:14', null, '0', '1', '1311126926634524674', '1310043770678427649', null, '1');
-INSERT INTO `bs_children` VALUES ('1311122332391145473', '2020-09-30 09:54:58', 'system', '2020-09-30 09:54:58', null, '0', '1', '1311122332382756866', '1311122278355927042', null, '1');
-INSERT INTO `bs_children` VALUES ('1311122278372704258', '2020-09-30 09:54:45', 'system', '2020-09-30 09:54:45', null, '0', '1', '1310043770678427649', '1311122278355927042', null, '1');
-INSERT INTO `bs_children` VALUES ('1311141957946351618', '2020-09-30 11:12:57', 'system', '2020-09-30 11:12:57', null, '0', '1', '1311141816216625154', '1311141957929574401', null, '1');
-INSERT INTO `bs_children` VALUES ('1311142552467972098', '2020-09-30 11:15:19', 'system', '2020-09-30 11:15:19', null, '0', '1', '1311142552459583490', '1310043770678427649', null, '1');
-INSERT INTO `bs_children` VALUES ('1311144308300095489', '2020-09-30 11:22:18', 'system', '2020-09-30 11:22:18', null, '0', '1', '1311144308274929666', '1311141816216625154', null, '1');
-INSERT INTO `bs_children` VALUES ('1311144803467042818', '2020-09-30 11:24:16', 'system', '2020-09-30 11:24:16', null, '0', '1', '1311144803454459906', '1311141957929574401', null, '1');
-INSERT INTO `bs_children` VALUES ('1311145936147226626', '2020-09-30 11:28:46', 'system', '2020-09-30 11:28:46', null, '0', '1', '1311145936130449409', '1311141957929574401', null, '1');
-INSERT INTO `bs_children` VALUES ('1311146869455364098', '2020-09-30 11:32:28', 'system', '2020-09-30 11:32:28', null, '0', '1', '1311141957929574401', '1311146869438586881', null, '1');
-INSERT INTO `bs_children` VALUES ('1311152158497873922', '2020-09-30 11:53:29', 'system', '2020-09-30 11:53:29', null, '0', '1', '1311146869438586881', '1311152158464319489', null, '1');
-INSERT INTO `bs_children` VALUES ('1311152477730545666', '2020-09-30 11:54:45', 'system', '2020-09-30 11:54:45', null, '0', '1', '1311152158464319489', '1311152477722157057', null, '1');
-INSERT INTO `bs_children` VALUES ('1311153098969882625', '2020-09-30 11:57:13', 'system', '2020-09-30 11:57:13', null, '0', '1', '1311153098961494017', '1311152477722157057', null, '1');
-INSERT INTO `bs_children` VALUES ('1311153267249553410', '2020-09-30 11:57:54', 'system', '2020-09-30 11:57:54', null, '0', '1', '1311153267236970498', '1311152477722157057', null, '1');
-INSERT INTO `bs_children` VALUES ('1311153800647581699', '2020-09-30 12:00:01', 'system', '2020-09-30 12:00:01', null, '0', '1', '1311153800647581698', '1311153267236970498', null, '1');
-INSERT INTO `bs_children` VALUES ('1311154135558561794', '2020-09-30 12:01:21', 'system', '2020-09-30 12:01:21', null, '0', '1', '1311154135550173185', '1311153800647581698', null, '1');
-INSERT INTO `bs_children` VALUES ('1370977578600484865', '2021-03-14 13:58:21', 'system', '2021-03-14 13:58:21', null, '0', '1', '1370977578579513345', '1311122332382756866', null, '1');
+INSERT INTO `bs_children` VALUES ('1167415967467302913', '2019-08-30 20:37:11', 'system', null, null, null, null, '0', '1', '1167415967458914306', '1167415966955597826', null, null);
+INSERT INTO `bs_children` VALUES ('1167415967542800386', '2019-08-30 20:37:11', 'system', null, null, null, null, '0', '1', '1167415967526023170', '1167415967458914306', null, null);
+INSERT INTO `bs_children` VALUES ('1172649663040040962', '2019-09-14 07:14:01', 'system', null, null, null, null, '0', '1', '1171397885233344514', '1171395252133167105', null, null);
+INSERT INTO `bs_children` VALUES ('1172649663048429569', '2019-09-14 07:14:01', 'system', null, null, null, null, '0', '1', '1171398178184507393', '1171395252133167105', null, null);
+INSERT INTO `bs_children` VALUES ('1172649786725871618', '2019-09-14 07:14:31', 'system', null, null, null, null, '0', '1', '1171397885233344514', '1171395252133167105', null, null);
+INSERT INTO `bs_children` VALUES ('1172649786738454530', '2019-09-14 07:14:31', 'system', null, null, null, null, '0', '1', '1171398178184507393', '1171395252133167105', null, null);
+INSERT INTO `bs_children` VALUES ('1172649939801190402', '2019-09-14 07:15:07', 'system', null, null, null, null, '0', '1', '1171397885233344514', '1171395252133167105', null, null);
+INSERT INTO `bs_children` VALUES ('1172655462021836802', '2019-09-14 07:37:04', 'system', null, null, null, null, '0', '1', '1172655212397834241', '1171395252133167105', null, null);
+INSERT INTO `bs_children` VALUES ('1172655462034419714', '2019-09-14 07:37:04', 'system', null, null, null, null, '0', '1', '1172655303003189249', '1171395252133167105', null, null);
+INSERT INTO `bs_children` VALUES ('1172656096791998466', '2019-09-14 07:39:35', 'system', null, null, null, null, '0', '1', '1172655753215586306', '1171398178184507393', null, null);
+INSERT INTO `bs_children` VALUES ('1172656096812969985', '2019-09-14 07:39:35', 'system', null, null, null, null, '0', '1', '1172655845884538882', '1171398178184507393', null, null);
+INSERT INTO `bs_children` VALUES ('1172656096812969986', '2019-09-14 07:39:35', 'system', null, null, null, null, '0', '1', '1172655933511938049', '1171398178184507393', null, null);
+INSERT INTO `bs_children` VALUES ('1172656096821358594', '2019-09-14 07:39:35', 'system', null, null, null, null, '0', '1', '1172656026348662786', '1171398178184507393', null, null);
+INSERT INTO `bs_children` VALUES ('1172662845036982273', '2019-09-14 08:06:24', 'system', null, null, null, null, '0', '1', '1172662670029647873', '1172655212397834241', null, null);
+INSERT INTO `bs_children` VALUES ('1172662845057953794', '2019-09-14 08:06:24', 'system', null, null, null, null, '0', '1', '1172662754440015873', '1172655212397834241', null, null);
+INSERT INTO `bs_children` VALUES ('1172663168724004866', '2019-09-14 08:07:41', 'system', null, null, null, null, '0', '1', '1172663033944240129', '1172655753215586306', null, null);
+INSERT INTO `bs_children` VALUES ('1172663725371060226', '2019-09-14 08:09:54', 'system', null, null, null, null, '0', '1', '1172663527236333570', '1172663033944240129', null, null);
+INSERT INTO `bs_children` VALUES ('1172663725375254530', '2019-09-14 08:09:54', 'system', null, null, null, null, '0', '1', '1172663668693430274', '1172663033944240129', null, null);
+INSERT INTO `bs_children` VALUES ('1172663970586849282', '2019-09-14 08:10:52', 'system', null, null, null, null, '0', '1', '1172663874554064897', '1172663668693430274', null, null);
+INSERT INTO `bs_children` VALUES ('1172668645419675650', '2019-09-14 08:29:27', 'system', null, null, null, null, '0', '1', '1172668491434192897', '1172655845884538882', null, null);
+INSERT INTO `bs_children` VALUES ('1172668645428064257', '2019-09-14 08:29:27', 'system', null, null, null, null, '0', '1', '1172668587617972225', '1172655845884538882', null, null);
+INSERT INTO `bs_children` VALUES ('1172668874168627202', '2019-09-14 08:30:21', 'system', null, null, null, null, '0', '1', '1172668816438226946', '1172655933511938049', null, null);
+INSERT INTO `bs_children` VALUES ('1172669307012411394', '2019-09-14 08:32:05', 'system', null, null, null, null, '0', '1', '1172669194126913538', '1172655303003189249', null, null);
+INSERT INTO `bs_children` VALUES ('1172669307020800001', '2019-09-14 08:32:05', 'system', null, null, null, null, '0', '1', '1172669091173527553', '1172655303003189249', null, null);
+INSERT INTO `bs_children` VALUES ('1172670194866876417', '2019-09-14 08:35:36', 'system', null, null, null, null, '0', '1', '1172669826527293441', '1172669194126913538', null, null);
+INSERT INTO `bs_children` VALUES ('1172670256212766721', '2019-09-14 08:35:51', 'system', null, null, null, null, '0', '1', '1172669932441858049', '1172669826527293441', null, null);
+INSERT INTO `bs_children` VALUES ('1172670256221155329', '2019-09-14 08:35:51', 'system', null, null, null, null, '0', '1', '1172670122536103937', '1172669826527293441', null, null);
+INSERT INTO `bs_children` VALUES ('1172726603373506562', '2019-09-14 12:19:45', 'system', null, null, null, null, '0', '1', '1172726352843534337', '1172669932441858049', null, null);
+INSERT INTO `bs_children` VALUES ('1172726603386089474', '2019-09-14 12:19:45', 'system', null, null, null, null, '0', '1', '1172726420086616065', '1172669932441858049', null, null);
+INSERT INTO `bs_children` VALUES ('1172726603402866690', '2019-09-14 12:19:45', 'system', null, null, null, null, '0', '1', '1172726511711186945', '1172669932441858049', null, null);
+INSERT INTO `bs_children` VALUES ('1172726800199610370', '2019-09-14 12:20:32', 'system', null, null, null, null, '0', '1', '1172726683442769922', '1172726420086616065', null, null);
+INSERT INTO `bs_children` VALUES ('1172726853651820546', '2019-09-14 12:20:45', 'system', null, null, null, null, '0', '1', '1172726730393808897', '1172726511711186945', null, null);
+INSERT INTO `bs_children` VALUES ('1172727224847724545', '2019-09-14 12:22:13', 'system', null, null, null, null, '0', '1', '1172726947918802946', '1172670122536103937', null, null);
+INSERT INTO `bs_children` VALUES ('1172727224856113153', '2019-09-14 12:22:13', 'system', null, null, null, null, '0', '1', '1172727012037128194', '1172670122536103937', null, null);
+INSERT INTO `bs_children` VALUES ('1172727612854398978', '2019-09-14 12:23:46', 'system', null, null, null, null, '0', '1', '1172727437515714561', '1172726947918802946', null, null);
+INSERT INTO `bs_children` VALUES ('1172727665874595841', '2019-09-14 12:23:58', 'system', null, null, null, null, '0', '1', '1172727527286403074', '1172727012037128194', null, null);
+INSERT INTO `bs_children` VALUES ('1173265799674732545', '2019-09-16 00:02:20', 'system', null, null, null, null, '0', '1', '1173255475408019458', '1173255387671568385', null, null);
+INSERT INTO `bs_children` VALUES ('1311141816241790978', '2020-09-30 11:12:23', 'system', null, '2020-09-30 11:12:23', null, null, '0', '1', '1311122278355927042', '1311141816216625154', null, '1');
+INSERT INTO `bs_children` VALUES ('1311126926651301889', '2020-09-30 10:13:14', 'system', null, '2020-09-30 10:13:14', null, null, '0', '1', '1311126926634524674', '1310043770678427649', null, '1');
+INSERT INTO `bs_children` VALUES ('1311122332391145473', '2020-09-30 09:54:58', 'system', null, '2020-09-30 09:54:58', null, null, '0', '1', '1311122332382756866', '1311122278355927042', null, '1');
+INSERT INTO `bs_children` VALUES ('1311122278372704258', '2020-09-30 09:54:45', 'system', null, '2020-09-30 09:54:45', null, null, '0', '1', '1310043770678427649', '1311122278355927042', null, '1');
+INSERT INTO `bs_children` VALUES ('1311141957946351618', '2020-09-30 11:12:57', 'system', null, '2020-09-30 11:12:57', null, null, '0', '1', '1311141816216625154', '1311141957929574401', null, '1');
+INSERT INTO `bs_children` VALUES ('1311142552467972098', '2020-09-30 11:15:19', 'system', null, '2020-09-30 11:15:19', null, null, '0', '1', '1311142552459583490', '1310043770678427649', null, '1');
+INSERT INTO `bs_children` VALUES ('1311144308300095489', '2020-09-30 11:22:18', 'system', null, '2020-09-30 11:22:18', null, null, '0', '1', '1311144308274929666', '1311141816216625154', null, '1');
+INSERT INTO `bs_children` VALUES ('1311144803467042818', '2020-09-30 11:24:16', 'system', null, '2020-09-30 11:24:16', null, null, '0', '1', '1311144803454459906', '1311141957929574401', null, '1');
+INSERT INTO `bs_children` VALUES ('1311145936147226626', '2020-09-30 11:28:46', 'system', null, '2020-09-30 11:28:46', null, null, '0', '1', '1311145936130449409', '1311141957929574401', null, '1');
+INSERT INTO `bs_children` VALUES ('1311146869455364098', '2020-09-30 11:32:28', 'system', null, '2020-09-30 11:32:28', null, null, '0', '1', '1311141957929574401', '1311146869438586881', null, '1');
+INSERT INTO `bs_children` VALUES ('1311152158497873922', '2020-09-30 11:53:29', 'system', null, '2020-09-30 11:53:29', null, null, '0', '1', '1311146869438586881', '1311152158464319489', null, '1');
+INSERT INTO `bs_children` VALUES ('1311152477730545666', '2020-09-30 11:54:45', 'system', null, '2020-09-30 11:54:45', null, null, '0', '1', '1311152158464319489', '1311152477722157057', null, '1');
+INSERT INTO `bs_children` VALUES ('1311153098969882625', '2020-09-30 11:57:13', 'system', null, '2020-09-30 11:57:13', null, null, '0', '1', '1311153098961494017', '1311152477722157057', null, '1');
+INSERT INTO `bs_children` VALUES ('1311153267249553410', '2020-09-30 11:57:54', 'system', null, '2020-09-30 11:57:54', null, null, '0', '1', '1311153267236970498', '1311152477722157057', null, '1');
+INSERT INTO `bs_children` VALUES ('1311153800647581699', '2020-09-30 12:00:01', 'system', null, '2020-09-30 12:00:01', null, null, '0', '1', '1311153800647581698', '1311153267236970498', null, '1');
+INSERT INTO `bs_children` VALUES ('1311154135558561794', '2020-09-30 12:01:21', 'system', null, '2020-09-30 12:01:21', null, null, '0', '1', '1311154135550173185', '1311153800647581698', null, '1');
+INSERT INTO `bs_children` VALUES ('1370977578600484865', '2021-03-14 13:58:21', 'system', null, '2021-03-14 13:58:21', null, null, '0', '1', '1370977578579513345', '1311122332382756866', null, '1');
 
 -- ----------------------------
 -- Table structure for bs_image_file
@@ -3690,8 +3700,10 @@ CREATE TABLE `bs_image_file` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `path` varchar(64) DEFAULT NULL COMMENT '图片路径',
@@ -3708,8 +3720,8 @@ CREATE TABLE `bs_image_file` (
 -- ----------------------------
 -- Records of bs_image_file
 -- ----------------------------
-INSERT INTO `bs_image_file` VALUES ('1208240915584008194', '2019-12-21 12:20:57', 'system', null, null, '0', '1', '/village/微信图片_20191221114603.jpg', '微信图片_20191221114603.jpg', null, 0x443A5C4D7973656C665C696D616765735C76696C6C6167655CE5BEAEE4BFA1E59BBEE789875F32303139313232313131343630332E6A7067, '577', '433', '1194200525238849537', null);
-INSERT INTO `bs_image_file` VALUES ('1208240915596591106', '2019-12-21 12:20:57', 'system', null, null, '0', '1', '/village/微信图片_20191221114615.jpg', '微信图片_20191221114615.jpg', null, 0x443A5C4D7973656C665C696D616765735C76696C6C6167655CE5BEAEE4BFA1E59BBEE789875F32303139313232313131343631352E6A7067, '577', '433', '1194200525238849537', null);
+INSERT INTO `bs_image_file` VALUES ('1208240915584008194', '2019-12-21 12:20:57', 'system', null, null, null, null, '0', '1', '/village/微信图片_20191221114603.jpg', '微信图片_20191221114603.jpg', null, 0x443A5C4D7973656C665C696D616765735C76696C6C6167655CE5BEAEE4BFA1E59BBEE789875F32303139313232313131343630332E6A7067, '577', '433', '1194200525238849537', null);
+INSERT INTO `bs_image_file` VALUES ('1208240915596591106', '2019-12-21 12:20:57', 'system', null, null, null, null, '0', '1', '/village/微信图片_20191221114615.jpg', '微信图片_20191221114615.jpg', null, 0x443A5C4D7973656C665C696D616765735C76696C6C6167655CE5BEAEE4BFA1E59BBEE789875F32303139313232313131343631352E6A7067, '577', '433', '1194200525238849537', null);
 
 -- ----------------------------
 -- Table structure for bs_member
@@ -3739,8 +3751,10 @@ CREATE TABLE `bs_member` (
   `remark` varchar(255) DEFAULT '',
   `valid` int(1) DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `partner_id` bigint(20) DEFAULT NULL,
   `member_branch` bigint(20) unsigned DEFAULT NULL COMMENT '几房',
@@ -3755,58 +3769,67 @@ CREATE TABLE `bs_member` (
 -- ----------------------------
 -- Records of bs_member
 -- ----------------------------
-INSERT INTO `bs_member` VALUES ('1171395252133167105', null, '位汉', '1766088249', 'weihan', '1', '1', null, '1959-11-09', 'none', '1', null, null, null, null, '2019-11-09', '6', null, null, null, '', '1', 'system', '2019-11-09 12:04:14', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1171395452868362241', null, '育端', '1408999924', 'yuduan', '2', '1', null, '2019-09-10', 'none', '1', null, null, null, null, null, '7', null, null, null, '', '1', 'system', '2019-10-26 18:01:33', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1171397885233344514', null, '大任', '2017749975', 'daren', '1', '0', null, '2019-09-10', null, '0', null, null, null, null, null, '8', null, null, null, null, '1', 'system', '2019-09-10 20:19:53', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1171398178184507393', null, '圣泽', '579103634', 'shengze', '1', '1', null, null, null, '1', null, null, null, null, null, '8', null, null, null, null, '1', 'system', '2019-09-10 20:21:04', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172655212397834241', null, '圣甫', '222450766', 'shengfu', '1', '1', null, null, null, '1', null, null, null, null, null, '8', null, null, null, null, '1', 'system', '2019-09-14 07:36:04', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172655303003189249', null, '圣辉', '348279863', 'shenghui', '1', '1', null, null, null, '1', null, null, null, null, null, '8', null, null, null, '殇', '1', 'system', '2019-11-09 11:48:42', null, '2021-03-21 12:46:35', null, '1171374472506826753', '入嗣', null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172655753215586306', null, '贤珍', '562189261', 'xianzhen', '2', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', '2019-09-14 07:38:13', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172655845884538882', null, '贤锦', '1912450117', 'xianjin', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', '2019-09-14 07:38:35', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172655933511938049', null, '贤济', '654463910', 'xianji', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', '2019-09-14 07:38:56', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172656026348662786', null, '贤荫', '1987947635', 'xianyin', '2', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', '2019-09-14 07:39:18', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172662670029647873', null, '圣佺', '1346130557', 'shengquan', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', '2019-09-14 08:05:41', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172662754440015873', null, '圣昭', '134458738', 'shengzhao', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', '2019-09-14 08:06:02', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172663033944240129', null, '文泽', '348368175', 'wenze', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', '2019-09-14 08:08:35', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172663527236333570', null, '运勇', '977513663', 'yunyong', '1', '1', null, null, null, '1', null, null, null, null, null, '11', null, null, null, null, '1', 'system', '2019-09-14 08:09:07', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172663668693430274', null, '运锐', '717466778', 'yunrui', '1', '1', null, null, null, '1', null, null, null, null, null, '11', null, null, null, null, '1', 'system', '2019-09-14 08:09:40', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172663874554064897', null, '达斯', '1543744619', 'dasi', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', '2019-09-14 08:10:29', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172668491434192897', null, '文理', '1216587834', 'wenli', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', '2019-09-14 08:28:50', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172668587617972225', null, '文建', '477911007', 'wenjian', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', '2019-09-14 08:29:13', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172668816438226946', null, '官北', '1119639569', 'guanbei', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', '2019-09-14 08:30:08', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172669091173527553', null, '贤庚', '1513904210', 'xiangeng', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', '2019-09-14 08:31:13', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172669194126913538', null, '兆禧', '1388075113', 'zhaoxi', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', '2019-09-14 08:31:38', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172669826527293441', null, '万启', '1866704641', 'wanqi', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', '2019-09-14 08:34:08', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172669932441858049', null, '运清', '968644886', 'yunqing', '1', '1', null, null, null, '1', null, null, null, null, null, '11', null, null, null, null, '1', 'system', '2019-09-14 08:34:34', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172670122536103937', null, '运波', '2084329794', 'yunbo', '1', '1', null, null, null, '1', null, null, null, null, null, '11', null, null, null, null, '1', 'system', '2019-09-14 08:35:19', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172726352843534337', null, '达艺', '1615057818', 'dayi', '2', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', '2019-09-14 12:18:45', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172726420086616065', null, '达深', '666643574', 'dashen', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', '2019-09-14 12:19:01', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172726511711186945', null, '达广', '1652806515', 'daguang', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', '2019-09-14 12:19:23', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172726683442769922', null, '斯锋', '1719915338', 'sifeng', '1', '1', null, null, null, '1', null, null, null, null, null, '13', null, null, null, null, '1', 'system', '2019-09-14 12:20:04', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172726730393808897', null, '斯华', '1744579774', 'sihua', '1', '1', null, null, null, '1', null, null, null, null, null, '13', null, null, null, null, '1', 'system', '2019-09-14 12:20:15', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172726947918802946', null, '达聪', '226241776', 'dacong', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', '2019-09-14 12:21:07', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172727012037128194', null, '达华', '448539907', 'dahua', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', '2019-09-14 12:21:23', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172727437515714561', null, '卢诚', '188493157', 'lucheng', '1', '1', null, null, null, '1', null, null, null, null, null, '13', null, null, null, null, '1', 'system', '2019-09-14 12:23:04', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1172727527286403074', null, '晓璐', '310127995', 'xiaolu', '2', '1', null, null, null, '1', null, null, null, null, null, '13', null, null, '', '止', '1', 'system', '2019-10-26 18:00:39', null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1173255387671568385', null, '奕生', '78781838', 'yisheng', '1', '1', null, null, null, '1', null, null, null, null, null, '2', null, null, null, null, '1', 'system', '2019-09-15 23:20:57', null, '2021-03-21 12:46:35', null, '1173254983692984322', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1173255475408019458', null, '继智', '1842209375', 'jizhi', '1', '1', null, null, null, '1', null, null, null, null, null, '2', null, null, null, null, '1', 'system', '2019-09-15 23:21:18', null, '2021-03-21 12:46:35', null, '1173254983692984322', null, null, '', '0', '1');
-INSERT INTO `bs_member` VALUES ('1310043770678427649', null, '管理员', '1169061343', null, null, '1', null, null, null, '1', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-27 10:29:09', null, '2020-09-27 10:29:09', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1310781337174650881', null, '2', '2125554863', null, '2', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-29 11:19:59', null, '2020-09-29 11:19:59', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1310781356833353730', null, '3', '309421233', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-29 11:20:03', null, '2020-09-29 11:20:03', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311122332382756866', null, '月生', '1661760814', null, '1', '0', null, null, null, '1', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 09:54:58', null, '2020-09-30 09:54:58', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311122278355927042', null, '爸爸', '390886719', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 09:54:39', null, '2020-09-30 09:54:39', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311141816216625154', null, '爷爷', '269304694', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:12:23', null, '2020-09-30 11:12:23', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311141957929574401', null, '大爷爷', '290276184', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:12:57', null, '2020-09-30 11:12:57', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311144308274929666', null, '1', '707968719', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:22:18', null, '2020-09-30 11:22:18', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311144803454459906', null, '2', '1858945214', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:24:16', null, '2020-09-30 11:24:16', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311145936130449409', null, '3', '703758409', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:28:46', null, '2020-09-30 11:28:46', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311146869438586881', null, '大大爷爷', '1686994656', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:32:28', null, '2020-09-30 11:32:28', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311152158464319489', null, '1', '369981967', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:53:29', null, '2020-09-30 11:53:29', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311152477722157057', null, '2', '1127384634', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:54:45', null, '2020-09-30 11:54:45', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311153098961494017', null, '2', '403536182', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:57:13', null, '2020-09-30 11:57:13', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311153267236970498', null, '3', '837977841', null, '1', '0', null, null, null, '1', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '2020-09-30 11:57:54', null, '2020-09-30 11:57:54', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311153800647581698', null, '4', '1202882413', null, '1', '0', null, null, null, '1', null, null, null, null, null, '2', null, null, null, null, '1', 'system', '2020-09-30 12:00:01', null, '2020-09-30 12:00:01', null, null, null, null, null, '0', '1');
-INSERT INTO `bs_member` VALUES ('1311154135550173185', null, '抚顺', '1567786940', null, '2', '0', null, null, null, '0', null, null, null, null, null, '3', null, null, null, null, '1', 'system', '2020-09-30 12:01:21', null, '2020-09-30 12:01:21', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1171395252133167105', null, '位汉', '1766088249', 'weihan', '1', '1', null, '1959-11-09', 'none', '1', null, null, null, null, '2019-11-09', '6', null, null, null, '', '1', 'system', null, '2019-11-09 12:04:14', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1171395452868362241', null, '育端', '1408999924', 'yuduan', '2', '1', null, '2019-09-10', 'none', '1', null, null, null, null, null, '7', null, null, null, '', '1', 'system', null, '2019-10-26 18:01:33', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1171397885233344514', null, '大任', '2017749975', 'daren', '1', '0', null, '2019-09-10', null, '0', null, null, null, null, null, '8', null, null, null, null, '1', 'system', null, '2019-09-10 20:19:53', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1171398178184507393', null, '圣泽', '579103634', 'shengze', '1', '1', null, null, null, '1', null, null, null, null, null, '8', null, null, null, null, '1', 'system', null, '2019-09-10 20:21:04', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172655212397834241', null, '圣甫', '222450766', 'shengfu', '1', '1', null, null, null, '1', null, null, null, null, null, '8', null, null, null, null, '1', 'system', null, '2019-09-14 07:36:04', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172655303003189249', null, '圣辉', '348279863', 'shenghui', '1', '1', null, null, null, '1', null, null, null, null, null, '8', null, null, null, '殇', '1', 'system', null, '2019-11-09 11:48:42', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', '入嗣', null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172655753215586306', null, '贤珍', '562189261', 'xianzhen', '2', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', null, '2019-09-14 07:38:13', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172655845884538882', null, '贤锦', '1912450117', 'xianjin', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', null, '2019-09-14 07:38:35', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172655933511938049', null, '贤济', '654463910', 'xianji', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', null, '2019-09-14 07:38:56', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172656026348662786', null, '贤荫', '1987947635', 'xianyin', '2', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', null, '2019-09-14 07:39:18', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172662670029647873', null, '圣佺', '1346130557', 'shengquan', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', null, '2019-09-14 08:05:41', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172662754440015873', null, '圣昭', '134458738', 'shengzhao', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', null, '2019-09-14 08:06:02', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172663033944240129', null, '文泽', '348368175', 'wenze', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', null, '2019-09-14 08:08:35', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172663527236333570', null, '运勇', '977513663', 'yunyong', '1', '1', null, null, null, '1', null, null, null, null, null, '11', null, null, null, null, '1', 'system', null, '2019-09-14 08:09:07', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172663668693430274', null, '运锐', '717466778', 'yunrui', '1', '1', null, null, null, '1', null, null, null, null, null, '11', null, null, null, null, '1', 'system', null, '2019-09-14 08:09:40', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172663874554064897', null, '达斯', '1543744619', 'dasi', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', null, '2019-09-14 08:10:29', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172668491434192897', null, '文理', '1216587834', 'wenli', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', null, '2019-09-14 08:28:50', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172668587617972225', null, '文建', '477911007', 'wenjian', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', null, '2019-09-14 08:29:13', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172668816438226946', null, '官北', '1119639569', 'guanbei', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', null, '2019-09-14 08:30:08', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172669091173527553', null, '贤庚', '1513904210', 'xiangeng', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', null, '2019-09-14 08:31:13', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172669194126913538', null, '兆禧', '1388075113', 'zhaoxi', '1', '1', null, null, null, '1', null, null, null, null, null, '9', null, null, null, null, '1', 'system', null, '2019-09-14 08:31:38', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172669826527293441', null, '万启', '1866704641', 'wanqi', '1', '1', null, null, null, '1', null, null, null, null, null, '10', null, null, null, null, '1', 'system', null, '2019-09-14 08:34:08', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172669932441858049', null, '运清', '968644886', 'yunqing', '1', '1', null, null, null, '1', null, null, null, null, null, '11', null, null, null, null, '1', 'system', null, '2019-09-14 08:34:34', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172670122536103937', null, '运波', '2084329794', 'yunbo', '1', '1', null, null, null, '1', null, null, null, null, null, '11', null, null, null, null, '1', 'system', null, '2019-09-14 08:35:19', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172726352843534337', null, '达艺', '1615057818', 'dayi', '2', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', null, '2019-09-14 12:18:45', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172726420086616065', null, '达深', '666643574', 'dashen', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', null, '2019-09-14 12:19:01', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172726511711186945', null, '达广', '1652806515', 'daguang', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', null, '2019-09-14 12:19:23', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172726683442769922', null, '斯锋', '1719915338', 'sifeng', '1', '1', null, null, null, '1', null, null, null, null, null, '13', null, null, null, null, '1', 'system', null, '2019-09-14 12:20:04', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172726730393808897', null, '斯华', '1744579774', 'sihua', '1', '1', null, null, null, '1', null, null, null, null, null, '13', null, null, null, null, '1', 'system', null, '2019-09-14 12:20:15', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172726947918802946', null, '达聪', '226241776', 'dacong', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', null, '2019-09-14 12:21:07', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172727012037128194', null, '达华', '448539907', 'dahua', '1', '1', null, null, null, '1', null, null, null, null, null, '12', null, null, null, null, '1', 'system', null, '2019-09-14 12:21:23', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172727437515714561', null, '卢诚', '188493157', 'lucheng', '1', '1', null, null, null, '1', null, null, null, null, null, '13', null, null, null, null, '1', 'system', null, '2019-09-14 12:23:04', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1172727527286403074', null, '晓璐', '310127995', 'xiaolu', '2', '1', null, null, null, '1', null, null, null, null, null, '13', null, null, '', '止', '1', 'system', null, '2019-10-26 18:00:39', null, null, '2021-03-21 12:46:35', null, '1171374472506826753', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1173255387671568385', null, '奕生', '78781838', 'yisheng', '1', '1', null, null, null, '1', null, null, null, null, null, '2', null, null, null, null, '1', 'system', null, '2019-09-15 23:20:57', null, null, '2021-03-21 12:46:35', null, '1173254983692984322', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1173255475408019458', null, '继智', '1842209375', 'jizhi', '1', '1', null, null, null, '1', null, null, null, null, null, '2', null, null, null, null, '1', 'system', null, '2019-09-15 23:21:18', null, null, '2021-03-21 12:46:35', null, '1173254983692984322', null, null, '', '0', '1');
+INSERT INTO `bs_member` VALUES ('1310043770678427649', null, '管理员', '1169061343', null, null, '1', null, null, null, '1', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-27 10:29:09', null, null, '2020-09-27 10:29:09', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1310781337174650881', null, '2', '2125554863', null, '2', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-29 11:19:59', null, null, '2020-09-29 11:19:59', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1310781356833353730', null, '3', '309421233', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-29 11:20:03', null, null, '2020-09-29 11:20:03', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311122332382756866', null, '月生', '1661760814', null, '1', '0', null, null, null, '1', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 09:54:58', null, null, '2020-09-30 09:54:58', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311122278355927042', null, '爸爸', '390886719', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 09:54:39', null, null, '2020-09-30 09:54:39', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311141816216625154', null, '爷爷', '269304694', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:12:23', null, null, '2020-09-30 11:12:23', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311141957929574401', null, '大爷爷', '290276184', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:12:57', null, null, '2020-09-30 11:12:57', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311144308274929666', null, '1', '707968719', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:22:18', null, null, '2020-09-30 11:22:18', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311144803454459906', null, '2', '1858945214', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:24:16', null, null, '2020-09-30 11:24:16', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311145936130449409', null, '3', '703758409', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:28:46', null, null, '2020-09-30 11:28:46', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311146869438586881', null, '大大爷爷', '1686994656', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:32:28', null, null, '2020-09-30 11:32:28', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311152158464319489', null, '1', '369981967', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:53:29', null, null, '2020-09-30 11:53:29', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311152477722157057', null, '2', '1127384634', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:54:45', null, null, '2020-09-30 11:54:45', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311153098961494017', null, '2', '403536182', null, '1', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:57:13', null, null, '2020-09-30 11:57:13', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311153267236970498', null, '3', '837977841', null, '1', '0', null, null, null, '1', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2020-09-30 11:57:54', null, null, '2020-09-30 11:57:54', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311153800647581698', null, '4', '1202882413', null, '1', '0', null, null, null, '1', null, null, null, null, null, '2', null, null, null, null, '1', 'system', null, '2020-09-30 12:00:01', null, null, '2020-09-30 12:00:01', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1311154135550173185', null, '抚顺', '1567786940', null, '2', '0', null, null, null, '0', null, null, null, null, null, '3', null, null, null, null, '1', 'system', null, '2020-09-30 12:01:21', null, null, '2020-09-30 12:01:21', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1396272506049970177', null, '卢志华', null, 'luzhihua', '0', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2021-05-23 09:11:22', null, null, '2021-05-23 09:11:22', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1396273047463313410', null, '卢志华', null, 'luzhihua', '0', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2021-05-23 09:13:31', null, null, '2021-05-23 09:13:31', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1396273450091331585', null, '卢志华', null, 'luzhihua', '0', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2021-05-23 09:15:07', null, null, '2021-05-23 09:15:07', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1396273656249761794', null, '卢志华', null, 'luzhihua', '0', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2021-05-23 09:15:56', null, null, '2021-05-23 09:15:56', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1396277834967728130', null, '成员', null, 'chengyuan', '0', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2021-05-23 09:32:32', null, null, '2021-05-23 09:32:32', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1396347607340593153', null, '卢志华', null, 'luzhihua', '0', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', null, '2021-05-23 14:09:47', null, null, '2021-05-23 14:09:47', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1396349937091973122', null, '卢志华', null, 'luzhihua', '0', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '1396277834904813570', '2021-05-23 14:18:58', null, null, '2021-05-23 14:18:58', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1396361072335659010', null, 'test12', null, '', '0', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '1396349907324997634', '2021-05-23 15:03:17', null, null, '2021-05-23 15:03:17', null, null, null, null, null, '0', '1');
+INSERT INTO `bs_member` VALUES ('1396366113037623297', null, '卢志华', null, 'luzhihua', '0', '0', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, '1', 'system', '1396366076471681026', '2021-05-23 15:23:11', null, null, '2021-05-23 15:23:11', null, null, null, null, null, '0', '1');
 
 -- ----------------------------
 -- Table structure for bs_partner
@@ -3816,8 +3839,10 @@ CREATE TABLE `bs_partner` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `husband_id` bigint(20) DEFAULT NULL,
@@ -3830,11 +3855,11 @@ CREATE TABLE `bs_partner` (
 -- ----------------------------
 -- Records of bs_partner
 -- ----------------------------
-INSERT INTO `bs_partner` VALUES ('1167416409148481538', '2019-08-30 20:38:56', 'system', null, null, '0', '1', '1167415967458914306', null, '1167416409123315713', null);
-INSERT INTO `bs_partner` VALUES ('1167423478270382081', '2019-08-30 21:07:02', 'system', null, null, '0', '1', '1167415966955597826', null, '1167423478257799169', null);
-INSERT INTO `bs_partner` VALUES ('1167430970501095426', '2019-08-30 21:36:48', 'system', null, null, '0', '1', '1167415966955597826', null, '1167430970480123905', null);
-INSERT INTO `bs_partner` VALUES ('1172649183190691841', '2019-09-14 07:12:07', 'system', null, null, '0', '1', '1171395252133167105', null, '1171395452868362241', null);
-INSERT INTO `bs_partner` VALUES ('1311126822095691778', '2020-09-30 10:12:49', 'system', '2020-09-30 10:12:49', null, '0', '1', '1310043770678427649', null, '1311126821923725313', '1');
+INSERT INTO `bs_partner` VALUES ('1167416409148481538', '2019-08-30 20:38:56', 'system', null, null, null, null, '0', '1', '1167415967458914306', null, '1167416409123315713', null);
+INSERT INTO `bs_partner` VALUES ('1167423478270382081', '2019-08-30 21:07:02', 'system', null, null, null, null, '0', '1', '1167415966955597826', null, '1167423478257799169', null);
+INSERT INTO `bs_partner` VALUES ('1167430970501095426', '2019-08-30 21:36:48', 'system', null, null, null, null, '0', '1', '1167415966955597826', null, '1167430970480123905', null);
+INSERT INTO `bs_partner` VALUES ('1172649183190691841', '2019-09-14 07:12:07', 'system', null, null, null, null, '0', '1', '1171395252133167105', null, '1171395452868362241', null);
+INSERT INTO `bs_partner` VALUES ('1311126822095691778', '2020-09-30 10:12:49', 'system', null, '2020-09-30 10:12:49', null, null, '0', '1', '1310043770678427649', null, '1311126821923725313', '1');
 
 -- ----------------------------
 -- Table structure for bs_village
@@ -3844,8 +3869,10 @@ CREATE TABLE `bs_village` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `code` varchar(32) DEFAULT NULL COMMENT '村编号',
@@ -3861,7 +3888,7 @@ CREATE TABLE `bs_village` (
 -- ----------------------------
 -- Records of bs_village
 -- ----------------------------
-INSERT INTO `bs_village` VALUES ('1194200525238849537', '2019-12-21 12:20:57', 'system', null, null, '0', '1', 'changqitang', '长岐塘', '长岐塘', '11', null, null, null);
+INSERT INTO `bs_village` VALUES ('1194200525238849537', '2019-12-21 12:20:57', 'system', null, null, null, null, '0', '1', 'changqitang', '长岐塘', '长岐塘', '11', null, null, null);
 
 -- ----------------------------
 -- Table structure for clientdetails
@@ -3907,6 +3934,7 @@ CREATE TABLE `spring_session` (
 -- ----------------------------
 -- Records of spring_session
 -- ----------------------------
+INSERT INTO `spring_session` VALUES ('4005441a-472e-4dfa-a2a1-dd21114de79a', '061a81af-1ef8-46cf-a54e-f6371dc0c60e', '1621745424759', '1621754644527', '3600', '1621758244527', 'test3');
 
 -- ----------------------------
 -- Table structure for spring_session_attributes
@@ -3923,6 +3951,8 @@ CREATE TABLE `spring_session_attributes` (
 -- ----------------------------
 -- Records of spring_session_attributes
 -- ----------------------------
+INSERT INTO `spring_session_attributes` VALUES ('4005441a-472e-4dfa-a2a1-dd21114de79a', 'JSESSIONID', 0xACED00057372003D6F72672E737072696E676672616D65776F726B2E73656375726974792E636F72652E636F6E746578742E5365637572697479436F6E74657874496D706C00000000000001F40200014C000E61757468656E7469636174696F6E7400324C6F72672F737072696E676672616D65776F726B2F73656375726974792F636F72652F41757468656E7469636174696F6E3B78707372004F6F72672E737072696E676672616D65776F726B2E73656375726974792E61757468656E7469636174696F6E2E557365726E616D6550617373776F726441757468656E7469636174696F6E546F6B656E00000000000001F40200024C000B63726564656E7469616C737400124C6A6176612F6C616E672F4F626A6563743B4C00097072696E636970616C71007E0004787200476F72672E737072696E676672616D65776F726B2E73656375726974792E61757468656E7469636174696F6E2E416273747261637441757468656E7469636174696F6E546F6B656ED3AA287E6E47640E0200035A000D61757468656E746963617465644C000B617574686F7269746965737400164C6A6176612F7574696C2F436F6C6C656374696F6E3B4C000764657461696C7371007E0004787001737200266A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C654C697374FC0F2531B5EC8E100200014C00046C6973747400104C6A6176612F7574696C2F4C6973743B7872002C6A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C65436F6C6C656374696F6E19420080CB5EF71E0200014C00016371007E00067870737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A657870000000007704000000007871007E000D737200486F72672E737072696E676672616D65776F726B2E73656375726974792E7765622E61757468656E7469636174696F6E2E57656241757468656E7469636174696F6E44657461696C7300000000000001F40200024C000D72656D6F7465416464726573737400124C6A6176612F6C616E672F537472696E673B4C000973657373696F6E496471007E000F78707400093132372E302E302E3174002430363161383161662D316566382D343663662D613534652D663633373164633063363065707372002E636F6D2E73746172666972652E66616D696C79747265652E7573657263656E7465722E656E746974792E5573657200000000000000010200114C00076164647265737371007E000F4C00036167657400134C6A6176612F6C616E672F496E74656765723B4C000B617574686F72697469657371007E00094C00046369747971007E00144C0008646973747269637471007E00144C0005656D61696C71007E000F4C000A66697273744C6F67696E74002B4C636F6D2F73746172666972652F66616D696C79747265652F656E756D732F426F6F6C65616E456E756D3B4C000667656E64657274002A4C636F6D2F73746172666972652F66616D696C79747265652F656E756D732F47656E646572456E756D3B4C000D6C6173744C6F67696E54696D657400194C6A6176612F74696D652F4C6F63616C4461746554696D653B4C00066D6F62696C6571007E000F4C000870617373776F726471007E000F4C000870726F76696E636571007E00144C00087265616C4E616D6571007E000F4C000C726567697374657254696D6571007E00174C0004726F6C657400324C636F6D2F73746172666972652F66616D696C79747265652F7573657263656E7465722F656E746974792F526F6C65564F3B4C00047479706574002C4C636F6D2F73746172666972652F66616D696C79747265652F656E756D732F5573657254797065456E756D3B4C0008757365726E616D6571007E000F78720033636F6D2E73746172666972652E66616D696C79747265652E62617369632E656E746974792E4162737472616374456E74697479000000000000000102000A49000776657273696F6E4C000A63726561746554696D6571007E00174C000A637265617465557365727400104C6A6176612F6C616E672F4C6F6E673B4C000763726561746F7271007E000F4C00086564697454696D6571007E00174C0008656469745573657271007E001B4C0006656469746F7271007E000F4C0002696471007E001B4C00076F726465726E6F71007E00144C000576616C69647400294C636F6D2F73746172666972652F66616D696C79747265652F656E756D732F56616C6964456E756D3B7870000000007372000D6A6176612E74696D652E536572955D84BA1B2248B20C00007870770A05000007E505170F17F5787074000673797374656D7371007E001E770A05000007E505170F17F57870707372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078701360E38C5C802002737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C75657871007E0023000000017E720027636F6D2E73746172666972652E66616D696C79747265652E656E756D732E56616C6964456E756D00000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740003E698AF70707371007E000C00000000770400000000787070707E720029636F6D2E73746172666972652E66616D696C79747265652E656E756D732E426F6F6C65616E456E756D00000000000000001200007871007E0028740003E590A67E720028636F6D2E73746172666972652E66616D696C79747265652E656E756D732E47656E646572456E756D00000000000000001200007871007E0028740009E4B88DE6B885E6A59A707074003C243261243130246B543952674262554F2E306574665978595A6C7649756C4247686738563773304262346F416A7161694448552E4E36587275582E7570740009E58DA2E5BF97E58D8E7371007E001E770A05000007E505170F17F57873720030636F6D2E73746172666972652E66616D696C79747265652E7573657263656E7465722E656E746974792E526F6C65564F00000000000000010200044C0004636F646571007E000F4C0002696471007E000F4C00046E616D6571007E000F4C000B7065726D697373696F6E7371007E00097870707400013074000CE6978FE8B0B1E68890E591987371007E000C0000000277040000000273720034636F6D2E73746172666972652E66616D696C79747265652E7573657263656E7465722E656E746974792E5065726D697373696F6E4991734D47C25CD70200034C000A616374696F6E4C69737471007E00094C000C7065726D697373696F6E496471007E000F4C000E7065726D697373696F6E4E616D6571007E000F78707371007E000C00000004770400000004740004766965777400046564697474000664656C657465740003616464787400066D656D62657274000CE6978FE8B0B1E5BD95E585A57371007E003A7371007E000C00000004770400000004740004766965777400046564697474000664656C657465740003616464787400047472656574000CE6978FE8B0B1E69FA5E79C8B787E72002A636F6D2E73746172666972652E66616D696C79747265652E656E756D732E5573657254797065456E756D00000000000000001200007871007E002874000CE699AEE9809AE794A8E688B77400057465737433);
+INSERT INTO `spring_session_attributes` VALUES ('4005441a-472e-4dfa-a2a1-dd21114de79a', 'SPRING_SECURITY_CONTEXT', 0xACED00057372003D6F72672E737072696E676672616D65776F726B2E73656375726974792E636F72652E636F6E746578742E5365637572697479436F6E74657874496D706C00000000000001F40200014C000E61757468656E7469636174696F6E7400324C6F72672F737072696E676672616D65776F726B2F73656375726974792F636F72652F41757468656E7469636174696F6E3B78707372004F6F72672E737072696E676672616D65776F726B2E73656375726974792E61757468656E7469636174696F6E2E557365726E616D6550617373776F726441757468656E7469636174696F6E546F6B656E00000000000001F40200024C000B63726564656E7469616C737400124C6A6176612F6C616E672F4F626A6563743B4C00097072696E636970616C71007E0004787200476F72672E737072696E676672616D65776F726B2E73656375726974792E61757468656E7469636174696F6E2E416273747261637441757468656E7469636174696F6E546F6B656ED3AA287E6E47640E0200035A000D61757468656E746963617465644C000B617574686F7269746965737400164C6A6176612F7574696C2F436F6C6C656374696F6E3B4C000764657461696C7371007E0004787001737200266A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C654C697374FC0F2531B5EC8E100200014C00046C6973747400104C6A6176612F7574696C2F4C6973743B7872002C6A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C65436F6C6C656374696F6E19420080CB5EF71E0200014C00016371007E00067870737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A657870000000007704000000007871007E000D737200486F72672E737072696E676672616D65776F726B2E73656375726974792E7765622E61757468656E7469636174696F6E2E57656241757468656E7469636174696F6E44657461696C7300000000000001F40200024C000D72656D6F7465416464726573737400124C6A6176612F6C616E672F537472696E673B4C000973657373696F6E496471007E000F78707400093132372E302E302E3174002430363161383161662D316566382D343663662D613534652D663633373164633063363065707372002E636F6D2E73746172666972652E66616D696C79747265652E7573657263656E7465722E656E746974792E5573657200000000000000010200114C00076164647265737371007E000F4C00036167657400134C6A6176612F6C616E672F496E74656765723B4C000B617574686F72697469657371007E00094C00046369747971007E00144C0008646973747269637471007E00144C0005656D61696C71007E000F4C000A66697273744C6F67696E74002B4C636F6D2F73746172666972652F66616D696C79747265652F656E756D732F426F6F6C65616E456E756D3B4C000667656E64657274002A4C636F6D2F73746172666972652F66616D696C79747265652F656E756D732F47656E646572456E756D3B4C000D6C6173744C6F67696E54696D657400194C6A6176612F74696D652F4C6F63616C4461746554696D653B4C00066D6F62696C6571007E000F4C000870617373776F726471007E000F4C000870726F76696E636571007E00144C00087265616C4E616D6571007E000F4C000C726567697374657254696D6571007E00174C0004726F6C657400324C636F6D2F73746172666972652F66616D696C79747265652F7573657263656E7465722F656E746974792F526F6C65564F3B4C00047479706574002C4C636F6D2F73746172666972652F66616D696C79747265652F656E756D732F5573657254797065456E756D3B4C0008757365726E616D6571007E000F78720033636F6D2E73746172666972652E66616D696C79747265652E62617369632E656E746974792E4162737472616374456E74697479000000000000000102000A49000776657273696F6E4C000A63726561746554696D6571007E00174C000A637265617465557365727400104C6A6176612F6C616E672F4C6F6E673B4C000763726561746F7271007E000F4C00086564697454696D6571007E00174C0008656469745573657271007E001B4C0006656469746F7271007E000F4C0002696471007E001B4C00076F726465726E6F71007E00144C000576616C69647400294C636F6D2F73746172666972652F66616D696C79747265652F656E756D732F56616C6964456E756D3B7870000000007372000D6A6176612E74696D652E536572955D84BA1B2248B20C00007870770A05000007E505170F17F5787074000673797374656D7371007E001E770A05000007E505170F17F57870707372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078701360E38C5C802002737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C75657871007E0023000000017E720027636F6D2E73746172666972652E66616D696C79747265652E656E756D732E56616C6964456E756D00000000000000001200007872000E6A6176612E6C616E672E456E756D00000000000000001200007870740003E698AF70707371007E000C00000000770400000000787070707E720029636F6D2E73746172666972652E66616D696C79747265652E656E756D732E426F6F6C65616E456E756D00000000000000001200007871007E0028740003E590A67E720028636F6D2E73746172666972652E66616D696C79747265652E656E756D732E47656E646572456E756D00000000000000001200007871007E0028740009E4B88DE6B885E6A59A707074003C243261243130246B543952674262554F2E306574665978595A6C7649756C4247686738563773304262346F416A7161694448552E4E36587275582E7570740009E58DA2E5BF97E58D8E7371007E001E770A05000007E505170F17F57873720030636F6D2E73746172666972652E66616D696C79747265652E7573657263656E7465722E656E746974792E526F6C65564F00000000000000010200044C0004636F646571007E000F4C0002696471007E000F4C00046E616D6571007E000F4C000B7065726D697373696F6E7371007E00097870707400013074000CE6978FE8B0B1E68890E591987371007E000C0000000277040000000273720034636F6D2E73746172666972652E66616D696C79747265652E7573657263656E7465722E656E746974792E5065726D697373696F6E4991734D47C25CD70200034C000A616374696F6E4C69737471007E00094C000C7065726D697373696F6E496471007E000F4C000E7065726D697373696F6E4E616D6571007E000F78707371007E000C00000004770400000004740004766965777400046564697474000664656C657465740003616464787400066D656D62657274000CE6978FE8B0B1E5BD95E585A57371007E003A7371007E000C00000004770400000004740004766965777400046564697474000664656C657465740003616464787400047472656574000CE6978FE8B0B1E69FA5E79C8B787E72002A636F6D2E73746172666972652E66616D696C79747265652E656E756D732E5573657254797065456E756D00000000000000001200007871007E002874000CE699AEE9809AE794A8E688B77400057465737433);
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -3932,8 +3962,10 @@ CREATE TABLE `sys_menu` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT NULL,
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `code` varchar(32) DEFAULT NULL,
@@ -3953,25 +3985,25 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('1165444029081468929', '2019-09-28 16:42:00', 'system', null, null, '0', '1', 'sys', null, '1', null, '系统管理', null, null, '0', 'RouteView', '');
-INSERT INTO `sys_menu` VALUES ('1165444176662249473', '2019-11-10 22:53:42', 'system', null, null, '0', '1', 'menu', null, '2', null, '菜单管理', '1165444029081468929', null, '1', 'sys/menu/List', '');
-INSERT INTO `sys_menu` VALUES ('1165444269649969154', '2019-10-20 10:46:40', 'system', null, null, '0', '1', 'role', null, '3', null, '角色管理', '1165444029081468929', null, '1', 'sys/role/List', '');
-INSERT INTO `sys_menu` VALUES ('1165444378815119361', '2019-10-20 11:09:10', 'system', null, null, '0', '1', 'user', null, '4', null, '用户管理', '1165444029081468929', null, '1', 'user/List', '');
-INSERT INTO `sys_menu` VALUES ('1165444551914045441', '2019-10-09 21:28:26', 'system', null, null, '0', '1', 'category', null, '5', null, '类别管理', '1165444830919147522', null, '1', 'folk/category/List', '');
-INSERT INTO `sys_menu` VALUES ('1165444695204052994', '2020-06-25 09:26:17', 'system', null, null, '0', '1', 'category_content', null, '6', null, '类别内容管理', '1165444830919147522', null, '1', 'folk/categoryContent/List', '');
-INSERT INTO `sys_menu` VALUES ('1165444830919147522', '2019-08-25 10:45:40', 'system', null, null, '0', '1', 'folk', null, '99', null, '族谱管理', null, null, '0', 'RouteView', '');
-INSERT INTO `sys_menu` VALUES ('1165996609763397633', '2019-10-09 21:30:12', 'system', null, null, '0', '1', 'member', null, '99', null, '族谱录入', '1165444830919147522', null, '1', 'folk/member/List', '');
-INSERT INTO `sys_menu` VALUES ('1167082544697479169', '2019-08-29 22:32:24', 'system', null, null, '0', '1', 'tree', null, '99', null, '族谱查看', '1165444830919147522', null, '1', 'folk/tree/Family', '');
-INSERT INTO `sys_menu` VALUES ('1167573544163450881', '2019-10-09 21:28:52', 'system', null, null, '0', '1', 'dict', null, '99', null, '数据字典', '1165444029081468929', null, '1', 'dict/List', '');
-INSERT INTO `sys_menu` VALUES ('1167725076565549057', '2019-10-09 21:29:02', 'system', null, null, '0', '1', 'region', null, '99', null, '省市区管理', '1165444029081468929', null, '1', 'region/List', '');
-INSERT INTO `sys_menu` VALUES ('1193146315227971586', '2020-06-25 09:25:01', 'system', null, null, '0', '1', 'categorycontent_view', null, '99', null, '类别内容查看', '1165444695204052994', null, '2', 'folk/categoryContent/:id', '');
-INSERT INTO `sys_menu` VALUES ('1181184931879624705', '2019-11-10 21:41:53', 'system', null, null, '0', '1', 'cemetery', null, '99', null, '公墓', '1165444830919147522', null, '1', 'folk/cemetery/List', '');
-INSERT INTO `sys_menu` VALUES ('1182660358611595265', '2019-10-13 07:36:24', 'system', null, null, '0', '1', 'cemetery_detail', null, '99', null, '公墓详情', '1181184931879624705', null, '2', 'folk/cemetery/List', '');
-INSERT INTO `sys_menu` VALUES ('1194187158843494401', '2019-11-12 17:57:27', 'system', null, null, '0', '1', 'village', null, '99', null, '乡村管理', '1165444029081468929', null, '1', 'village/List', '');
-INSERT INTO `sys_menu` VALUES ('1194425780905594882', '2019-12-21 11:38:05', 'system', null, null, '0', '1', 'dashboard', null, '99', null, '村统计数据', '1194426369139953666', null, '1', 'dashboard', '');
-INSERT INTO `sys_menu` VALUES ('1194426369139953666', '2019-12-21 11:36:48', 'system', null, null, '0', '1', 'interview', null, '99', null, '长岐塘概况', null, null, '0', 'RouteView', '');
-INSERT INTO `sys_menu` VALUES ('1194814587119247361', '2019-11-14 11:09:30', 'system', null, null, '0', '1', 'signup', null, '99', null, '账号注册', '1194426369139953666', null, '2', 'signup', '');
-INSERT INTO `sys_menu` VALUES ('1207584588418977793', '2019-12-21 11:34:29', 'system', null, null, '0', '1', 'images', null, '99', null, '长岐塘风貌', '1194426369139953666', null, '1', 'village/Profile', '');
+INSERT INTO `sys_menu` VALUES ('1165444029081468929', '2019-09-28 16:42:00', 'system', null, null, null, null, '0', '1', 'sys', null, '1', null, '系统管理', null, null, '0', 'RouteView', '');
+INSERT INTO `sys_menu` VALUES ('1165444176662249473', '2019-11-10 22:53:42', 'system', null, null, null, null, '0', '1', 'menu', null, '2', null, '菜单管理', '1165444029081468929', null, '1', 'sys/menu/List', '');
+INSERT INTO `sys_menu` VALUES ('1165444269649969154', '2019-10-20 10:46:40', 'system', null, null, null, null, '0', '1', 'role', null, '3', null, '角色管理', '1165444029081468929', null, '1', 'sys/role/List', '');
+INSERT INTO `sys_menu` VALUES ('1165444378815119361', '2021-05-15 16:22:38', 'system', null, '2021-05-15 16:22:38', null, null, '0', '1', 'user', null, '1', null, '用户管理', '1165444029081468929', null, '1', 'user/List', null);
+INSERT INTO `sys_menu` VALUES ('1165444551914045441', '2019-10-09 21:28:26', 'system', null, null, null, null, '0', '1', 'category', null, '5', null, '类别管理', '1165444830919147522', null, '1', 'folk/category/List', '');
+INSERT INTO `sys_menu` VALUES ('1165444695204052994', '2020-06-25 09:26:17', 'system', null, null, null, null, '0', '1', 'category_content', null, '6', null, '类别内容管理', '1165444830919147522', null, '1', 'folk/categoryContent/List', '');
+INSERT INTO `sys_menu` VALUES ('1165444830919147522', '2019-08-25 10:45:40', 'system', null, null, null, null, '0', '1', 'folk', null, '99', null, '族谱管理', null, null, '0', 'RouteView', '');
+INSERT INTO `sys_menu` VALUES ('1165996609763397633', '2019-10-09 21:30:12', 'system', null, null, null, null, '0', '1', 'member', null, '99', null, '族谱录入', '1165444830919147522', null, '1', 'folk/member/List', '');
+INSERT INTO `sys_menu` VALUES ('1167082544697479169', '2019-08-29 22:32:24', 'system', null, null, null, null, '0', '1', 'tree', null, '99', null, '族谱查看', '1165444830919147522', null, '1', 'folk/tree/Family', '');
+INSERT INTO `sys_menu` VALUES ('1167573544163450881', '2019-10-09 21:28:52', 'system', null, null, null, null, '0', '1', 'dict', null, '99', null, '数据字典', '1165444029081468929', null, '1', 'dict/List', '');
+INSERT INTO `sys_menu` VALUES ('1167725076565549057', '2019-10-09 21:29:02', 'system', null, null, null, null, '0', '1', 'region', null, '99', null, '省市区管理', '1165444029081468929', null, '1', 'region/List', '');
+INSERT INTO `sys_menu` VALUES ('1193146315227971586', '2020-06-25 09:25:01', 'system', null, null, null, null, '0', '1', 'categorycontent_view', null, '99', null, '类别内容查看', '1165444695204052994', null, '2', 'folk/categoryContent/:id', '');
+INSERT INTO `sys_menu` VALUES ('1181184931879624705', '2019-11-10 21:41:53', 'system', null, null, null, null, '0', '1', 'cemetery', null, '99', null, '公墓', '1165444830919147522', null, '1', 'folk/cemetery/List', '');
+INSERT INTO `sys_menu` VALUES ('1182660358611595265', '2019-10-13 07:36:24', 'system', null, null, null, null, '0', '1', 'cemetery_detail', null, '99', null, '公墓详情', '1181184931879624705', null, '2', 'folk/cemetery/List', '');
+INSERT INTO `sys_menu` VALUES ('1194187158843494401', '2019-11-12 17:57:27', 'system', null, null, null, null, '0', '1', 'village', null, '99', null, '乡村管理', '1165444029081468929', null, '1', 'village/List', '');
+INSERT INTO `sys_menu` VALUES ('1194425780905594882', '2019-12-21 11:38:05', 'system', null, null, null, null, '0', '1', 'dashboard', null, '99', null, '村统计数据', '1194426369139953666', null, '1', 'dashboard', '');
+INSERT INTO `sys_menu` VALUES ('1194426369139953666', '2019-12-21 11:36:48', 'system', null, null, null, null, '0', '1', 'interview', null, '99', null, '长岐塘概况', null, null, '0', 'RouteView', '');
+INSERT INTO `sys_menu` VALUES ('1194814587119247361', '2019-11-14 11:09:30', 'system', null, null, null, null, '0', '1', 'signup', null, '99', null, '账号注册', '1194426369139953666', null, '2', 'signup', '');
+INSERT INTO `sys_menu` VALUES ('1207584588418977793', '2019-12-21 11:34:29', 'system', null, null, null, null, '0', '1', 'images', null, '99', null, '长岐塘风貌', '1194426369139953666', null, '1', 'village/Profile', '');
 
 -- ----------------------------
 -- Table structure for sys_menu_right
@@ -3981,8 +4013,10 @@ CREATE TABLE `sys_menu_right` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT NULL,
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `code` varchar(32) DEFAULT NULL,
@@ -3990,75 +4024,77 @@ CREATE TABLE `sys_menu_right` (
   `name` varchar(32) DEFAULT NULL,
   `orderno` int(8) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=321 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=1393481938660081671 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu_right
 -- ----------------------------
-INSERT INTO `sys_menu_right` VALUES ('319', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1207584588418977793', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('320', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1207584588418977793', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('318', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1207584588418977793', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('317', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1207584588418977793', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('316', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1194814587119247361', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('313', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1194814587119247361', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('315', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1194814587119247361', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('314', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1194814587119247361', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('312', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1194425780905594882', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('311', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1194425780905594882', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('310', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1194425780905594882', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('309', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1194425780905594882', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('308', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1194187158843494401', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('307', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1194187158843494401', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('306', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1194187158843494401', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('305', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1194187158843494401', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('304', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1182660358611595265', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('303', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1182660358611595265', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('302', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1182660358611595265', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('301', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1182660358611595265', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('300', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1181184931879624705', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('299', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1181184931879624705', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('298', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1181184931879624705', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('297', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1181184931879624705', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('296', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1193146315227971586', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('295', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1193146315227971586', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('294', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1193146315227971586', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('293', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1193146315227971586', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('292', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1167725076565549057', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('291', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1167725076565549057', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('290', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1167725076565549057', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('289', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1167725076565549057', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('288', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1167573544163450881', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('287', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1167573544163450881', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('286', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1167573544163450881', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('284', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1167082544697479169', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('285', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1167573544163450881', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('283', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1167082544697479169', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('282', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1167082544697479169', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('280', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1165996609763397633', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('281', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1167082544697479169', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('279', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1165996609763397633', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('278', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1165996609763397633', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('276', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1165444695204052994', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('277', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1165996609763397633', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('275', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1165444695204052994', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('274', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1165444695204052994', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('272', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1165444551914045441', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('273', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1165444695204052994', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('271', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1165444551914045441', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('270', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1165444551914045441', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('268', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1165444378815119361', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('269', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1165444551914045441', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('267', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1165444378815119361', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('266', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1165444378815119361', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('264', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1165444269649969154', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('265', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1165444378815119361', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('263', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1165444269649969154', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('261', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1165444269649969154', '新建', '1');
-INSERT INTO `sys_menu_right` VALUES ('262', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1165444269649969154', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('260', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'view', '1165444176662249473', '查看', '1');
-INSERT INTO `sys_menu_right` VALUES ('259', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'edit', '1165444176662249473', '编辑', '1');
-INSERT INTO `sys_menu_right` VALUES ('258', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'delete', '1165444176662249473', '删除', '1');
-INSERT INTO `sys_menu_right` VALUES ('257', '2020-09-15 15:53:18', 'system', null, null, '0', '1', 'add', '1165444176662249473', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('319', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1207584588418977793', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('320', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1207584588418977793', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('318', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1207584588418977793', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('317', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1207584588418977793', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('316', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1194814587119247361', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('313', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1194814587119247361', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('315', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1194814587119247361', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('314', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1194814587119247361', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('312', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1194425780905594882', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('311', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1194425780905594882', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('310', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1194425780905594882', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('309', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1194425780905594882', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('308', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1194187158843494401', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('307', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1194187158843494401', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('306', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1194187158843494401', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('305', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1194187158843494401', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('304', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1182660358611595265', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('303', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1182660358611595265', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('302', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1182660358611595265', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('301', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1182660358611595265', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('300', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1181184931879624705', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('299', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1181184931879624705', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('298', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1181184931879624705', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('297', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1181184931879624705', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('296', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1193146315227971586', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('295', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1193146315227971586', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('294', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1193146315227971586', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('293', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1193146315227971586', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('292', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1167725076565549057', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('291', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1167725076565549057', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('290', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1167725076565549057', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('289', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1167725076565549057', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('288', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1167573544163450881', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('287', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1167573544163450881', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('286', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1167573544163450881', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('284', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1167082544697479169', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('285', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1167573544163450881', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('283', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1167082544697479169', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('282', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1167082544697479169', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('280', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1165996609763397633', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('281', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1167082544697479169', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('279', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1165996609763397633', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('278', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1165996609763397633', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('276', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1165444695204052994', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('277', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1165996609763397633', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('275', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1165444695204052994', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('274', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1165444695204052994', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('272', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1165444551914045441', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('273', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1165444695204052994', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('271', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1165444551914045441', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('270', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1165444551914045441', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('1393481938660081669', '2021-05-15 16:22:38', 'system', null, '2021-05-15 16:22:38', null, null, '0', '1', 'reset_password', '1165444378815119361', '重设密码', '1');
+INSERT INTO `sys_menu_right` VALUES ('269', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1165444551914045441', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('1393481938660081668', '2021-05-15 16:22:38', 'system', null, '2021-05-15 16:22:38', null, null, '0', '1', 'add', '1165444378815119361', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('264', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1165444269649969154', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('1393481938660081667', '2021-05-15 16:22:38', 'system', null, '2021-05-15 16:22:38', null, null, '0', '1', 'view', '1165444378815119361', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('263', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1165444269649969154', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('261', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1165444269649969154', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('262', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1165444269649969154', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('260', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'view', '1165444176662249473', '查看', '1');
+INSERT INTO `sys_menu_right` VALUES ('259', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'edit', '1165444176662249473', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('258', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'delete', '1165444176662249473', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('257', '2020-09-15 15:53:18', 'system', null, null, null, null, '0', '1', 'add', '1165444176662249473', '新建', '1');
+INSERT INTO `sys_menu_right` VALUES ('1393481938660081666', '2021-05-15 16:22:38', 'system', null, '2021-05-15 16:22:38', null, null, '0', '1', 'edit', '1165444378815119361', '编辑', '1');
+INSERT INTO `sys_menu_right` VALUES ('1393481938660081665', '2021-05-15 16:22:38', 'system', null, '2021-05-15 16:22:38', null, null, '0', '1', 'delete', '1165444378815119361', '删除', '1');
+INSERT INTO `sys_menu_right` VALUES ('1393481938660081670', '2021-05-15 16:22:38', 'system', null, '2021-05-15 16:22:38', null, null, '0', '1', 'auth_menu', '1165444378815119361', '分配菜单', '1');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -4068,8 +4104,10 @@ CREATE TABLE `sys_role` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT NULL,
+  `edit_user` bigint(20) DEFAULT NULL,
   `orderno` int(8) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
@@ -4083,10 +4121,10 @@ CREATE TABLE `sys_role` (
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('1167208436950208513', '2019-08-30 06:52:32', 'system', null, null, null, '0', '1', '0', '客户', '客户', null);
-INSERT INTO `sys_role` VALUES ('1165459649994960898', '2019-08-25 11:07:33', 'system', null, null, null, '0', '1', '1', 'admin', '超级管理员', null);
-INSERT INTO `sys_role` VALUES ('1275986374611898370', '2020-06-25 10:57:13', 'system', null, null, null, '0', '1', '0', 'USER', 'USER', null);
-INSERT INTO `sys_role` VALUES ('0', '2020-09-15 10:32:36', 'system', '2020-09-15 10:32:36', null, '1', '0', '1', '1', '11', '11', null);
+INSERT INTO `sys_role` VALUES ('1167208436950208513', '2021-05-22 16:25:28', 'system', null, '2021-05-22 16:25:28', null, null, '1', '0', '1', '0', '客户', '客户', null);
+INSERT INTO `sys_role` VALUES ('1165459649994960898', '2019-08-25 11:07:33', 'system', null, null, null, null, null, '0', '1', '1', 'admin', '超级管理员', null);
+INSERT INTO `sys_role` VALUES ('1275986374611898370', '2021-05-22 16:25:09', 'system', null, '2021-05-22 16:25:09', null, null, '1', '0', '1', '0', 'USER', 'USER', null);
+INSERT INTO `sys_role` VALUES ('0', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '1', '0', '1', '0', 'member', '族谱成员', '可以录入和修改自己的族谱');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -4096,8 +4134,10 @@ CREATE TABLE `sys_role_menu` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT NULL,
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `menu_id` bigint(20) DEFAULT NULL,
@@ -4110,9 +4150,8 @@ CREATE TABLE `sys_role_menu` (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('1275963607489327106', '2020-06-25 09:26:45', 'system', null, null, '0', '1', '1165444695204052994', '0', '1167208436950208513', null);
-INSERT INTO `sys_role_menu` VALUES ('1275963607480938498', '2020-06-25 09:26:45', 'system', null, null, '0', '1', '1167082544697479169', '0', '1167208436950208513', null);
-INSERT INTO `sys_role_menu` VALUES ('1186655455988563970', '2019-10-22 22:47:55', 'system', null, null, '0', '1', '1167082544697479169', '0', '1165459649994960898', null);
+INSERT INTO `sys_role_menu` VALUES ('1396276062706515969', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1165996609763397633', '0', '0', '1');
+INSERT INTO `sys_role_menu` VALUES ('1396276062706515970', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1167082544697479169', '0', '0', '1');
 
 -- ----------------------------
 -- Table structure for sys_role_menu_right
@@ -4122,8 +4161,10 @@ CREATE TABLE `sys_role_menu_right` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT NULL,
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `menu_id` bigint(20) DEFAULT NULL,
@@ -4136,8 +4177,22 @@ CREATE TABLE `sys_role_menu_right` (
 -- ----------------------------
 -- Records of sys_role_menu_right
 -- ----------------------------
-INSERT INTO `sys_role_menu_right` VALUES ('1275963607497715713', '2020-06-25 09:26:45', 'system', null, null, '0', '1', '1165444695204052994', '1275963490329833475', '1275963607489327106', null);
-INSERT INTO `sys_role_menu_right` VALUES ('1275963607497715714', '2020-06-25 09:26:45', 'system', null, null, '0', '1', '1165444695204052994', '1275963490329833473', '1275963607489327106', null);
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062836539401', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1167082544697479169', '284', '1396276062773624838', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062836539400', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1167082544697479169', '283', '1396276062773624838', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062836539399', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1167082544697479169', '282', '1396276062773624838', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062836539398', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1167082544697479169', '281', '1396276062773624838', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062836539397', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1167082544697479169', '280', '1396276062773624838', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062836539396', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1167082544697479169', '279', '1396276062773624838', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062836539395', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1167082544697479169', '278', '1396276062773624838', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062836539394', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1167082544697479169', '277', '1396276062773624838', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062773624837', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1165996609763397633', '284', '1396276062706515971', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062773624836', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1165996609763397633', '283', '1396276062706515971', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062773624835', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1165996609763397633', '282', '1396276062706515971', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062773624834', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1165996609763397633', '281', '1396276062706515971', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062773624833', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1165996609763397633', '280', '1396276062706515971', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062706515974', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1165996609763397633', '279', '1396276062706515971', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062706515973', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1165996609763397633', '278', '1396276062706515971', '1');
+INSERT INTO `sys_role_menu_right` VALUES ('1396276062706515972', '2021-05-23 09:25:30', 'system', null, '2021-05-23 09:25:30', null, null, '0', '1', '1165996609763397633', '277', '1396276062706515971', '1');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -4147,8 +4202,10 @@ CREATE TABLE `sys_user` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` tinyint(1) DEFAULT NULL,
   `address` varchar(32) DEFAULT '',
@@ -4174,12 +4231,22 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1185514721474437122', '2020-06-25 08:14:37', 'system', null, null, '0', '1', '北京 北京市 东城区', '30', '110100', '110101', 'admin@126.com', null, '0', '1', null, '13800000000', '$2a$10$9/E4icNOgojOr5BfDY6Nqu.sPlHS7Q2rMVXTgk6kQZUDCkE9YxlRC', '110000', '游客', '2020-06-25 08:14:37', '2', 'guest', null);
-INSERT INTO `sys_user` VALUES ('1165458963903295490', '2020-06-25 08:21:33', 'system', null, null, '0', '1', '天津 天津市 和平区', '1', '120100', '120101', 'admin@gmail.com', null, '0', '1', null, '13700000000', '$2a$10$qeyHk7ATi84nIw8JPFGDmeMenLVN.thDhHv15whqLi5kvYVIYOQCW', '120000', '管理员', '2020-06-25 08:21:33', '1', 'admin', null);
-INSERT INTO `sys_user` VALUES ('1310025542006841346', '2020-09-27 09:16:42', 'system', '2020-09-27 09:16:42', null, '0', '0', null, null, null, null, '670177230@qq.com', null, '0', '0', null, '13700000000', '$2a$10$bcPKkS7HFEnoOK1slQAttOiDzN91sIc79ynDE/mbmxPPBB4oTmy/K', null, 'test', '2020-09-27 09:16:42', '2', 'admin1', '1');
-INSERT INTO `sys_user` VALUES ('1310043065620119554', '2020-09-27 10:26:20', 'system', '2020-09-27 10:26:20', null, '0', '0', null, null, null, null, '670177230@qq.com', null, '0', '0', null, '13700000000', '$2a$10$rNRPCRtTi/tLSJjN4OViauKbp2/tkV8y6.LYCVoxGvIvpBmL.sp2e', null, '管理员', '2020-09-27 10:26:20', '2', 'test1', '1');
-INSERT INTO `sys_user` VALUES ('1310043770590347265', '2020-09-27 10:29:09', 'system', '2020-09-27 10:29:09', null, '0', '0', null, null, null, null, '670177230@qq.com', null, '0', '0', null, '13700000000', '$2a$10$zeRS6/0Ar3JIuKz3k/63xOJ/DxTG4oBi/G72532mkIyJxMY410Rs2', null, '管理员', '2020-09-27 10:29:09', '2', 'user1', '1');
-INSERT INTO `sys_user` VALUES ('1310734598749138946', '2020-09-29 08:14:15', 'system', '2020-09-29 08:14:15', null, '0', '0', null, null, null, null, 'luzhihua407@126.com', null, '0', '0', null, '13760724541', '$2a$10$4vv7oiBtHnrMR30VbmrGVe9K3ecsMkuFe5gd8BGhsSFJ9Thvx7IbC', null, '管理员', '2020-09-29 08:14:15', '2', 'test', '1');
+INSERT INTO `sys_user` VALUES ('1185514721474437122', '2021-05-16 15:51:43', 'system', null, '2021-05-16 15:51:43', null, null, '0', '1', '北京 北京市 东城区', '30', null, null, 'admin@126.com', null, '0', '1', null, '13800000000', '$2a$10$s/og9wA/OcyjfwVDmxCsau5SJA5ZqIt6Fu5XNRViTz3FKnAANO7ZS', null, '游客', '2021-05-16 15:30:25', '2', 'guest', '1');
+INSERT INTO `sys_user` VALUES ('1165458963903295490', '2020-06-25 08:21:33', 'system', null, null, null, null, '0', '1', '天津 天津市 和平区', '1', '120100', '120101', 'admin@gmail.com', null, '0', '1', null, '13700000000', '$2a$10$qeyHk7ATi84nIw8JPFGDmeMenLVN.thDhHv15whqLi5kvYVIYOQCW', '120000', '管理员', '2020-06-25 08:21:33', '1', 'admin', null);
+INSERT INTO `sys_user` VALUES ('1310025542006841346', '2021-05-16 16:23:09', 'system', null, '2021-05-16 16:23:09', null, null, '0', '1', null, null, null, null, '670177230@qq.com', null, '0', '0', null, '13700000000', '$2a$10$RImpdDvjXm/32DFWa4Ly..lE9hJULY4kgYRe0toacLXTnotsCnYVa', null, '族员', '2021-05-16 16:23:09', '2', 'test', '1');
+INSERT INTO `sys_user` VALUES ('1310043065620119554', '2020-09-27 10:26:20', 'system', null, '2020-09-27 10:26:20', null, null, '0', '0', null, null, null, null, '670177230@qq.com', null, '0', '0', null, '13700000000', '$2a$10$rNRPCRtTi/tLSJjN4OViauKbp2/tkV8y6.LYCVoxGvIvpBmL.sp2e', null, '管理员', '2020-09-27 10:26:20', '2', 'test1', '1');
+INSERT INTO `sys_user` VALUES ('1310043770590347265', '2020-09-27 10:29:09', 'system', null, '2020-09-27 10:29:09', null, null, '0', '0', null, null, null, null, '670177230@qq.com', null, '0', '0', null, '13700000000', '$2a$10$zeRS6/0Ar3JIuKz3k/63xOJ/DxTG4oBi/G72532mkIyJxMY410Rs2', null, '管理员', '2020-09-27 10:29:09', '2', 'user1', '1');
+INSERT INTO `sys_user` VALUES ('1310734598749138946', '2020-09-29 08:14:15', 'system', null, '2020-09-29 08:14:15', null, null, '0', '0', null, null, null, null, 'luzhihua407@126.com', null, '0', '0', null, '13760724541', '$2a$10$4vv7oiBtHnrMR30VbmrGVe9K3ecsMkuFe5gd8BGhsSFJ9Thvx7IbC', null, '管理员', '2020-09-29 08:14:15', '2', 'test', '1');
+INSERT INTO `sys_user` VALUES ('1396272505861226497', '2021-05-23 09:11:20', 'system', null, '2021-05-23 09:11:20', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$STg1e9OfXbtrifttuyEwiuQmTKSdEHHiHjauWMe0c42bY41BjO7yy', null, '卢志华', '2021-05-23 09:11:20', '2', '13760724541', '1');
+INSERT INTO `sys_user` VALUES ('1396273047396204546', '2021-05-23 09:13:31', 'system', null, '2021-05-23 09:13:31', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$cNpz18KQcKmj/BsTZs6OWOjvisOfaXRkq3UM86HgVZpR9rkJlD5V6', null, '卢志华', '2021-05-23 09:13:31', '2', 'admin1', '1');
+INSERT INTO `sys_user` VALUES ('1396273450024222722', '2021-05-23 09:15:07', 'system', null, '2021-05-23 09:15:07', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$g/F9A5BpmSXcGJJKq1POMOjOmxC0LazogmJCEQqFDhvxCQCoAjC7e', null, '卢志华', '2021-05-23 09:15:07', '2', 'f8cz2w2c', '1');
+INSERT INTO `sys_user` VALUES ('1396273656186847234', '2021-05-23 09:15:56', 'system', null, '2021-05-23 09:15:56', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$Nsu7DsshS52rTAnpxwgUa.qga/.FB./8SxpCHjoLLgEQItE7WaQSi', null, '卢志华', '2021-05-23 09:15:56', '2', 'aiyo4071', '1');
+INSERT INTO `sys_user` VALUES ('1396277834904813570', '2021-05-23 09:32:32', 'system', null, '2021-05-23 09:32:32', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$D3ieOtKb.dL2emc5kOqChe2IhZ4YTB5X5maMyM6o/uDg6foyTjs2.', null, '成员', '2021-05-23 09:32:32', '2', 'member', '1');
+INSERT INTO `sys_user` VALUES ('1396346641912537089', '2021-05-23 14:05:56', 'system', null, '2021-05-23 14:05:56', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$WC5kRop0uDC9A1r4KTBuWuYMp8XsbsTnSydnq/Z7VKhW7AsOs4uCS', null, '卢志华', '2021-05-23 14:05:56', '2', 'test11', '1');
+INSERT INTO `sys_user` VALUES ('1396347607114100738', '2021-05-23 14:09:46', 'system', null, '2021-05-23 14:09:46', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$fqqZdqdWDnqdCReZPQU4oeGN0WKXSfYubIUEJz8blHYW4bgObOXv6', null, '卢志华', '2021-05-23 14:09:46', '2', 'kibana_dev', '1');
+INSERT INTO `sys_user` VALUES ('1396349907324997634', '2021-05-23 14:18:53', 'system', null, '2021-05-23 14:18:53', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$nnmjgup.RhvPHv.MIBxm1.gki7cIzPJ6thLagGTdlOFcycDjMDp7m', null, '卢志华', '2021-05-23 14:18:53', '2', 'admin2', '1');
+INSERT INTO `sys_user` VALUES ('1396361072121749506', '2021-05-23 15:03:16', 'system', null, '2021-05-23 15:03:16', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$skGp3Wq7TN36dGj/gkkfouHy98dfirEesRL46W34pOA/sxHOQDRP.', null, 'test12', '2021-05-23 15:03:16', '2', 'test12', '1');
+INSERT INTO `sys_user` VALUES ('1396366076471681026', '2021-05-23 15:23:10', 'system', null, '2021-05-23 15:23:10', null, null, '0', '0', null, null, null, null, null, null, '0', '0', null, null, '$2a$10$kT9RgBbUO.0etfYxYZlvIulBGhg8V7s0Bb4oAjqaiDHU.N6XruX.u', null, '卢志华', '2021-05-23 15:23:10', '2', 'test3', '1');
 
 -- ----------------------------
 -- Table structure for sys_user_menu
@@ -4189,8 +4256,10 @@ CREATE TABLE `sys_user_menu` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT NULL,
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `menu_id` bigint(20) DEFAULT NULL,
@@ -4203,13 +4272,13 @@ CREATE TABLE `sys_user_menu` (
 -- ----------------------------
 -- Records of sys_user_menu
 -- ----------------------------
-INSERT INTO `sys_user_menu` VALUES ('1175199015281270785', '2019-09-21 08:04:14', 'system', null, null, '0', '1', '1165444029081468929', null, '1165458963903295490', null);
-INSERT INTO `sys_user_menu` VALUES ('1175199015356768257', '2019-09-21 08:04:14', 'system', null, null, '0', '1', '1165444176662249473', null, '1165458963903295490', null);
-INSERT INTO `sys_user_menu` VALUES ('1175199015365156865', '2019-09-21 08:04:14', 'system', null, null, '0', '1', '1165444269649969154', null, '1165458963903295490', null);
-INSERT INTO `sys_user_menu` VALUES ('1175199015411294209', '2019-09-21 08:04:14', 'system', null, null, '0', '1', '1165444378815119361', null, '1165458963903295490', null);
-INSERT INTO `sys_user_menu` VALUES ('1175199015428071426', '2019-09-21 08:04:14', 'system', null, null, '0', '1', '1167573544163450881', null, '1165458963903295490', null);
-INSERT INTO `sys_user_menu` VALUES ('1175199015436460034', '2019-09-21 08:04:14', 'system', null, null, '0', '1', '1167725076565549057', null, '1165458963903295490', null);
-INSERT INTO `sys_user_menu` VALUES ('1192436191786115074', '2019-11-07 21:38:37', 'system', null, null, '0', '1', '1181924278950064131', null, '1185514721474437122', null);
+INSERT INTO `sys_user_menu` VALUES ('1175199015281270785', '2019-09-21 08:04:14', 'system', null, null, null, null, '0', '1', '1165444029081468929', null, '1165458963903295490', null);
+INSERT INTO `sys_user_menu` VALUES ('1175199015356768257', '2019-09-21 08:04:14', 'system', null, null, null, null, '0', '1', '1165444176662249473', null, '1165458963903295490', null);
+INSERT INTO `sys_user_menu` VALUES ('1175199015365156865', '2019-09-21 08:04:14', 'system', null, null, null, null, '0', '1', '1165444269649969154', null, '1165458963903295490', null);
+INSERT INTO `sys_user_menu` VALUES ('1175199015411294209', '2019-09-21 08:04:14', 'system', null, null, null, null, '0', '1', '1165444378815119361', null, '1165458963903295490', null);
+INSERT INTO `sys_user_menu` VALUES ('1175199015428071426', '2019-09-21 08:04:14', 'system', null, null, null, null, '0', '1', '1167573544163450881', null, '1165458963903295490', null);
+INSERT INTO `sys_user_menu` VALUES ('1175199015436460034', '2019-09-21 08:04:14', 'system', null, null, null, null, '0', '1', '1167725076565549057', null, '1165458963903295490', null);
+INSERT INTO `sys_user_menu` VALUES ('1192436191786115074', '2019-11-07 21:38:37', 'system', null, null, null, null, '0', '1', '1181924278950064131', null, '1185514721474437122', null);
 
 -- ----------------------------
 -- Table structure for sys_user_menu_right
@@ -4219,8 +4288,10 @@ CREATE TABLE `sys_user_menu_right` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT NULL,
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `menu_id` bigint(20) DEFAULT NULL,
@@ -4242,8 +4313,10 @@ CREATE TABLE `sys_user_role` (
   `id` bigint(20) NOT NULL,
   `create_time` datetime DEFAULT NULL,
   `creator` varchar(16) DEFAULT NULL,
+  `create_user` bigint(20) DEFAULT NULL,
   `edit_time` datetime DEFAULT NULL,
   `editor` varchar(16) DEFAULT NULL,
+  `edit_user` bigint(20) DEFAULT NULL,
   `version` int(11) NOT NULL DEFAULT '0',
   `valid` int(1) DEFAULT NULL,
   `role_id` bigint(20) DEFAULT NULL,
@@ -4255,9 +4328,14 @@ CREATE TABLE `sys_user_role` (
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
-INSERT INTO `sys_user_role` VALUES ('1275947197824380930', '2020-06-25 08:21:33', 'system', null, null, '0', '1', '1165459649994960898', '1165458963903295490', null);
-INSERT INTO `sys_user_role` VALUES ('1167208566482898945', '2019-08-30 06:53:03', 'system', null, null, '0', '1', '1167208436950208513', '1167208265520615425', null);
-INSERT INTO `sys_user_role` VALUES ('1275945455485333506', '2020-06-25 08:14:37', 'system', null, null, '0', '1', '1167208436950208513', '1185514721474437122', null);
+INSERT INTO `sys_user_role` VALUES ('1275947197824380930', '2020-06-25 08:21:33', 'system', null, null, null, null, '0', '1', '1165459649994960898', '1165458963903295490', null);
+INSERT INTO `sys_user_role` VALUES ('1167208566482898945', '2019-08-30 06:53:03', 'system', null, null, null, null, '0', '1', '1167208436950208513', '1167208265520615425', null);
+INSERT INTO `sys_user_role` VALUES ('1396277834967728129', '2021-05-23 09:32:32', 'system', null, '2021-05-23 09:32:32', null, null, '0', '1', '0', '1396277834904813570', '1');
+INSERT INTO `sys_user_role` VALUES ('1396346641912537090', '2021-05-23 14:05:56', 'system', null, '2021-05-23 14:05:56', null, null, '0', '1', '0', '1396346641912537089', '1');
+INSERT INTO `sys_user_role` VALUES ('1396347607114100739', '2021-05-23 14:09:46', 'system', null, '2021-05-23 14:09:46', null, null, '0', '1', '0', '1396347607114100738', '1');
+INSERT INTO `sys_user_role` VALUES ('1396349907417272321', '2021-05-23 14:18:54', 'system', null, '2021-05-23 14:18:54', null, null, '0', '1', '0', '1396349907324997634', '1');
+INSERT INTO `sys_user_role` VALUES ('1396361072121749507', '2021-05-23 15:03:16', 'system', null, '2021-05-23 15:03:16', null, null, '0', '1', '0', '1396361072121749506', '1');
+INSERT INTO `sys_user_role` VALUES ('1396366076471681027', '2021-05-23 15:23:11', 'system', null, '2021-05-23 15:23:11', null, null, '0', '1', '0', '1396366076471681026', '1');
 
 -- ----------------------------
 -- Table structure for test
