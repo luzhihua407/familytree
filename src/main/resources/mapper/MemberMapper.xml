@@ -119,4 +119,7 @@
     <select id="getMemberByCode" resultMap="BaseResultMap">
         select * from bs_member where code=#{code}
     </select>
+    <select id="getMemberByUserId" resultType="com.starfire.familytree.folk.entity.Member">
+        select * from bs_member where user_id=#{userId}
+    </select>
 </mapper>

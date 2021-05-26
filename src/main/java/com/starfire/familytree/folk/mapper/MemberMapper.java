@@ -47,4 +47,6 @@ public interface MemberMapper extends BaseMapper<Member> {
      * @param code
      */
     public Member getMemberByCode(String code);
+
+    public Member getMemberByUserId(@Param("userId")Long userId);
 }

@@ -1,5 +1,7 @@
 package com.starfire.familytree.basic.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -27,7 +29,7 @@ public abstract class AbstractEntity implements Serializable {
      */
 
     @JsonSerialize(using = ToStringSerializer.class)
-//	@Id
+	@TableId(type = IdType.AUTO)
     private Long id = null;
 
     /**

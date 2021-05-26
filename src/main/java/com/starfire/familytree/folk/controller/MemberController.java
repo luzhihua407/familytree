@@ -220,7 +220,9 @@ public class MemberController {
         //获取妻子
         Member wife = partnerService.getWife(husbandId);
         if(wife!=null){
-            OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(husbandId,wife);
+            Integer[] parents = new Integer[1];
+            parents[0]=Math.abs(fatherId.hashCode());
+            OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(parents,husbandId,wife);
             orgChartVO.getItems().add(orgChartItemVO);
         }
         loopChildren(orgChartVO, husband,wife);
@@ -248,8 +250,9 @@ public class MemberController {
         //获取妻子
         Member wife = partnerService.getWife(husbandId);
         if(wife!=null){
-            OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(husbandId,wife);
-            String avatar = wife.getAvatar();
+            Integer[] parents = new Integer[1];
+            parents[0]=Math.abs(fatherId.hashCode());
+            OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(parents,husbandId,wife);
             String brief = wife.getBrief();
             GenderEnum gender = wife.getGender();
             String sex = gender.name();
@@ -286,7 +289,7 @@ public class MemberController {
         OrgChartVO orgChartVO = new OrgChartVO();
         String userId = param.get("userId");
         User user = userService.getById(userId);
-        Member member = memberService.getMember(user.getRealName());
+        Member member = memberService.getMemberByUserId(user.getId());
 		if(member!=null){
         Member husband = memberService.getForefatherByMemberId(member.getId());
 
@@ -296,7 +299,7 @@ public class MemberController {
 			//获取妻子
 			Member wife = partnerService.getWife(husbandId);
 			if(wife!=null){
-				OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(husbandId,wife);
+				OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(null,husbandId,wife);
 				String avatar = wife.getAvatar();
 				String brief = wife.getBrief();
 				GenderEnum gender = wife.getGender();
@@ -358,7 +361,9 @@ public class MemberController {
             //获取妻子
             Member wife = partnerService.getWife(childrenId);
             if(wife!=null){
-                OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(childrenId,wife);
+                Integer[] parents = new Integer[1];
+                parents[0]=Math.abs(fatherId.hashCode());
+                OrgChartItemVO orgChartItemVO = convertOrgChartItemVO(parents,childrenId,wife);
                 String wifeBrief = wife.getBrief();
                 GenderEnum wifeGender = wife.getGender();
                Integer generations = wife.getGenerations();
@@ -397,12 +402,12 @@ public class MemberController {
     }
 
 
-    private OrgChartItemVO convertOrgChartItemVO(Long husbandId,Member wife) {
+    private OrgChartItemVO convertOrgChartItemVO(Integer[]  parents,Long husbandId,Member wife) {
         String fullName = wife.getFullName();
         String brief = wife.getBrief();
         OrgChartItemVO orgChartItemVO = new OrgChartItemVO();
         orgChartItemVO.setId(Math.abs(wife.getId().hashCode()));
-        orgChartItemVO.setParents(null);
+        orgChartItemVO.setParents(parents);
         orgChartItemVO.setMemberId(wife.getId()+"");
         orgChartItemVO.setTitle(fullName);
         orgChartItemVO.setDescription(brief);

@@ -77,6 +77,8 @@ public interface IMemberService extends IService<Member> {
 
     public Member getMember(Long id);
 
+    public Member getMemberByUserId(Long userId);
+
     public Member getFamilyTree(Map<String,String> param);
 
     public PageInfo<Map<String, Object>, Member> page(PageInfo<Map<String, Object>, Member> page);

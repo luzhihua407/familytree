@@ -32,6 +32,10 @@ public class Member extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 关联user 的 id
+     */
+    private Long userId;
 
     /**
      * 头像
