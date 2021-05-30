@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.ForwardAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -46,8 +47,8 @@ http.authorizeRequests().antMatchers("/v2/api-docs",
                 .antMatchers("/login**","/logout","/SignUp/**","/baiduAPI/*").permitAll()
                 .anyRequest().permitAll()
                 .and().addFilterAt(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-                .formLogin().permitAll()
-                .and().logout().permitAll().logoutSuccessHandler(new MyLogoutSuccessHandler()).deleteCookies(JSESSIONID)
+                .formLogin().permitAll().loginPage("/login")
+                .and().logout().permitAll().logoutSuccessHandler(new MyLogoutSuccessHandler()).deleteCookies(JSESSIONID).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .and().csrf().disable();
     }
     @Bean

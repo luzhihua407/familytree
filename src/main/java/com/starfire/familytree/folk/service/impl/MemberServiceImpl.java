@@ -322,37 +322,40 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
     public Member getMemberByUserId(Long userId) {
         Dict dict=null;
         Member member = memberMapper.getMemberByUserId(userId);
-        Long memberBranch = member.getMemberBranch();
-        if(memberBranch!=null){
+        if(member!=null){
+            Long memberBranch = member.getMemberBranch();
+            if(memberBranch!=null){
 
-            dict = dictService.getById(memberBranch);
-            member.setBranchName(dict.getName());
-        }
-        Integer generations = member.getGenerations();
-        member.setGenerationsText("第"+ ChineseNumber.numberToCH(generations)+"世");
-        Long prodTeam = member.getProdTeam();
-        if(prodTeam!=null){
+                dict = dictService.getById(memberBranch);
+                member.setBranchName(dict.getName());
+            }
+            Integer generations = member.getGenerations();
+            member.setGenerationsText("第"+ ChineseNumber.numberToCH(generations)+"世");
+            Long prodTeam = member.getProdTeam();
+            if(prodTeam!=null){
 
-        dict = dictService.getById(prodTeam);
-        member.setProdTeamName(dict.getName());
-        }
-        String education = member.getEducation();
-        if(StringUtils.isNotEmpty(education)){
+            dict = dictService.getById(prodTeam);
+            member.setProdTeamName(dict.getName());
+            }
+            String education = member.getEducation();
+            if(StringUtils.isNotEmpty(education)){
 
-        dict = dictService.getDict(education);
-        member.setEducation(dict.getName());
+            dict = dictService.getDict(education);
+            member.setEducation(dict.getName());
+            }
+            Date death = member.getDeath();
+            Date birth = member.getBirth();
+            if(death!=null && birth!=null){
+                long time = death.getTime() - birth.getTime();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(new Date(time));
+                long totalDay = time/(24*60*60*1000);// a day
+                long aliveAge = totalDay / 365;
+                member.setAliveAge((int)aliveAge);
+            }
+            return member;
         }
-        Date death = member.getDeath();
-        Date birth = member.getBirth();
-        if(death!=null && birth!=null){
-            long time = death.getTime() - birth.getTime();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(new Date(time));
-            long totalDay = time/(24*60*60*1000);// a day
-            long aliveAge = totalDay / 365;
-            member.setAliveAge((int)aliveAge);
-        }
-        return member;
+        return null;
     }
 
     @Override

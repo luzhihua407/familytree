@@ -2,6 +2,7 @@ package com.starfire.familytree.folk.controller;
 
 
 import com.starfire.familytree.enums.GenderEnum;
+import com.starfire.familytree.exception.FamilyException;
 import com.starfire.familytree.folk.entity.Member;
 import com.starfire.familytree.folk.service.IChildrenService;
 import com.starfire.familytree.folk.service.IMemberService;
@@ -166,8 +167,17 @@ public class MemberController {
     @PostMapping("/delete")
     public Boolean deleteMember(@RequestBody DeleteVO<Long[]> deleteVO) {
         Long[] ids = deleteVO.getIds();
+        Long userId = new SessionHelper().getUserId();
+        Member member = memberService.getMemberByUserId(userId);
+        Long memberId = null;
+        if (member!=null) {
+            memberId=member.getId();
+        }
         for (int i = 0; i < ids.length; i++) {
             Long id = Long.valueOf(ids[i]);
+            if(id.equals(memberId)){
+                throw new FamilyException("不能删除自己本人");
+            }
             boolean b = memberService.removeById(id);
 
         }
