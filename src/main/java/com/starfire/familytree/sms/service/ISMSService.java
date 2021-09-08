@@ -1,4 +1,4 @@
-package com.starfire.familytree.sms;
+package com.starfire.familytree.sms.service;
 
 import com.aliyuncs.CommonResponse;
 

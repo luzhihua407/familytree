@@ -51,7 +51,7 @@ logging:
   level: INFO
 
 mybatis-plus:
-  mapper-locations: classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     default-enum-type-handler: com.baomidou.mybatisplus.extension.handlers.EnumTypeHandler

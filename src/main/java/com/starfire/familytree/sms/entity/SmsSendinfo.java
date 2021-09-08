@@ -23,33 +23,25 @@ public class SmsSendinfo extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    /**短信发送失败原因**/
     private String errorContent;
-
+    /**通道编码**/
     private String passNo;
-
+    /**发送优先级**/
     private Integer priority;
-
-    private Boolean receiveFlag;
-
+    /**发送人**/
     private String sendBy;
-
+    /** 短信状态 */
     private Integer sendStatus;
-
+    /** 计划发送时间 */
     private LocalDateTime sendTime;
-
-    private LocalDateTime realSendTime;
-
-    private LocalDateTime reportTime;
-
+    /**短信流水号**/
     private String serialNo;
-
+    /**服务码**/
     private String serviceCode;
-
+    /**手机号**/
     private String userMobile;
-
+    /**短信内容**/
     private String smsContent;
-
-    private Integer smsType;
-
 
 }

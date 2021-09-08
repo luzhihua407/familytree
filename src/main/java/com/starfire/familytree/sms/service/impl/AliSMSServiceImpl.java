@@ -1,4 +1,4 @@
-package com.starfire.familytree.sms.impl;
+package com.starfire.familytree.sms.service.impl;
 
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
@@ -8,7 +8,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
-import com.starfire.familytree.sms.ISMSService;
+import com.starfire.familytree.sms.service.ISMSService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -24,13 +24,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class AliSMSServiceImpl implements ISMSService {
 
-	@Value("${aliYun.SMS.accessKeyId!}")
+	@Value("${aliYun.SMS.accessKeyId:}")
 	private String accessKeyId;
 
-	@Value("${aliYun.SMS.accessSecret!}")
+	@Value("${aliYun.SMS.accessSecret:}")
 	private String accessSecret;
 
-	@Value("${aliYun.SMS.regionId!}")
+	@Value("${aliYun.SMS.regionId:}")
 	private String regionId;
 
 	@Override

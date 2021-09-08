@@ -17,17 +17,20 @@
         <result column="error_content" property="errorContent" />
         <result column="pass_no" property="passNo" />
         <result column="priority" property="priority" />
-        <result column="receive_flag" property="receiveFlag" />
         <result column="send_by" property="sendBy" />
         <result column="send_status" property="sendStatus" />
         <result column="send_time" property="sendTime" />
-        <result column="real_send_time" property="realSendTime" />
-        <result column="report_time" property="reportTime" />
         <result column="serial_no" property="serialNo" />
         <result column="service_code" property="serviceCode" />
         <result column="user_mobile" property="userMobile" />
         <result column="sms_content" property="smsContent" />
-        <result column="sms_type" property="smsType" />
     </resultMap>
+    <select id="queryPage"  resultMap="BaseResultMap">
+        select * from bs_sms_sendinfo <where>
+        <if test="queryCon.userMobile!=null">
+            user_mobile like CONCAT(#{queryCon.userMobile},'%')
+        </if>
+    </where>
+    </select>
 
 </mapper>

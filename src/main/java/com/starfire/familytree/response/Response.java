@@ -25,6 +25,13 @@ public class Response<T> implements Serializable {
 
     private T result;
 
+    private static  Response response;
+
+    public static Response builder(){
+        response = new Response();
+        return response;
+    }
+
     public static Response<String> failure(int code, String msg) {
         Response<String> response = new Response<String>(100, false, msg, null);
         return response;
@@ -49,16 +56,29 @@ public class Response<T> implements Serializable {
     //
     // }
 
-    public Response<T> success(T data) {
-        Response<T> response = new Response<T>(200, true, "成功", data);
-        return response;
+//    public Response<T> success(T data) {
+//        Response<T> response = new Response<T>(200, true, "成功", data);
+//        return response;
+//
+//    }
 
+//    public Response<T> success() {
+//        Response<T> response = new Response<T>(200, true, "成功", null);
+//        return response;
+//
+//    }
+
+    public Response success(T data) {
+        response.setResult(data);
+        response.setCode(200);
+        response.setSuccess(true);
+        return response;
     }
 
-    public Response<T> success() {
-        Response<T> response = new Response<T>(200, true, "成功", null);
+    public Response success() {
+        response.setCode(200);
+        response.setSuccess(true);
         return response;
-
     }
 
     public Response(int code, boolean success, String msg, T result) {

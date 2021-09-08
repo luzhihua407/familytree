@@ -4402,16 +4402,12 @@ CREATE TABLE `bs_sms_sendinfo` (
   `error_content` varchar(200) DEFAULT NULL,
   `pass_no` varchar(40) DEFAULT NULL,
   `priority` int(11) DEFAULT '0',
-  `receive_flag` tinyint(1) DEFAULT NULL,
   `send_by` varchar(20) DEFAULT NULL,
   `send_status` int(11) DEFAULT NULL,
   `send_time` timestamp NULL DEFAULT NULL,
-  `real_send_time` timestamp NULL DEFAULT NULL,
-  `report_time` timestamp NULL DEFAULT NULL,
   `serial_no` varchar(40) DEFAULT NULL,
   `service_code` varchar(20) DEFAULT NULL,
   `user_mobile` varchar(20) DEFAULT NULL,
   `sms_content` longtext,
-  `sms_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8

@@ -1,7 +1,13 @@
 package com.starfire.familytree.sms.mapper;
 
-import com.starfire.familytree.sms.entity.SmsSendinfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.starfire.familytree.sms.entity.SmsSendinfo;
+import com.starfire.familytree.usercenter.entity.User;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +19,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface SmsSendinfoMapper extends BaseMapper<SmsSendinfo> {
 
+	public IPage<SmsSendinfo> queryPage(Page page, @Param("queryCon") Map<String,Object> queryCon);
 }
