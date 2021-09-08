@@ -59,3 +59,8 @@ mybatis-plus:
   global-config:
     db-config:
       field-strategy: ignored
+aliYun:
+  SMS:
+    regionId: cn-hangzhou
+    accessKeyId:
+    accessSecret:

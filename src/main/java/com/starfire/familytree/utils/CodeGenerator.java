@@ -54,7 +54,7 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/family_tree?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false");
+        dsc.setUrl("jdbc:mysql://localhost:3306/familytree?characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false");
 
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");

@@ -4386,3 +4386,32 @@ INSERT INTO `verification_token` VALUES ('1310025542170419201', '9056c7ad-01dc-4
 INSERT INTO `verification_token` VALUES ('1310043065691422721', '6ba7a525-68cd-471d-8326-6251cb30c502', '1310043065620119554', null, '0');
 INSERT INTO `verification_token` VALUES ('1310043770670039042', '06ac0ed2-3d90-4313-ab32-7cafc6b3e150', '1310043770590347265', null, '0');
 INSERT INTO `verification_token` VALUES ('1310734598765916162', 'e770ded6-770c-4a42-ab91-d7c27b76add5', '1310734598749138946', null, '0');
+
+
+CREATE TABLE `bs_sms_sendinfo` (
+ `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `create_time` datetime DEFAULT NULL,
+  `creator` varchar(16) DEFAULT '',
+  `create_user` bigint(20) DEFAULT NULL,
+  `edit_time` datetime DEFAULT NULL,
+  `editor` varchar(16) DEFAULT '',
+  `edit_user` bigint(20) DEFAULT NULL,
+  `version` int(11) NOT NULL DEFAULT '0',
+  `valid` int(1) DEFAULT NULL,
+    `orderno` int(8) DEFAULT NULL,
+  `error_content` varchar(200) DEFAULT NULL,
+  `pass_no` varchar(40) DEFAULT NULL,
+  `priority` int(11) DEFAULT '0',
+  `receive_flag` tinyint(1) DEFAULT NULL,
+  `send_by` varchar(20) DEFAULT NULL,
+  `send_status` int(11) DEFAULT NULL,
+  `send_time` timestamp NULL DEFAULT NULL,
+  `real_send_time` timestamp NULL DEFAULT NULL,
+  `report_time` timestamp NULL DEFAULT NULL,
+  `serial_no` varchar(40) DEFAULT NULL,
+  `service_code` varchar(20) DEFAULT NULL,
+  `user_mobile` varchar(20) DEFAULT NULL,
+  `sms_content` longtext,
+  `sms_type` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
