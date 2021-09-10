@@ -90,6 +90,7 @@ public class Response<T> implements Serializable {
 
     public Response() {
         super();
+        response = new Response<T>(200, true, "成功", null);
     }
 
 }

@@ -241,6 +241,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
     }
 
     @Override
+    @Transactional
     public Member addMember(Member member)  {
         String pinyin = StringHelper.toPinyin(member.getFullName());
         member.setPinyin(pinyin);
