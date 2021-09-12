@@ -44,6 +44,7 @@ public class UserController {
     @Autowired
     private IPermissionService permissionService;
 
+
     /**
      * 新增或修改
      *
@@ -155,6 +156,5 @@ public class UserController {
         return response.success();
 
     }
-
 
 }

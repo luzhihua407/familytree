@@ -64,3 +64,6 @@ aliYun:
     regionId: cn-hangzhou
     accessKeyId:
     accessSecret:
+
+selenium:
+  webDriverPath: C:\WebDriver\chromedriver.exe
