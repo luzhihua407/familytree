@@ -1,12 +1,11 @@
 package com.starfire.familytree.web.service.impl;
 
 
-import com.starfire.familytree.web.service.WebService;
+import com.starfire.familytree.web.service.PagePrintService;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.yandex.qatools.ashot.AShot;
@@ -23,17 +22,16 @@ import java.util.Map;
 
 @Slf4j
 @Service
-public class WebServiceImpl implements WebService {
+public class PagePrintServiceImpl implements PagePrintService {
 
     @Value("${selenium.webDriverPath}")
     private String webDriverPath;
     @Override
     public void fullScreenShot(String url, File toFile) {
-        FileOutputStream fileOutputStream=null;
         try {
             System.setProperty("webdriver.chrome.driver", webDriverPath);
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+//            chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
             chromeOptions.setHeadless(true);
 //            chromeOptions.addArguments("window-size=1920x1080");
             ChromeDriver driver = new ChromeDriver(chromeOptions);
@@ -60,12 +58,6 @@ public class WebServiceImpl implements WebService {
             driver.quit();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            try {
-                fileOutputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
     }
@@ -77,12 +69,24 @@ public class WebServiceImpl implements WebService {
 //        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         chromeOptions.setHeadless(true);
         ChromeDriver driver = new ChromeDriver(chromeOptions);
+        driver.get("http://localhost:8000/user/login");
+        driver.findElement(By.id("username")).sendKeys("member");
+        driver.findElement(By.id("password")).sendKeys("123456");
+        driver.findElement(By.className("login-button")).click();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        try {
+            Thread.sleep(2000);
         driver.get(url);
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         FileOutputStream fileOutputStream=null;
         try {
         String command = "Page.printToPDF";
         Map<String, Object> params = new HashMap<>();
-        params.put("landscape", false);
+        params.put("landscape", true);
         params.put("printBackground", true);
         params.put("preferCSSPageSize", true);
         Map<String, Object> output = driver.executeCdpCommand(command, params);
@@ -94,11 +98,14 @@ public class WebServiceImpl implements WebService {
             e.printStackTrace();
         }finally {
             try {
+                if(fileOutputStream!=null){
+
                 fileOutputStream.close();
+                }
+                 driver.quit();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        driver.quit();
     }
 }
