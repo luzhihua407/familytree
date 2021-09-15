@@ -37,8 +37,8 @@ public class HomeController {
     @RequestMapping(value="/test", method= RequestMethod.GET)
     @ResponseBody
     public String test() {
-        webService.fullScreenShot("https://new.qq.com/rain/a/20210908A0CSFQ00", new File("D://image.png"));
-//        webService.printPDF("https://new.qq.com/rain/a/20210908A0CSFQ00", new File("D://export.pdf"));
+//        webService.fullScreenShot("https://new.qq.com/rain/a/20210908A0CSFQ00", new File("D://image.png"));
+        webService.printPDF("http://www.baidu.com", new File("D://export.pdf"));
         return "index";
     }
 }

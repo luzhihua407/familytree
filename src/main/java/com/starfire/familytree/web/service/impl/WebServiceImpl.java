@@ -34,7 +34,7 @@ public class WebServiceImpl implements WebService {
             System.setProperty("webdriver.chrome.driver", webDriverPath);
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-            chromeOptions.setHeadless(false);
+            chromeOptions.setHeadless(true);
 //            chromeOptions.addArguments("window-size=1920x1080");
             ChromeDriver driver = new ChromeDriver(chromeOptions);
 //        WebDriver driver = new ChromeDriver();
@@ -74,23 +74,23 @@ public class WebServiceImpl implements WebService {
     public void printPDF(String url, File toFile) {
         System.setProperty("webdriver.chrome.driver", webDriverPath);
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+//        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         chromeOptions.setHeadless(true);
-//        chromeOptions.addArguments("window-size=1920x1080");
         ChromeDriver driver = new ChromeDriver(chromeOptions);
         driver.get(url);
         FileOutputStream fileOutputStream=null;
         try {
-        Thread.sleep(3000);
         String command = "Page.printToPDF";
         Map<String, Object> params = new HashMap<>();
         params.put("landscape", false);
+        params.put("printBackground", true);
+        params.put("preferCSSPageSize", true);
         Map<String, Object> output = driver.executeCdpCommand(command, params);
             fileOutputStream = new FileOutputStream(toFile);
             byte[] byteArray = Base64.getDecoder().decode((String)output.get("data"));
             fileOutputStream.write(byteArray);
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }finally {
             try {
