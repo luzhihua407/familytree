@@ -3,11 +3,13 @@ package com.starfire.familytree.web.controller;
 import com.starfire.familytree.response.Response;
 import com.starfire.familytree.web.service.PagePrintService;
 import io.swagger.annotations.Api;
+import org.openqa.selenium.Cookie;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpRequest;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 
 @RestController
@@ -24,8 +26,12 @@ public class PagePrintController {
      * @return
      */
     @RequestMapping(value="/printPDF", method= RequestMethod.GET)
-    public Response<String> printPDF() {
-        pagePrintService.printPDF("http://localhost:8000/tree", new File("D://export.pdf"));
+    public Response<String> printPDF(WebRequest request) {
+        String host = request.getHeader("host");
+        String sessionId = request.getSessionId();
+        System.err.println(host);
+        System.err.println(sessionId);
+        pagePrintService.printPDF(host,sessionId,"http://localhost:8000/tree", new File("D://export.pdf"));
         return Response.builder().success();
     }
 
@@ -34,8 +40,11 @@ public class PagePrintController {
      * @return
      */
     @RequestMapping(value="/fullScreenShot", method= RequestMethod.GET)
-    public Response<String> fullScreenShot() {
-        pagePrintService.fullScreenShot("https://new.qq.com/rain/a/20210908A0CSFQ00", new File("D://image.png"));
+    public Response<String> fullScreenShot(WebRequest request,@CookieValue("SESSION") String sessionId) {
+        String host = request.getHeader("host");
+        System.err.println(host);
+        System.err.println(sessionId);
+        pagePrintService.fullScreenShot(host,sessionId,"http://localhost:8000/tree", new File("D://image.png"));
         return Response.builder().success();
     }
 }

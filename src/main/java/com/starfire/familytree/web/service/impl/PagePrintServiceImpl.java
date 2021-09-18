@@ -4,6 +4,7 @@ package com.starfire.familytree.web.service.impl;
 import com.starfire.familytree.web.service.PagePrintService;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -27,17 +29,22 @@ public class PagePrintServiceImpl implements PagePrintService {
     @Value("${selenium.webDriverPath}")
     private String webDriverPath;
     @Override
-    public void fullScreenShot(String url, File toFile) {
+    public void fullScreenShot(String host,String sessionId,String url, File toFile) {
         try {
             System.setProperty("webdriver.chrome.driver", webDriverPath);
             ChromeOptions chromeOptions = new ChromeOptions();
 //            chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-            chromeOptions.setHeadless(true);
+            chromeOptions.setHeadless(false);
 //            chromeOptions.addArguments("window-size=1920x1080");
             ChromeDriver driver = new ChromeDriver(chromeOptions);
 //        WebDriver driver = new ChromeDriver();
 //            WebDriverWait wait = new WebDriverWait(driver, 30);
             driver.get(url);
+            driver.manage().addCookie(new Cookie.Builder("domain", host).sameSite("Lax").build());
+            driver.manage().addCookie(new Cookie.Builder("SESSION", sessionId).sameSite("Lax").build());
+            // Get All available cookies
+            Set<Cookie> cookies = driver.manage().getCookies();
+            System.out.println(cookies);
 //            WebElement myWebElement = driver.findElement(By.className("content-article"));
 //            driver.executeScript("document.body.style.zoom='60%'");
 //            WebElement html = driver.findElement(By.tagName("html"));
@@ -63,7 +70,7 @@ public class PagePrintServiceImpl implements PagePrintService {
     }
 
     @Override
-    public void printPDF(String url, File toFile) {
+    public void printPDF(String host,String sessionId,String url, File toFile) {
         System.setProperty("webdriver.chrome.driver", webDriverPath);
         ChromeOptions chromeOptions = new ChromeOptions();
 //        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
@@ -73,6 +80,7 @@ public class PagePrintServiceImpl implements PagePrintService {
         driver.findElement(By.id("username")).sendKeys("member");
         driver.findElement(By.id("password")).sendKeys("123456");
         driver.findElement(By.className("login-button")).click();
+        driver.manage().addCookie(new Cookie("key", "value"));
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         try {
             Thread.sleep(2000);
