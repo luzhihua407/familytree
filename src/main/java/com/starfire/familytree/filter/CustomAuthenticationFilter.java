@@ -1,15 +1,17 @@
 package com.starfire.familytree.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netflix.loadbalancer.NoOpPing;
 import com.starfire.familytree.login.vo.LoginReq;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +24,11 @@ import java.io.InputStream;
  * 实现JSON请求登录
  * AuthenticationFilter that supports rest login(json login) and form login.
  */
-//@Component
+@Component
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+    @Autowired
+    private DelegatingPasswordEncoder passwordEncoder;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -37,8 +42,18 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             UsernamePasswordAuthenticationToken authRequest = null;
             try (InputStream is = request.getInputStream()) {
                 LoginReq authenticationBean = mapper.readValue(is, LoginReq.class);
+                String username = authenticationBean.getUsername();
+                String password = authenticationBean.getPassword();
+                if(password.startsWith("$2a")){
+                    passwordEncoder.setDefaultPasswordEncoderForMatches(NoOpPasswordEncoder.getInstance());
+//                    password="{noop}"+password;
+                }else{
+                    passwordEncoder.setDefaultPasswordEncoderForMatches(new BCryptPasswordEncoder());
+//                    password="{bcrypt}"+password;
+
+                }
                 authRequest = new UsernamePasswordAuthenticationToken(
-                        authenticationBean.getUsername(), authenticationBean.getPassword());
+                        username, password);
             } catch (IOException e) {
                 e.printStackTrace();
                 authRequest = new UsernamePasswordAuthenticationToken(

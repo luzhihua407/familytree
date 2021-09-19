@@ -48,7 +48,7 @@ spring:
       password: admin
 
 logging:
-  level: INFO
+  level: debug
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*Mapper.xml

@@ -9,22 +9,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.context.event.SimpleApplicationEventMulticaster;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
-import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.*;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CommonsRequestLoggingFilter;
-import springfox.documentation.swagger2.web.Swagger2Controller;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.TimeZone;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 public class ApplicationConfig {
@@ -69,7 +67,13 @@ public class ApplicationConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
 
-        return new BCryptPasswordEncoder();
+//        return new BCryptPasswordEncoder();
+//        String encodingId = "bcrypt";
+//        Map<String, PasswordEncoder> encoders = new HashMap();
+//        encoders.put(encodingId, new BCryptPasswordEncoder());
+//        encoders.put("noop", NoOpPasswordEncoder.getInstance());
+//        return new DelegatingPasswordEncoder(encodingId, encoders);
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Bean

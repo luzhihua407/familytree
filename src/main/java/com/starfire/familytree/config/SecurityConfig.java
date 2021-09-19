@@ -53,8 +53,7 @@ http.authorizeRequests().antMatchers("/v2/api-docs",
     }
     @Bean
     CustomAuthenticationFilter customAuthenticationFilter() throws Exception {
-        CustomAuthenticationFilter filter = new CustomAuthenticationFilter();
-
+        CustomAuthenticationFilter filter= new CustomAuthenticationFilter();
         filter.setAuthenticationSuccessHandler(myAuthenticationSuccessHandler);
         filter.setAuthenticationFailureHandler(new MyAuthenticationFailureHandler());
         filter.setFilterProcessesUrl("/login");
